@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/myPage_icon" />
+                android:src="@drawable/mypage_icon" />
 
         </LinearLayout>
 
