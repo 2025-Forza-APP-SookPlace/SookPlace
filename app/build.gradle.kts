@@ -34,8 +34,9 @@ android {
         jvmTarget = "11"
     }
     dataBinding {
-        enable = true 
+        enable = true
     }
+
 }
 
 dependencies {

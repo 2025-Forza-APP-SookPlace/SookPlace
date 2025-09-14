@@ -8,11 +8,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.sookplace.R
-import com.example.sookplace.databinding.FragmentHomeBinding
+import com.example.sookplace.databinding.FragmentCommunityBinding
 
-class HomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+class CommunityFragment : Fragment() {
+
+    private lateinit var binding: FragmentCommunityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,26 +26,23 @@ class HomeFragment : Fragment() {
     ): View? {
 
         ///하단바 프래그먼트 간의 이동 구현
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_community, container, false)
 
         binding.searchTap.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+            it.findNavController().navigate(R.id.action_communityFragment_to_searchFragment)
         }
 
         binding.mapTap.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_mapFragment)
+            it.findNavController().navigate(R.id.action_communityFragment_to_mapFragment)
         }
 
-        binding.communityTap.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_communityFragment)
+        binding.homeTap.setOnClickListener {
+            it.findNavController().navigate(R.id.action_communityFragment_to_homeFragment)
         }
 
         binding.mypageTap.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_myPageFragment)
+            it.findNavController().navigate(R.id.action_communityFragment_to_myPageFragment)
         }
-
-
-
 
         return binding.root
     }

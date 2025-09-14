@@ -12,6 +12,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="홈"
+                app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <LinearLayout
                 android:id="@+id/bottomNav"
                 android:layout_width="match_parent"
@@ -21,7 +30,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout">
 
                 <ImageView
-                    android:id="@+id/homeFragment"
+                    android:id="@+id/homeTap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
@@ -29,7 +38,7 @@
                     android:src="@drawable/home_icon" />
 
                 <ImageView
-                    android:id="@+id/searchFragment"
+                    android:id="@+id/searchTap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
@@ -37,7 +46,7 @@
                     android:src="@drawable/search_icon" />
 
                 <ImageView
-                    android:id="@+id/mapFragment"
+                    android:id="@+id/mapTap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
@@ -45,7 +54,7 @@
                     android:src="@drawable/map_icon" />
 
                 <ImageView
-                    android:id="@+id/cummunityFragment"
+                    android:id="@+id/communityTap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
@@ -53,12 +62,12 @@
                     android:src="@drawable/cummunity_icon" />
 
                 <ImageView
-                    android:id="@+id/myPageFragment"
+                    android:id="@+id/mypageTap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
                     android:layout_weight="1"
-                    android:src="@drawable/mypage_icon" />
+                    android:src="@drawable/my_page_icon"/>
 
             </LinearLayout>
 
