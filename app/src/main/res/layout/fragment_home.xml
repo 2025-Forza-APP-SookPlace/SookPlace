@@ -8,18 +8,223 @@
         android:layout_height="match_parent"
         tools:context=".Fragment.HomeFragment">
 
+        <!--홈 컨텐츠-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="65dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!--User 정보-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_margin="15dp"
+                    android:padding="15dp"
+                    android:background="@drawable/background_radius">
+
+                    <ImageView
+                        android:id="@+id/profile_Img"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/my_page_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/userName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/smu_snowflake_bold"
+                        android:text="맛집탐험가 송이"
+                        app:layout_constraintStart_toEndOf="@+id/profile_Img"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/userLevel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/smu_snowflake_regular"
+                        android:text="Young Snow"
+                        android:textColor="#bbbbbb"
+                        app:layout_constraintStart_toEndOf="@+id/profile_Img"
+                        app:layout_constraintTop_toBottomOf="@+id/userName" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!--음식 카테고리-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="15dp"
+                    android:padding="15dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/background_radius">
+
+                    <TextView
+                        android:text="음식 카테고리"
+                        android:fontFamily="@font/smu_snowflake_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"/>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout4"
+                            android:layout_width="match_parent"
+                            android:layout_height="75dp"
+                            android:weightSum="3"
+                            android:orientation="horizontal"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/foodCategory_Btn1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/background_radius_gray"/>
+                            <ImageView
+                                android:id="@+id/foodCategory_Btn2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/background_radius_gray"/>
+                            <ImageView
+                                android:id="@+id/foodCategory_Btn3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/background_radius_gray"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="75dp"
+                            android:weightSum="3"
+                            android:orientation="horizontal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+                            <ImageView
+                                android:id="@+id/foodCategory_Btn4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/background_radius_gray"/>
+                            <ImageView
+                                android:id="@+id/foodCategory_Btn5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/background_radius_gray"/>
+                            <ImageView
+                                android:id="@+id/foodCategory_Btn6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/background_radius_gray"/>
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <!--오늘의 숙플레이스: 당일 인기 식당 정보-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:padding="15dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/background_radius">
+
+                    <TextView
+                        android:text="오늘의 숙플레이스"
+                        android:fontFamily="@font/smu_snowflake_bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <ImageView
+                        android:id="@+id/today_sookple"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/background_radius_gray"/>
+
+                    <TextView
+                        android:text="숙명식당"
+                        android:fontFamily="@font/smu_snowflake_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"/>
+                    <TextView
+                        android:text="숙명여대 정문 앞"
+                        android:fontFamily="@font/smu_snowflake_regular"
+                        android:textColor="#bbbbbb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"/>
+                </LinearLayout>
+
+                <!--뭐 먹을까?: 점메추 룰렛-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_margin="15dp"
+                    android:padding="15dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/background_radius">
+
+                    <TextView
+                        android:text="뭐 먹을까?"
+                        android:fontFamily="@font/smu_snowflake_bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="고민되는 메뉴 선택을 룰렛으로 해결해보세요!"
+                        android:textColor="#bbbbbb"
+                        android:fontFamily="@font/smu_snowflake_regular"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <Button
+                        android:text="룰렛 돌리기"
+                        android:textColor="#ffffff"
+                        android:fontFamily="@font/smu_snowflake_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_radius_smblue"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+        <!--하단바-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="홈"
-                app:layout_constraintBottom_toTopOf="@+id/bottomNav"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#bbbbbb"
+                app:layout_constraintBottom_toTopOf="@+id/bottomNav" />
 
             <LinearLayout
                 android:id="@+id/bottomNav"
