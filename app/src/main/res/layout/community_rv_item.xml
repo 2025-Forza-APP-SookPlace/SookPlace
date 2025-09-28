@@ -48,42 +48,42 @@
 
     <TextView
         android:id="@+id/title"
-        android:text="제목"
-        android:textSize="20sp"
-        android:fontFamily="@font/smu_snowflake_bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:fontFamily="@font/smu_snowflake_bold"
+        android:text="제목"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/content"
-        android:text="내용"
-        android:textSize="15sp"
-        android:fontFamily="@font/smu_snowflake_regular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:fontFamily="@font/smu_snowflake_regular"
+        android:text="내용"
+        android:textSize="15sp" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@drawable/background_radius_gray"/>
+        android:background="@drawable/background_radius_gray" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:background="@drawable/background_radius">
+        android:background="@drawable/background_radius"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/placeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:fontFamily="@font/smu_snowflake_regular"
             android:text="숙명 식당"
             android:textSize="15sp"
-            android:layout_marginLeft="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -92,14 +92,37 @@
             android:id="@+id/placeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:text="장소보기"
             android:textColor="#003087"
-            android:layout_marginRight="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_margin="10dp"
+        android:background="#dddddd" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp">
+        <!--이미지 찾아서 채우기-->
+        <ImageView
+            android:src="@drawable/heart_icon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"/>
+        <ImageView
+            android:src="@drawable/heart_icon_black"
+            android:layout_width="18dp"
+            android:layout_height="18dp"/>
+
+    </LinearLayout>
 
 
 </LinearLayout>
