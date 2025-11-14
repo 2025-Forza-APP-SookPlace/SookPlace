@@ -52,7 +52,7 @@
                         android:layout_marginLeft="10dp"
                         android:fontFamily="@font/smu_snowflake_regular"
                         android:text="Young Snow"
-                        android:textColor="#bbbbbb"
+                        android:textColor="#757575"
                         app:layout_constraintStart_toEndOf="@+id/profile_Img"
                         app:layout_constraintTop_toBottomOf="@+id/userName" />
 
@@ -173,7 +173,7 @@
                     <TextView
                         android:text="숙명여대 정문 앞"
                         android:fontFamily="@font/smu_snowflake_regular"
-                        android:textColor="#bbbbbb"
+                        android:textColor="#757575"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"/>
@@ -240,7 +240,8 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
                     android:layout_weight="1"
-                    android:src="@drawable/home_icon" />
+                    android:src="@drawable/home_icon"
+                    app:tint="@color/smblue"/>
 
                 <ImageView
                     android:id="@+id/searchTap"
