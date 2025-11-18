@@ -1,0 +1,450 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:2:1-36:12
+INJECTED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:2:1-36:12
+INJECTED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:2:1-36:12
+INJECTED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:2:1-36:12
+MERGED from [androidx.databinding:viewbinding:8.10.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e4f8ddbbc7d8eb00f1f5d4f5d22a9c34/transformed/viewbinding-8.10.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-runtime-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/205f4882e0289d215040eb8b90edef4d/transformed/navigation-runtime-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-common-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/6095a849d649472b63b4cae62cf12aa4/transformed/navigation-common-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-fragment:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/35f8a6884cf7ddafbf3d7eb6a4e8660a/transformed/navigation-fragment-2.9.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-fragment-ktx:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e40ed6d9989fda6a40f4463e87ba0446/transformed/navigation-fragment-ktx-2.9.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-ui-ktx:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/cb51d50bb49aa68dbbf8e9aec2807e1a/transformed/navigation-ui-ktx-2.9.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-ui:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/7ce91c05c3bcfd14d9343f7334e3c895/transformed/navigation-ui-2.9.1/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.material:material:1.12.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/d60b34ac9440d873714da8874eb40beb/transformed/material-1.12.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/ea5e6d5d98882fc797c9f4c9fc3e2ea8/transformed/constraintlayout-2.2.1/AndroidManifest.xml:2:1-9:12
+MERGED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:2:1-36:12
+MERGED from [androidx.appcompat:appcompat-resources:1.7.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/59e554e17437993f1e1cdf95a3d2255a/transformed/appcompat-resources-1.7.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.appcompat:appcompat:1.7.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/420c3e3f0e9d59677d0391de78dd1833/transformed/appcompat-1.7.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/b9b7c000956b9b26d2e8b480830a523f/transformed/viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/gimminseo/.gradle/caches/8.11.1/transforms/62e7bf3e53fc9c0f9faa989704dce03d/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.6.2] /Users/gimminseo/.gradle/caches/8.11.1/transforms/470b86cd60a5af7e7197fc8057d7e9eb/transformed/fragment-1.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity-ktx:1.8.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/57d9cd12bbb1fff413335d87c5034e64/transformed/activity-ktx-1.8.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity:1.8.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/b205be3fd6fbc69b487fb6a996cd5a41/transformed/activity-1.8.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/0aae8e8b35acaebb78fccd9e6827cd55/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/884cbc076036f8bd423fcc9686ad54b5/transformed/emoji2-1.3.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/0bdbb8d7270d047e2a1e3b3863345374/transformed/drawerlayout-1.1.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/9312451bf51a3dfffc119fcc11858181/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/cb968e66d95c27d5e4e2f5a4f01de574/transformed/slidingpanelayout-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.5.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a8a95583bdab3ab30f26aa88147f51bf/transformed/transition-1.5.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/55e252e8826d154cda8536c6a01edb4a/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/07ca1b4d694975a48653d74b93b5f677/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/aeeae1a1bba8be89fa4ab7437094b7df/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.2.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/ba67acf9151d710c914bd1e0f56c393f/transformed/recyclerview-1.2.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/7be6f1d45395b2e6456fd69aa5c6841b/transformed/swiperefreshlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a097d9574b5bb328a987fd4f4f727d6a/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e1c2efce5dab0c5331cec063dd3a4bf4/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/0c733e5f208fa4fb937f8f5bfc4206a4/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.1.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/5afbcd00a98db10268d1fc1da1155869/transformed/customview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.window:window:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/f88aa704e72c25ad6c9bb57bc0c4f157/transformed/window-1.0.0/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/fb160d6d283ab61c698ababd8e21ea84/transformed/savedstate-ktx-1.3.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.savedstate:savedstate-android:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/6b53c3741b6a0443029fd5c8c2bcccbb/transformed/savedstate-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/b5c1fa9fad8d0a0228f08e77c7b05c41/transformed/lifecycle-runtime-ktx/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/6b50c886ebdc155fa3ab0b106627df22/transformed/lifecycle-viewmodel-2.9.1/AndroidManifest.xml:2:1-5:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/cb820644032386f2f89fc1026fdaf23f/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/c65697031faac00d14918c583df7cc67/transformed/lifecycle-runtime-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/54e16362a69969c8110833d3a4a085c3/transformed/lifecycle-livedata-core-2.9.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/2a0a0ad301963408ccbefb7c066cfdc7/transformed/lifecycle-process-2.9.1/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a522d159781415cfcd694b1da7d5c478/transformed/lifecycle-livedata-core-ktx-2.9.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/50b3349168d8d8e57e891bdd6cb0e2c5/transformed/lifecycle-livedata-2.9.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/4a87e17b4bfc30c5673be22a0ab1207d/transformed/lifecycle-livedata-ktx-2.9.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/d2cec92bd523509c741304947ee7b57c/transformed/lifecycle-viewmodel-ktx-2.9.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/46aed6e129382c17bb77f5c91cd740e9/transformed/lifecycle-viewmodel-savedstate-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/fa9aea681e18d33bca278905f3bd0937/transformed/core-ktx-1.16.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/de4a07c979c7122476535bbc968999ae/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.core:core-viewtree:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/318a057ae40a43d55e4fce40f29ed045/transformed/core-viewtree-1.0.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e6a168f584ac882f376b361bc8adf3aa/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/52bd8caf8f50fbbf5d59b63790cb4240/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/3ae731b533fe295d369e6212e6259f2b/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:17:1-55:12
+MERGED from [com.naver.maps:geometry:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/33d5200dfad59c5374c0b54dc2391771/transformed/geometry-1.3.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/39077608c75eb9d43e74f6247ad8c02e/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/7fa82f436d35b2f00c6bb0f1dfa0a79c/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/3c64a6c56d0a853cc32cc51e7e8e3278/transformed/tracing-1.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8f36fbcb51553d1df646722c48c4125f/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/b3debee657e370b6339173a05b8422d8/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e79b71a9b31ef85d6b3ff73b7b437628/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/39a529cc96e5f26fc0377489de4e1398/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.getkeepsafe.relinker:relinker:1.4.4] /Users/gimminseo/.gradle/caches/8.11.1/transforms/65a7d272d33fcfcc163aa9df732ee520/transformed/relinker-1.4.4/AndroidManifest.xml:2:1-7:12
+	package
+		INJECTED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:5:5-67
+MERGED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:14:5-67
+MERGED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:14:5-67
+	android:name
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:5:22-64
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:6:5-79
+	android:name
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:6:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:7:5-81
+	android:name
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:7:22-78
+application
+ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:9:5-34:19
+INJECTED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:9:5-34:19
+MERGED from [com.google.android.material:material:1.12.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/d60b34ac9440d873714da8874eb40beb/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.12.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/d60b34ac9440d873714da8874eb40beb/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/ea5e6d5d98882fc797c9f4c9fc3e2ea8/transformed/constraintlayout-2.2.1/AndroidManifest.xml:7:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/ea5e6d5d98882fc797c9f4c9fc3e2ea8/transformed/constraintlayout-2.2.1/AndroidManifest.xml:7:5-20
+MERGED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:18:5-34:19
+MERGED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:18:5-34:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/884cbc076036f8bd423fcc9686ad54b5/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/884cbc076036f8bd423fcc9686ad54b5/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.window:window:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/f88aa704e72c25ad6c9bb57bc0c4f157/transformed/window-1.0.0/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.window:window:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/f88aa704e72c25ad6c9bb57bc0c4f157/transformed/window-1.0.0/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/2a0a0ad301963408ccbefb7c066cfdc7/transformed/lifecycle-process-2.9.1/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/2a0a0ad301963408ccbefb7c066cfdc7/transformed/lifecycle-process-2.9.1/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e6a168f584ac882f376b361bc8adf3aa/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e6a168f584ac882f376b361bc8adf3aa/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/7fa82f436d35b2f00c6bb0f1dfa0a79c/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/7fa82f436d35b2f00c6bb0f1dfa0a79c/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+	android:extractNativeLibs
+		INJECTED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:17:9-35
+	android:label
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:15:9-41
+	android:fullBackupContent
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:13:9-54
+	android:roundIcon
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:16:9-54
+	tools:targetApi
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:19:9-29
+	android:icon
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:14:9-43
+	android:allowBackup
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:11:9-35
+	android:theme
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:18:9-44
+	android:dataExtractionRules
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:12:9-65
+	android:name
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:10:9-30
+meta-data#com.naver.maps.map.CLIENT_ID
+ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:20:9-22:42
+	android:value
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:22:13-39
+	android:name
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:21:13-56
+activity#com.min.mypage.MainActivity
+ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:24:9-33:20
+	android:label
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:27:13-45
+	android:exported
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:26:13-36
+	android:name
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:25:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:28:13-32:29
+action#android.intent.action.MAIN
+ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:29:17-69
+	android:name
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:29:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:31:17-77
+	android:name
+		ADDED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml:31:27-74
+uses-sdk
+INJECTED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml
+INJECTED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml
+MERGED from [androidx.databinding:viewbinding:8.10.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e4f8ddbbc7d8eb00f1f5d4f5d22a9c34/transformed/viewbinding-8.10.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.databinding:viewbinding:8.10.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e4f8ddbbc7d8eb00f1f5d4f5d22a9c34/transformed/viewbinding-8.10.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-runtime-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/205f4882e0289d215040eb8b90edef4d/transformed/navigation-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/205f4882e0289d215040eb8b90edef4d/transformed/navigation-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/6095a849d649472b63b4cae62cf12aa4/transformed/navigation-common-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/6095a849d649472b63b4cae62cf12aa4/transformed/navigation-common-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-fragment:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/35f8a6884cf7ddafbf3d7eb6a4e8660a/transformed/navigation-fragment-2.9.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-fragment:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/35f8a6884cf7ddafbf3d7eb6a4e8660a/transformed/navigation-fragment-2.9.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-fragment-ktx:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e40ed6d9989fda6a40f4463e87ba0446/transformed/navigation-fragment-ktx-2.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-fragment-ktx:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e40ed6d9989fda6a40f4463e87ba0446/transformed/navigation-fragment-ktx-2.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-ui-ktx:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/cb51d50bb49aa68dbbf8e9aec2807e1a/transformed/navigation-ui-ktx-2.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-ui-ktx:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/cb51d50bb49aa68dbbf8e9aec2807e1a/transformed/navigation-ui-ktx-2.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-ui:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/7ce91c05c3bcfd14d9343f7334e3c895/transformed/navigation-ui-2.9.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-ui:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/7ce91c05c3bcfd14d9343f7334e3c895/transformed/navigation-ui-2.9.1/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.12.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/d60b34ac9440d873714da8874eb40beb/transformed/material-1.12.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.12.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/d60b34ac9440d873714da8874eb40beb/transformed/material-1.12.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/ea5e6d5d98882fc797c9f4c9fc3e2ea8/transformed/constraintlayout-2.2.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/ea5e6d5d98882fc797c9f4c9fc3e2ea8/transformed/constraintlayout-2.2.1/AndroidManifest.xml:5:5-44
+MERGED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:5:5-44
+MERGED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.7.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/59e554e17437993f1e1cdf95a3d2255a/transformed/appcompat-resources-1.7.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.7.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/59e554e17437993f1e1cdf95a3d2255a/transformed/appcompat-resources-1.7.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/420c3e3f0e9d59677d0391de78dd1833/transformed/appcompat-1.7.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/420c3e3f0e9d59677d0391de78dd1833/transformed/appcompat-1.7.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/b9b7c000956b9b26d2e8b480830a523f/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/b9b7c000956b9b26d2e8b480830a523f/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/gimminseo/.gradle/caches/8.11.1/transforms/62e7bf3e53fc9c0f9faa989704dce03d/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment-ktx:1.6.2] /Users/gimminseo/.gradle/caches/8.11.1/transforms/62e7bf3e53fc9c0f9faa989704dce03d/transformed/fragment-ktx-1.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.6.2] /Users/gimminseo/.gradle/caches/8.11.1/transforms/470b86cd60a5af7e7197fc8057d7e9eb/transformed/fragment-1.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.6.2] /Users/gimminseo/.gradle/caches/8.11.1/transforms/470b86cd60a5af7e7197fc8057d7e9eb/transformed/fragment-1.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/57d9cd12bbb1fff413335d87c5034e64/transformed/activity-ktx-1.8.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/57d9cd12bbb1fff413335d87c5034e64/transformed/activity-ktx-1.8.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity:1.8.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/b205be3fd6fbc69b487fb6a996cd5a41/transformed/activity-1.8.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/b205be3fd6fbc69b487fb6a996cd5a41/transformed/activity-1.8.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/0aae8e8b35acaebb78fccd9e6827cd55/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/0aae8e8b35acaebb78fccd9e6827cd55/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/884cbc076036f8bd423fcc9686ad54b5/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/884cbc076036f8bd423fcc9686ad54b5/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/0bdbb8d7270d047e2a1e3b3863345374/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/0bdbb8d7270d047e2a1e3b3863345374/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/9312451bf51a3dfffc119fcc11858181/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/9312451bf51a3dfffc119fcc11858181/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/cb968e66d95c27d5e4e2f5a4f01de574/transformed/slidingpanelayout-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/cb968e66d95c27d5e4e2f5a4f01de574/transformed/slidingpanelayout-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.5.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a8a95583bdab3ab30f26aa88147f51bf/transformed/transition-1.5.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.transition:transition:1.5.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a8a95583bdab3ab30f26aa88147f51bf/transformed/transition-1.5.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/55e252e8826d154cda8536c6a01edb4a/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/55e252e8826d154cda8536c6a01edb4a/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/07ca1b4d694975a48653d74b93b5f677/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/07ca1b4d694975a48653d74b93b5f677/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/aeeae1a1bba8be89fa4ab7437094b7df/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/aeeae1a1bba8be89fa4ab7437094b7df/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.2.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/ba67acf9151d710c914bd1e0f56c393f/transformed/recyclerview-1.2.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.2.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/ba67acf9151d710c914bd1e0f56c393f/transformed/recyclerview-1.2.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/7be6f1d45395b2e6456fd69aa5c6841b/transformed/swiperefreshlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/7be6f1d45395b2e6456fd69aa5c6841b/transformed/swiperefreshlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a097d9574b5bb328a987fd4f4f727d6a/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a097d9574b5bb328a987fd4f4f727d6a/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e1c2efce5dab0c5331cec063dd3a4bf4/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e1c2efce5dab0c5331cec063dd3a4bf4/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/0c733e5f208fa4fb937f8f5bfc4206a4/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/0c733e5f208fa4fb937f8f5bfc4206a4/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.1.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/5afbcd00a98db10268d1fc1da1155869/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/5afbcd00a98db10268d1fc1da1155869/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/f88aa704e72c25ad6c9bb57bc0c4f157/transformed/window-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/f88aa704e72c25ad6c9bb57bc0c4f157/transformed/window-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/fb160d6d283ab61c698ababd8e21ea84/transformed/savedstate-ktx-1.3.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/fb160d6d283ab61c698ababd8e21ea84/transformed/savedstate-ktx-1.3.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-android:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/6b53c3741b6a0443029fd5c8c2bcccbb/transformed/savedstate-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-android:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/6b53c3741b6a0443029fd5c8c2bcccbb/transformed/savedstate-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/b5c1fa9fad8d0a0228f08e77c7b05c41/transformed/lifecycle-runtime-ktx/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/b5c1fa9fad8d0a0228f08e77c7b05c41/transformed/lifecycle-runtime-ktx/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/6b50c886ebdc155fa3ab0b106627df22/transformed/lifecycle-viewmodel-2.9.1/AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/6b50c886ebdc155fa3ab0b106627df22/transformed/lifecycle-viewmodel-2.9.1/AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/cb820644032386f2f89fc1026fdaf23f/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/cb820644032386f2f89fc1026fdaf23f/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/c65697031faac00d14918c583df7cc67/transformed/lifecycle-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/c65697031faac00d14918c583df7cc67/transformed/lifecycle-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/54e16362a69969c8110833d3a4a085c3/transformed/lifecycle-livedata-core-2.9.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/54e16362a69969c8110833d3a4a085c3/transformed/lifecycle-livedata-core-2.9.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/2a0a0ad301963408ccbefb7c066cfdc7/transformed/lifecycle-process-2.9.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/2a0a0ad301963408ccbefb7c066cfdc7/transformed/lifecycle-process-2.9.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a522d159781415cfcd694b1da7d5c478/transformed/lifecycle-livedata-core-ktx-2.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a522d159781415cfcd694b1da7d5c478/transformed/lifecycle-livedata-core-ktx-2.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/50b3349168d8d8e57e891bdd6cb0e2c5/transformed/lifecycle-livedata-2.9.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/50b3349168d8d8e57e891bdd6cb0e2c5/transformed/lifecycle-livedata-2.9.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/4a87e17b4bfc30c5673be22a0ab1207d/transformed/lifecycle-livedata-ktx-2.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/4a87e17b4bfc30c5673be22a0ab1207d/transformed/lifecycle-livedata-ktx-2.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/d2cec92bd523509c741304947ee7b57c/transformed/lifecycle-viewmodel-ktx-2.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/d2cec92bd523509c741304947ee7b57c/transformed/lifecycle-viewmodel-ktx-2.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/46aed6e129382c17bb77f5c91cd740e9/transformed/lifecycle-viewmodel-savedstate-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/46aed6e129382c17bb77f5c91cd740e9/transformed/lifecycle-viewmodel-savedstate-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/fa9aea681e18d33bca278905f3bd0937/transformed/core-ktx-1.16.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/fa9aea681e18d33bca278905f3bd0937/transformed/core-ktx-1.16.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/de4a07c979c7122476535bbc968999ae/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/de4a07c979c7122476535bbc968999ae/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-viewtree:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/318a057ae40a43d55e4fce40f29ed045/transformed/core-viewtree-1.0.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-viewtree:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/318a057ae40a43d55e4fce40f29ed045/transformed/core-viewtree-1.0.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e6a168f584ac882f376b361bc8adf3aa/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e6a168f584ac882f376b361bc8adf3aa/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/52bd8caf8f50fbbf5d59b63790cb4240/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/52bd8caf8f50fbbf5d59b63790cb4240/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/3ae731b533fe295d369e6212e6259f2b/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/3ae731b533fe295d369e6212e6259f2b/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [com.naver.maps:geometry:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/33d5200dfad59c5374c0b54dc2391771/transformed/geometry-1.3.0/AndroidManifest.xml:5:5-44
+MERGED from [com.naver.maps:geometry:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/33d5200dfad59c5374c0b54dc2391771/transformed/geometry-1.3.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/39077608c75eb9d43e74f6247ad8c02e/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/39077608c75eb9d43e74f6247ad8c02e/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/7fa82f436d35b2f00c6bb0f1dfa0a79c/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/7fa82f436d35b2f00c6bb0f1dfa0a79c/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/3c64a6c56d0a853cc32cc51e7e8e3278/transformed/tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/3c64a6c56d0a853cc32cc51e7e8e3278/transformed/tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8f36fbcb51553d1df646722c48c4125f/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8f36fbcb51553d1df646722c48c4125f/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/b3debee657e370b6339173a05b8422d8/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/b3debee657e370b6339173a05b8422d8/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e79b71a9b31ef85d6b3ff73b7b437628/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/e79b71a9b31ef85d6b3ff73b7b437628/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/39a529cc96e5f26fc0377489de4e1398/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/39a529cc96e5f26fc0377489de4e1398/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.getkeepsafe.relinker:relinker:1.4.4] /Users/gimminseo/.gradle/caches/8.11.1/transforms/65a7d272d33fcfcc163aa9df732ee520/transformed/relinker-1.4.4/AndroidManifest.xml:5:5-43
+MERGED from [com.getkeepsafe.relinker:relinker:1.4.4] /Users/gimminseo/.gradle/caches/8.11.1/transforms/65a7d272d33fcfcc163aa9df732ee520/transformed/relinker-1.4.4/AndroidManifest.xml:5:5-43
+	android:targetSdkVersion
+		INJECTED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/gimminseo/AndroidStudioProjects/MyPage/app/src/main/AndroidManifest.xml
+uses-feature#0x00020000
+ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:7:5-9:35
+	android:glEsVersion
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:8:9-41
+	android:required
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:9:9-32
+uses-feature#android.hardware.wifi
+ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:10:5-12:36
+	android:required
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:12:9-33
+	android:name
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:11:9-45
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:15:5-79
+	android:name
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:15:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:16:5-76
+	android:name
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:16:22-73
+activity#com.naver.maps.map.app.LegendActivity
+ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:19:9-23:51
+	android:label
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:22:13-52
+	android:configChanges
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:21:13-91
+	android:theme
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:23:13-48
+	android:name
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:20:13-65
+activity#com.naver.maps.map.app.LegalNoticeActivity
+ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:24:9-28:51
+	android:label
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:27:13-58
+	android:configChanges
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:26:13-91
+	android:theme
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:28:13-48
+	android:name
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:25:13-70
+activity#com.naver.maps.map.app.OpenSourceLicenseActivity
+ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:29:9-33:51
+	android:label
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:32:13-65
+	android:configChanges
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:31:13-91
+	android:theme
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:33:13-48
+	android:name
+		ADDED from [com.naver.maps:map-sdk:3.17.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/be2381665dd01b863ee5879d807c2a40/transformed/map-sdk-3.17.0/AndroidManifest.xml:30:13-76
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/884cbc076036f8bd423fcc9686ad54b5/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/2a0a0ad301963408ccbefb7c066cfdc7/transformed/lifecycle-process-2.9.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/2a0a0ad301963408ccbefb7c066cfdc7/transformed/lifecycle-process-2.9.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/7fa82f436d35b2f00c6bb0f1dfa0a79c/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/7fa82f436d35b2f00c6bb0f1dfa0a79c/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/884cbc076036f8bd423fcc9686ad54b5/transformed/emoji2-1.3.0/AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/884cbc076036f8bd423fcc9686ad54b5/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/884cbc076036f8bd423fcc9686ad54b5/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/884cbc076036f8bd423fcc9686ad54b5/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/884cbc076036f8bd423fcc9686ad54b5/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/884cbc076036f8bd423fcc9686ad54b5/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/884cbc076036f8bd423fcc9686ad54b5/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/f88aa704e72c25ad6c9bb57bc0c4f157/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/f88aa704e72c25ad6c9bb57bc0c4f157/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/f88aa704e72c25ad6c9bb57bc0c4f157/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/f88aa704e72c25ad6c9bb57bc0c4f157/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/f88aa704e72c25ad6c9bb57bc0c4f157/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/f88aa704e72c25ad6c9bb57bc0c4f157/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:23:9-81
+permission#com.min.mypage.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:26:22-94
+uses-permission#com.min.mypage.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.16.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/a2ea9ee53dae04ca831dd03aac9960fb/transformed/core-1.16.0/AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/2a0a0ad301963408ccbefb7c066cfdc7/transformed/lifecycle-process-2.9.1/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/2a0a0ad301963408ccbefb7c066cfdc7/transformed/lifecycle-process-2.9.1/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.9.1] /Users/gimminseo/.gradle/caches/8.11.1/transforms/2a0a0ad301963408ccbefb7c066cfdc7/transformed/lifecycle-process-2.9.1/AndroidManifest.xml:30:17-78
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/gimminseo/.gradle/caches/8.11.1/transforms/8293468a59b07a6c9f5169754e708c0c/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92
