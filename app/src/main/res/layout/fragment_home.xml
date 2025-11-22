@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="65dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -23,8 +25,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:layout_margin="15dp"
-                    android:padding="15dp"
-                    android:background="@drawable/background_radius">
+                    android:background="@drawable/background_radius"
+                    android:padding="15dp">
 
                     <ImageView
                         android:id="@+id/profile_Img"
@@ -63,15 +65,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_margin="15dp"
-                    android:padding="15dp"
+                    android:background="@drawable/background_radius"
                     android:orientation="vertical"
-                    android:background="@drawable/background_radius">
+                    android:padding="15dp">
 
                     <TextView
-                        android:text="음식 카테고리"
-                        android:fontFamily="@font/smu_snowflake_bold"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"/>
+                        android:layout_height="20dp"
+                        android:fontFamily="@font/smu_snowflake_bold"
+                        android:text="음식 카테고리" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -81,62 +83,90 @@
                             android:id="@+id/linearLayout4"
                             android:layout_width="match_parent"
                             android:layout_height="75dp"
-                            android:weightSum="3"
                             android:orientation="horizontal"
+                            android:weightSum="3"
                             app:layout_constraintTop_toTopOf="parent">
 
-                            <ImageView
+                            <Button
                                 android:id="@+id/foodCategory_Btn1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/background_radius_gray"/>
-                            <ImageView
+                                android:background="@drawable/background_radius"
+                                android:text="치킨"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/smu_snowflake_regular"
+                                app:backgroundTint="#F8FBFF"/>
+
+                            <Button
                                 android:id="@+id/foodCategory_Btn2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/background_radius_gray"/>
-                            <ImageView
+                                android:background="@drawable/background_radius"
+                                android:text="카페"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/smu_snowflake_regular"
+                                app:backgroundTint="#F8FBFF"/>
+
+                            <Button
                                 android:id="@+id/foodCategory_Btn3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/background_radius_gray"/>
+                                android:background="@drawable/background_radius"
+                                android:text="한식"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/smu_snowflake_regular"
+                                app:backgroundTint="#F8FBFF"/>
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="75dp"
-                            android:weightSum="3"
                             android:orientation="horizontal"
+                            android:weightSum="3"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
-                            <ImageView
+                            <Button
                                 android:id="@+id/foodCategory_Btn4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/background_radius_gray"/>
-                            <ImageView
+                                android:background="@drawable/background_radius_gray"
+                                android:text="분식"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/smu_snowflake_regular"
+                                app:backgroundTint="#F8FBFF"/>
+
+                            <Button
                                 android:id="@+id/foodCategory_Btn5"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/background_radius_gray"/>
-                            <ImageView
+                                android:background="@drawable/background_radius_gray"
+                                android:text="양식"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/smu_snowflake_regular"
+                                app:backgroundTint="#F8FBFF"/>
+
+                            <Button
                                 android:id="@+id/foodCategory_Btn6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/background_radius_gray"/>
+                                android:background="@drawable/background_radius_gray"
+                                android:text="디저트"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/smu_snowflake_regular"
+                                app:backgroundTint="#F8FBFF"/>
                         </LinearLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -147,36 +177,40 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
-                    android:padding="15dp"
+                    android:background="@drawable/background_radius"
                     android:orientation="vertical"
-                    android:background="@drawable/background_radius">
+                    android:padding="15dp">
 
                     <TextView
-                        android:text="오늘의 숙플레이스"
-                        android:fontFamily="@font/smu_snowflake_bold"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/smu_snowflake_bold"
+                        android:text="오늘의 숙플레이스" />
 
                     <ImageView
                         android:id="@+id/today_sookple"
+                        android:src="@drawable/food_img"
+                        android:clipToOutline="true"
+                        android:scaleType="centerCrop"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/background_radius_gray"/>
+                        android:background="@drawable/background_radius_gray" />
 
                     <TextView
-                        android:text="숙명식당"
-                        android:fontFamily="@font/smu_snowflake_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"/>
+                        android:layout_margin="5dp"
+                        android:fontFamily="@font/smu_snowflake_regular"
+                        android:text="숙명식당" />
+
                     <TextView
-                        android:text="숙명여대 정문 앞"
-                        android:fontFamily="@font/smu_snowflake_regular"
-                        android:textColor="#757575"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"/>
+                        android:layout_margin="5dp"
+                        android:fontFamily="@font/smu_snowflake_regular"
+                        android:text="숙명여대 정문 앞"
+                        android:textColor="#757575" />
                 </LinearLayout>
 
                 <!--뭐 먹을까?: 점메추 룰렛-->
@@ -184,32 +218,33 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_margin="15dp"
-                    android:padding="15dp"
+                    android:background="@drawable/background_radius"
                     android:orientation="vertical"
-                    android:background="@drawable/background_radius">
+                    android:padding="15dp">
 
                     <TextView
-                        android:text="뭐 먹을까?"
-                        android:fontFamily="@font/smu_snowflake_bold"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:text="고민되는 메뉴 선택을 룰렛으로 해결해보세요!"
-                        android:textColor="#bbbbbb"
-                        android:fontFamily="@font/smu_snowflake_regular"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <Button
-                        android:text="룰렛 돌리기"
-                        android:textColor="#ffffff"
-                        android:fontFamily="@font/smu_snowflake_regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/background_radius_smblue"/>
+                        android:fontFamily="@font/smu_snowflake_bold"
+                        android:text="뭐 먹을까?" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:fontFamily="@font/smu_snowflake_regular"
+                        android:text="고민되는 메뉴 선택을 룰렛으로 해결해보세요!"
+                        android:textColor="#bbbbbb" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_radius_smblue"
+                        android:fontFamily="@font/smu_snowflake_regular"
+                        android:text="룰렛 돌리기"
+                        android:textColor="#ffffff"
+                        app:backgroundTint="@color/smblue"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -218,7 +253,7 @@
         <!--하단바-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -238,42 +273,42 @@
                     android:id="@+id/homeTap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
                     android:layout_weight="1"
+                    android:paddingTop="10dp"
                     android:src="@drawable/home_icon"
-                    app:tint="@color/smblue"/>
+                    app:tint="@color/smblue" />
 
                 <ImageView
                     android:id="@+id/searchTap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
                     android:layout_weight="1"
+                    android:paddingTop="10dp"
                     android:src="@drawable/search_icon" />
 
                 <ImageView
                     android:id="@+id/mapTap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
                     android:layout_weight="1"
+                    android:paddingTop="10dp"
                     android:src="@drawable/map_icon" />
 
                 <ImageView
                     android:id="@+id/communityTap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
                     android:layout_weight="1"
+                    android:paddingTop="10dp"
                     android:src="@drawable/cummunity_icon" />
 
                 <ImageView
                     android:id="@+id/mypageTap"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
                     android:layout_weight="1"
-                    android:src="@drawable/my_page_icon"/>
+                    android:paddingTop="10dp"
+                    android:src="@drawable/my_page_icon" />
 
             </LinearLayout>
 
@@ -286,40 +321,40 @@
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <TextView
-                    android:text="홈"
-                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:text="홈"
+                    android:textAlignment="center" />
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="탐색"
-                    android:textAlignment="center"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:textAlignment="center" />
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="지도"
-                    android:textAlignment="center"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:textAlignment="center" />
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="커뮤니티"
-                    android:textAlignment="center"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:textAlignment="center" />
 
                 <TextView
-                    android:text="마이페이지"
-                    android:textAlignment="center"
-                    android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="마이페이지"
+                    android:textAlignment="center" />
 
             </LinearLayout>
 

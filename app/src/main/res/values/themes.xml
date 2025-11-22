@@ -6,8 +6,7 @@
     </style>
 
 
-    <style name="Theme.SookPlace" parent="Theme.Material3.DayNight">
-        <!-- 여기에 커스텀 속성들을 추가할 수 있어 -->
+    <style name="Theme.SookPlace" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:colorPrimary">@color/smblue</item>
         <item name="android:textColorPrimary">#212121</item>
         <item name="android:textColorSecondary">#757575</item>

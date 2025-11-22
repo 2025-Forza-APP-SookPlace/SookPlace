@@ -53,10 +53,11 @@
 
             <ImageView
                 android:id="@+id/imageMain"
+                android:src="@drawable/food_img"
+                android:clipToOutline="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/background_radius_gray" />
+                android:scaleType="centerCrop" />
 
             <!-- Like & Save -->
             <LinearLayout
@@ -70,6 +71,8 @@
                     android:id="@+id/btnLike"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
+                    android:padding="12dp"
+                    android:scaleType="centerInside"
                     android:background="@drawable/background_radius"
                     android:contentDescription="좋아요"
                     android:src="@drawable/heart" />
