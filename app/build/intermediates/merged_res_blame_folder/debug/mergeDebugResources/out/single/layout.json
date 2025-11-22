@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-mergeDebugResources-48:/layout/fragment_home.xml",
+        "source": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-main-51:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-mergeDebugResources-48:/layout/fragment_map.xml",
+        "source": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-main-51:/layout/fragment_map.xml"
+    },
+    {
+        "merged": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-mergeDebugResources-48:/layout/dialog_roulette_options.xml",
+        "source": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-main-51:/layout/dialog_roulette_options.xml"
+    },
+    {
+        "merged": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-mergeDebugResources-48:/layout/fragment_mypage.xml",
+        "source": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-main-51:/layout/fragment_mypage.xml"
+    },
+    {
+        "merged": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-mergeDebugResources-48:/layout/fragment_quest_detail.xml",
+        "source": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-main-51:/layout/fragment_quest_detail.xml"
+    },
+    {
+        "merged": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-mergeDebugResources-48:/layout/item_roulette_option.xml",
+        "source": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-main-51:/layout/item_roulette_option.xml"
+    },
+    {
+        "merged": "com.min.mypage.app-mergeDebugResources-48:/layout/activity_main.xml",
+        "source": "com.min.mypage.app-main-51:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-mergeDebugResources-48:/layout/item_myplace.xml",
+        "source": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-main-51:/layout/item_myplace.xml"
+    },
+    {
+        "merged": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-mergeDebugResources-48:/layout/item_mypost.xml",
+        "source": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-main-51:/layout/item_mypost.xml"
+    },
+    {
+        "merged": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-mergeDebugResources-48:/layout/fragment_notifications.xml",
+        "source": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-main-51:/layout/fragment_notifications.xml"
+    },
+    {
+        "merged": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-mergeDebugResources-48:/layout/activity_main.xml",
+        "source": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-main-51:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-mergeDebugResources-48:/layout/activity_profile_edit.xml",
+        "source": "/Users/gimminseo/.gradle/daemon/8.11.1/com.min.mypage.app-main-51:/layout/activity_profile_edit.xml"
+    }
+]

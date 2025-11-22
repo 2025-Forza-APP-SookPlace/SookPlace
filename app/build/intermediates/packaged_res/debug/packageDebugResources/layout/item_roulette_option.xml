@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/bg_outline_card_roulette"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_launcher_foreground"
+        android:layout_marginEnd="12dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="My Place에서 랜덤"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="#000000" />
+
+        <TextView
+            android:text="저장한 맛집 중에서 선택"
+            android:textSize="13sp"
+            android:textColor="#777777" />
+    </LinearLayout>
+</LinearLayout>
