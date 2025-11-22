@@ -1,0 +1,15 @@
+<resources>
+
+    <style name="TitleText">
+        <item name="android:fontFamily">@font/smu_snowflake_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="BodyText">
+        <item name="android:fontFamily">@font/smu_snowflake_regular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+</resources>
