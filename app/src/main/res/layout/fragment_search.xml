@@ -6,7 +6,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Fragment.SearchFragment">
+        tools:context=".ui.search.SearchFragment">
 
         <!--컨텐츠-->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,6 +89,7 @@
                                 android:fontFamily="@font/smu_snowflake_regular"
                                 android:gravity="center"
                                 android:text="전체"
+                                android:checked="true"
                                 android:textColor="@color/selector_food_text_color" />
 
                             <RadioButton
@@ -182,6 +183,7 @@
                             android:fontFamily="@font/smu_snowflake_regular"
                             android:gravity="center"
                             android:text="인기순"
+                            android:checked="true"
                             android:textColor="@color/selector_food_text_color" />
 
                         <RadioButton

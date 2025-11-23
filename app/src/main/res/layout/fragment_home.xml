@@ -7,7 +7,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Fragment.HomeFragment">
+        tools:context=".ui.home.HomeFragment">
 
         <!--홈 컨텐츠-->
         <ScrollView

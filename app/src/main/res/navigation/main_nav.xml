@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.sookplace.Fragment.HomeFragment"
+        android:name="com.example.sookplace.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -18,16 +18,16 @@
             android:id="@+id/action_homeFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_myPageFragment"
-            app:destination="@id/myPageFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_communityFragment"
             app:destination="@id/communityFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mypageFragment"
+            app:destination="@id/mypageFragment" />
 
     </fragment>
     <fragment
         android:id="@+id/communityFragment"
-        android:name="com.example.sookplace.Fragment.CommunityFragment"
+        android:name="com.example.sookplace.ui.community.CommunityFragment"
         android:label="fragment_community"
         tools:layout="@layout/fragment_community" >
 
@@ -41,8 +41,8 @@
             android:id="@+id/action_communityFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
         <action
-            android:id="@+id/action_communityFragment_to_myPageFragment"
-            app:destination="@id/myPageFragment" />
+            android:id="@+id/action_communityFragment_to_mypageFragment"
+            app:destination="@id/mypageFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
@@ -57,42 +57,20 @@
             app:destination="@id/searchFragment" />
 
         <action
-            android:id="@+id/action_mapFragment_to_myPageFragment"
-            app:destination="@id/myPageFragment" />
-        <action
             android:id="@+id/action_mapFragment_to_communityFragment"
             app:destination="@id/communityFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/myPageFragment"
-        android:name="com.example.sookplace.Fragment.MyPageFragment"
-        android:label="fragment_my_page"
-        tools:layout="@layout/fragment_my_page" >
         <action
-            android:id="@+id/action_myPageFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_myPageFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_myPageFragment_to_mapFragment"
-            app:destination="@id/mapFragment" />
-        <action
-            android:id="@+id/action_myPageFragment_to_communityFragment"
-            app:destination="@id/communityFragment" />
-
+            android:id="@+id/action_mapFragment_to_mypageFragment"
+            app:destination="@id/mypageFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.sookplace.Fragment.SearchFragment"
+        android:name="com.example.sookplace.ui.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_searchFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_searchFragment_to_myPageFragment"
-            app:destination="@id/myPageFragment" />
 
         <action
             android:id="@+id/action_searchFragment_to_mapFragment"
@@ -100,5 +78,27 @@
         <action
             android:id="@+id/action_searchFragment_to_communityFragment"
             app:destination="@id/communityFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_mypageFragment"
+            app:destination="@id/mypageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mypageFragment"
+        android:name="com.example.sookplace.ui.mypage.MyPageFragment"
+        android:label="fragment_mypage"
+        tools:layout="@layout/fragment_mypage" >
+        <action
+            android:id="@+id/action_mypageFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_mypageFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_mypageFragment_to_communityFragment"
+            app:destination="@id/communityFragment" />
+        <action
+            android:id="@+id/action_mypageFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+
     </fragment>
 </navigation>
