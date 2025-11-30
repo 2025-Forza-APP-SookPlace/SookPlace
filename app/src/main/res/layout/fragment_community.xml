@@ -19,6 +19,7 @@
             android:layout_margin="20dp"
             app:backgroundTint="@color/smblue"
             app:tint="@color/white"
+            android:contentDescription="글쓰기 버튼"
             app:layout_constraintBottom_toTopOf="@+id/bottomNav"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/edit" />
