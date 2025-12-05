@@ -6,4 +6,15 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">DashBoard</string>
     <string name="title_notifications">Notifications</string>
+
+    <!--로그인&화원가입-->
+    <string name="nickname">닉네임</string>
+    <string name="userId">아이디</string>
+    <string name="password">비밀번호</string>
+    <string name="passwordConfirmation">비밀번호 확인</string>
+    <string name="email">이메일</string>
+    <string name="login">로그인</string>
+    <string name="signUpDescription">혹시 회원이 아니신가요?</string>
+    <string name="signUp">회원가입</string>
+
 </resources>

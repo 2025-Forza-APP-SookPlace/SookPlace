@@ -1,98 +1,43 @@
 package com.example.sookplace.ui.home
 
-import android.app.Application
-import android.util.Log
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sookplace.data.local.db.AppDatabase
-import com.example.sookplace.data.local.entity.RestaurantEntity
-import com.example.sookplace.data.local.entity.UserEntity
-import kotlinx.coroutines.Dispatchers
+import com.example.sookplace.data.remote.response.RestaurantItem
+import com.example.sookplace.data.repository.RestaurantRepository
+import com.example.sookplace.data.repository.UserProfileRepository
+import jakarta.inject.Inject
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class HomeViewModel(application: Application) : AndroidViewModel(application) {
+class HomeViewModel @Inject constructor(
+    private val userProfilerepository: UserProfileRepository,
+    private val restaurantRepository: RestaurantRepository
+) : ViewModel() {
+    //프로필
+    val userProfile = userProfilerepository.userProfileFlow
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
-    val context = getApplication<Application>().applicationContext
-    val db = AppDatabase.getDatabase(context)
-
-    // 테스트/샘플용 데이터 삽입
-    fun insertSampleUserData() = viewModelScope.launch(Dispatchers.IO) {
-        // User 샘플
-        val user = UserEntity(
-            id = 1,
-            email = "test@example.com",
-            nickname = "맛집탐험가 송이",
-            level = 1
-        )
-        db.userDao().insert(user)
+    init {
+        viewModelScope.launch {
+            userProfilerepository.refreshIfNeeded()
+        }
     }
 
-    fun insertSampleRestaurants() = viewModelScope.launch(Dispatchers.IO) {
-        val restaurants = listOf(
-            RestaurantEntity(
-                id = 1,
-                name = "피자 마루",
-                category = "양식",
-                address = "숙명여대 후문",
-                avgRating = 4.7,
-                likeCount = 156,
-                distanceMinutesFromCampus = 7
-            ),
-            RestaurantEntity(
-                id = 2,
-                name = "달콤 디저트",
-                category = "디저트",
-                address = "숙명여대 앞 골목",
-                avgRating = 4.6,
-                likeCount = 156,
-                distanceMinutesFromCampus = 6
-            ),
-            RestaurantEntity(
-                id = 3,
-                name = "숙명 한식당",
-                category = "한식",
-                address = "숙명여대 정문 앞",
-                avgRating = 4.5,
-                likeCount = 128,
-                distanceMinutesFromCampus = 3
-            ),
-            RestaurantEntity(
-                id = 4,
-                name = "치킨 매니아",
-                category = "치킨",
-                address = "용산구 청파로",
-                avgRating = 4.4,
-                likeCount = 92,
-                distanceMinutesFromCampus = 4
-            ),
-            RestaurantEntity(
-                id = 5,
-                name = "캠퍼스 카페",
-                category = "카페",
-                address = "숙명여대 학생회관",
-                avgRating = 4.2,
-                likeCount = 89,
-                distanceMinutesFromCampus = 5
-            ),
-            RestaurantEntity(
-                id = 6,
-                name = "분식나라",
-                category = "분식",
-                address = "Seoul, Hongdae",
-                avgRating = 4.3,
-                likeCount = 67,
-                distanceMinutesFromCampus = 2
-            )
-        )
-        db.restaurantDao().insert(restaurants)
-    }
+    //오늘의
+    private val _featuredRestaurants = MutableStateFlow<List<RestaurantItem>>(emptyList())
+    val featuredRestaurants: StateFlow<List<RestaurantItem>> get() = _featuredRestaurants
 
-    fun getData() = viewModelScope.launch(Dispatchers.IO) {
-        Log.d("HomeViewModel", db.userDao().getAllData().toString())
-        Log.d("HomeViewModel", db.restaurantDao().getAllData().toString())
-    }
-
-    suspend fun getUser(): UserEntity {
-        return db.userDao().getAllData()
+    fun loadFeaturedRestaurants() {
+        viewModelScope.launch {
+            try {
+                val list = restaurantRepository.getFeaturedRestaurants()
+                _featuredRestaurants.value = list
+            } catch (e: Exception) {
+                // 오류 처리: Toast, Log, State 업데이트 등
+            }
+        }
     }
 }

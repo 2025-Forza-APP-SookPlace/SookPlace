@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.sookplace.data.local.entity.RestaurantEntity
-import com.example.sookplace.data.local.entity.UserEntity
 
 @Dao
 interface RestaurantDao {

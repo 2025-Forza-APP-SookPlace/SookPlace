@@ -6,7 +6,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sookplace.data.local.db.AppDatabase
 import com.example.sookplace.data.local.entity.RestaurantEntity
-import com.example.sookplace.data.local.entity.UserEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

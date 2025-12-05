@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("org.jetbrains.kotlin.kapt")
+    id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -57,11 +58,23 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:2.8.4")
 
     // To use Kotlin annotation processing tool (kapt)
-    kapt("androidx.room:room-compiler:2.8.4")
+    ksp("androidx.room:room-compiler:2.8.4")
 
     // Coroutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
 
     // ViewModelScope
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.1")
+
+    implementation("androidx.paging:paging-runtime-ktx:3.3.6")
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    implementation("com.google.dagger:hilt-android:2.52")
+    ksp("com.google.dagger:hilt-compiler:2.52")
+
+    implementation("io.coil-kt:coil:2.6.0")
+
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
 }

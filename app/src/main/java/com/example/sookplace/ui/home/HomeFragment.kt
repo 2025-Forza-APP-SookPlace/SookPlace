@@ -1,17 +1,17 @@
 package com.example.sookplace.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
-import com.example.sookplace.ui.mypage.myplace.MyPlaceActivity
-import com.example.sookplace.ui.mypage.mypost.MyPostActivity
+import coil.load
 import com.example.sookplace.R
 import com.example.sookplace.databinding.FragmentHomeBinding
 import kotlinx.coroutines.Dispatchers
@@ -21,7 +21,7 @@ import kotlinx.coroutines.withContext
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +34,36 @@ class HomeFragment : Fragment() {
     ): View? {
         //데이터바인딩
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        // ViewModel 초기화
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        // ViewModel
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                //프로필
+                viewModel.userProfile.collect { user ->
+                    if (user != null) {
+                        binding.nickname.text = user.nickname
+                        binding.profileImg.load(user.avatarUrl)
+                        binding.level.text = user.levelTitle
+                    }
+                }
+                //오늘의 숙플레이스
+                viewModel.featuredRestaurants.collect { list ->
+                    //adapter.submitList(list)
+                    //RecyclerView 구현하기!!
+                }
+            }
+        }
+
+        // Fragment onCreateView 또는 onViewCreated에서 호출
+        viewModel.loadFeaturedRestaurants()
+
+
+//        // 로그아웃 버튼 예시
+//        binding.logoutBtn.setOnClickListener {
+//            viewModel.logout()
+//            startActivity(Intent(requireContext(), LoginActivity::class.java).apply {
+//                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//            })
+//        }
 
         return binding.root
     }
@@ -43,19 +71,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 샘플 데이터 삽입 테스트
-        viewModel.insertSampleUserData()
-        viewModel.insertSampleRestaurants()
-
-        // Coroutine으로 DB 조회
-        lifecycleScope.launch(Dispatchers.IO) {
-            val user = viewModel.getUser() // DAO에서 단일 사용자 반환
-            withContext(Dispatchers.Main) {
-                // UI에 반영
-                binding.nickname.text = user.nickname
-                binding.level.text = "Lv. ${user.level}"
-            }
-        }
 
         ///하단바 프래그먼트 간의 이동 구현
         binding.searchTap.setOnClickListener {

@@ -11,15 +11,13 @@ data class RestaurantEntity (
     var name: String = "",
     var category: String = "",
     var address: String = "",
-    var latitude: Double = 37.5450,
-    var longitude: Double = 126.9647,
     var menu: String = "",
     var avgRating: Double = 0.0,
+    var likeCount: Int = 0,
     var reviewCount: Int = 0,
     var imageUrl: String = "",
-    // API에는 있지만 ERD에는 없음
-    var likeCount: Int = 0,
     var isLiked: Boolean = false,
     var distanceMinutesFromCampus: Int = 0,
-    var shareUrl: String = ""
+    val naverMapLink: String?,
+    val lastUpdated: Long
 )

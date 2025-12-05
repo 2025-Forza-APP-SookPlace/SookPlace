@@ -6,9 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.sookplace.data.local.dao.PostDao
 import com.example.sookplace.data.local.dao.RestaurantDao
-import com.example.sookplace.data.local.dao.UserDao
 import com.example.sookplace.data.local.entity.RestaurantEntity
-import com.example.sookplace.data.local.entity.UserEntity
 
 @Database(
     entities = [
