@@ -15,6 +15,8 @@ import androidx.navigation.findNavController
 import coil.load
 import com.example.sookplace.R
 import com.example.sookplace.databinding.FragmentHomeBinding
+import com.example.sookplace.ui.home.roulette.RouletteFragment
+import com.example.sookplace.ui.map.rouletteDialog.RouletteDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -145,6 +147,23 @@ class HomeFragment : Fragment() {
             )
         }
 
+        //룰렛 버튼 클릭
+        binding.rouletteBtn.setOnClickListener {
+            val currentUser = viewModel.userProfile.value
+
+            if (currentUser == null) {
+                //비로그인 상태: 토스트 메시지
+                android.widget.Toast.makeText(
+                    requireContext(),
+                    "로그인 후 이용 가능합니다.",
+                    android.widget.Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                //로그인 상태: 룰렛 다이얼로그 호출
+                showRouletteDialog()
+            }
+        }
+
 
         ///하단바 프래그먼트 간의 이동 구현
         binding.searchTap.setOnClickListener {
@@ -164,4 +183,17 @@ class HomeFragment : Fragment() {
         }
     }
 
+    // 룰렛 다이얼로그를 띄우는 함수
+    private fun showRouletteDialog() {
+        val roulette = RouletteFragment()
+
+//    rouletteDialog.setOptionClickListener { optionType ->
+//        // 1. 여기서 백엔드 API를 호출합니다. (예: viewModel.fetchRouletteResult(optionType))
+//        // 2. 응답이 오면 결과 다이얼로그를 띄웁니다.
+//        fetchAndShowResult(optionType)
+//    }
+
+        roulette.show(parentFragmentManager, "RouletteOptions")
+    }
 }
+
