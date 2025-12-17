@@ -188,6 +188,12 @@
                         android:fontFamily="@font/smu_snowflake_bold"
                         android:text="오늘의 숙플레이스" />
 
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/featuredViewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_marginTop="10dp" />
+
                     <ImageView
                         android:id="@+id/today_sookple"
                         android:src="@drawable/food_img"

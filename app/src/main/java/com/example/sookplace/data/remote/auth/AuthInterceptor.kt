@@ -21,7 +21,8 @@ class AuthInterceptor @Inject constructor(
         var request = chain.request()
 
         if (request.url.encodedPath.contains("/login") ||
-            request.url.encodedPath.contains("/signup")) {
+            request.url.encodedPath.contains("/signup") ||
+            request.url.encodedPath.contains("/restaurants/featured")) {
             return chain.proceed(request)
         }
 

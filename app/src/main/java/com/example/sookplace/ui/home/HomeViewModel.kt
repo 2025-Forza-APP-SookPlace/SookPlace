@@ -26,12 +26,32 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    //오늘의
+    //오늘의 숙플레이스
     private val _featuredRestaurants = MutableStateFlow<List<RestaurantItem>>(emptyList())
     val featuredRestaurants: StateFlow<List<RestaurantItem>> get() = _featuredRestaurants
 
+    private val USE_DUMMY = true //디버깅용
+
     fun loadFeaturedRestaurants() {
         viewModelScope.launch {
+            if (USE_DUMMY) { //디버깅용
+                _featuredRestaurants.value = listOf(
+                    RestaurantItem(
+                        name = "캠퍼스 카페",
+                        address = "숙명여대 학생회관",
+                        thumbnailUrl = "https://via.placeholder.com/300",
+                        isLiked = true
+                    ),
+                    RestaurantItem(
+                        name = "청파김밥",
+                        address = "서울 용산구 청파로",
+                        thumbnailUrl = "https://via.placeholder.com/300",
+                        isLiked = false
+                    )
+                )
+                return@launch
+            }
+
             try {
                 val list = restaurantRepository.getFeaturedRestaurants()
                 _featuredRestaurants.value = list

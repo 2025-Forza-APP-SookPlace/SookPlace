@@ -1,6 +1,7 @@
 package com.example.sookplace.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +36,16 @@ class HomeFragment : Fragment() {
         //데이터바인딩
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         // ViewModel
+        val adapter = FeaturedRestaurantAdapter()
+        binding.featuredViewPager.adapter = adapter
+
+        binding.featuredViewPager.apply {
+            offscreenPageLimit = 3
+            setPageTransformer { page, position ->
+                page.scaleY = 0.85f + (1 - kotlin.math.abs(position)) * 0.15f
+            }
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 //프로필
@@ -50,8 +61,8 @@ class HomeFragment : Fragment() {
                 }
                 //오늘의 숙플레이스
                 viewModel.featuredRestaurants.collect { list ->
-                    //adapter.submitList(list)
-                    //RecyclerView 구현하기!!
+                    Log.d("HOME", "featured size = ${list.size}")
+                    adapter.submitList(list)
                 }
             }
         }
