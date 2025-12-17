@@ -192,32 +192,12 @@
                         android:id="@+id/featuredViewPager"
                         android:layout_width="match_parent"
                         android:layout_height="220dp"
-                        android:layout_marginTop="10dp" />
-
-                    <ImageView
-                        android:id="@+id/today_sookple"
-                        android:src="@drawable/food_img"
-                        android:clipToOutline="true"
-                        android:scaleType="centerCrop"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/background_radius_gray" />
+                        android:clipToPadding="false"
+                        android:clipChildren="false"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:fontFamily="@font/smu_snowflake_regular"
-                        android:text="숙명식당" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:fontFamily="@font/smu_snowflake_regular"
-                        android:text="숙명여대 정문 앞"
-                        android:textColor="#757575" />
                 </LinearLayout>
 
                 <!--뭐 먹을까?: 점메추 룰렛-->

@@ -1,11 +1,19 @@
 package com.example.sookplace.di
 
+import android.content.Context
 import com.example.sookplace.data.local.TokenManager
+import com.example.sookplace.data.local.dao.PostDao
+import com.example.sookplace.data.local.dao.RestaurantDao
+import com.example.sookplace.data.local.dao.UserProfileDao
+import com.example.sookplace.data.local.db.AppDatabase
 import com.example.sookplace.data.remote.api.AuthApi
+import com.example.sookplace.data.remote.api.RestaurantApi
+import com.example.sookplace.data.remote.api.UserProfileApi
 import com.example.sookplace.data.remote.auth.AuthInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -20,6 +28,15 @@ object NetworkModule {
 
     private const val BASE_URL = "https://your.api.base.url" // <-- 실제 주소로 교체
 
+    // AppDatabase
+    @Provides
+    @Singleton
+    fun provideAppDatabase(
+        @ApplicationContext context: Context
+    ): AppDatabase {
+        return AppDatabase.getDatabase(context)
+    }
+
     //LoggingInterceptor 제공
     @Provides
     @Singleton
@@ -32,8 +49,12 @@ object NetworkModule {
     //AuthInterceptor 제공 (토큰 자동 포함)
     @Provides
     @Singleton
-    fun provideAuthInterceptor(tokenManager: TokenManager): AuthInterceptor {
-        return AuthInterceptor(tokenManager)
+    fun provideAuthInterceptor(
+        tokenManager: TokenManager,
+        userDao: UserProfileDao,
+        authApi: javax.inject.Provider<AuthApi>
+    ): AuthInterceptor {
+        return AuthInterceptor(tokenManager, userDao, authApi)
     }
 
     //OkHttpClient 제공 (Interceptor 포함)
@@ -70,4 +91,33 @@ object NetworkModule {
     fun provideAuthApi(retrofit: Retrofit): AuthApi {
         return retrofit.create(AuthApi::class.java)
     }
+
+    // UserProfileApi 제공
+    @Provides
+    @Singleton
+    fun provideUserProfileApi(retrofit: Retrofit): UserProfileApi {
+        return retrofit.create(UserProfileApi::class.java)
+    }
+
+    // RestaurantApi
+    @Provides
+    @Singleton
+    fun provideRestaurantApi(retrofit: Retrofit): RestaurantApi {
+        return retrofit.create(RestaurantApi::class.java)
+    }
+
+    // UserProfileDao를 제공하는 메서드 추가
+    @Provides
+    @Singleton
+    fun provideUserProfileDao(database: AppDatabase): UserProfileDao {
+        return database.userDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideRestaurantDao(database: AppDatabase): RestaurantDao = database.restaurantDao()
+
+    @Provides
+    @Singleton
+    fun providePostDao(database: AppDatabase): PostDao = database.postDao()
 }

@@ -24,7 +24,7 @@ class UserProfileRepository @Inject constructor(
                 nickname = "솜솜",
                 level = 3,
                 levelTitle = "청소년송이",
-                avatarUrl = "https://via.placeholder.com/150",
+                avatarUrl = "https://m.blog.naver.com/ambitiones/221438972285",
                 lastUpdated = System.currentTimeMillis()
             )
             userDao.upsertUserProfile(dummy)

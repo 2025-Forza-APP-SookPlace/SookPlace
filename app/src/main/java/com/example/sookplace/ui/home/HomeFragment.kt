@@ -15,10 +15,10 @@ import androidx.navigation.findNavController
 import coil.load
 import com.example.sookplace.R
 import com.example.sookplace.databinding.FragmentHomeBinding
-import kotlinx.coroutines.Dispatchers
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
@@ -49,20 +49,24 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 //프로필
-                viewModel.userProfile.collect { user ->
-                    if (user != null) { //로그인 상태(프로필 노출)
-                        binding.userprofile.visibility = View.VISIBLE
-                        binding.nickname.text = user.nickname
-                        binding.profileImg.load(user.avatarUrl)
-                        binding.level.text = user.levelTitle
-                    } else { //비로그인 상태(프로필 노출X)
-                        binding.userprofile.visibility = View.GONE
+                launch {
+                    viewModel.userProfile.collect { user ->
+                        if (user != null) {
+                            binding.userprofile.visibility = View.VISIBLE
+                            binding.nickname.text = user.nickname
+                            binding.profileImg.load(user.avatarUrl)
+                            binding.level.text = user.levelTitle
+                        } else {
+                            binding.userprofile.visibility = View.GONE
+                        }
                     }
                 }
                 //오늘의 숙플레이스
-                viewModel.featuredRestaurants.collect { list ->
-                    Log.d("HOME", "featured size = ${list.size}")
-                    adapter.submitList(list)
+                launch {
+                    viewModel.featuredRestaurants.collect { list ->
+                        Log.d("HOME", "featured size = ${list.size}")
+                        adapter.submitList(list)
+                    }
                 }
             }
         }

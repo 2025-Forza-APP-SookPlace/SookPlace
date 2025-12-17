@@ -14,7 +14,7 @@ import javax.inject.Singleton
 class AuthInterceptor @Inject constructor(
     private val tokenManager: TokenManager,
     private val userDao: UserProfileDao,
-    private val authApi: AuthApi
+    private val authApi: javax.inject.Provider<AuthApi>
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {

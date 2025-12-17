@@ -64,7 +64,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
 
     // ViewModelScope
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0")
 
     implementation("androidx.paging:paging-runtime-ktx:3.3.6")
 
