@@ -2,6 +2,7 @@ package com.example.sookplace.di
 
 import android.content.Context
 import com.example.sookplace.data.local.TokenManager
+import com.example.sookplace.data.local.dao.FeaturedRestaurantDao
 import com.example.sookplace.data.local.dao.PostDao
 import com.example.sookplace.data.local.dao.RestaurantDao
 import com.example.sookplace.data.local.dao.UserProfileDao
@@ -127,4 +128,10 @@ object NetworkModule {
     @Provides
     @Singleton
     fun providePostDao(database: AppDatabase): PostDao = database.postDao()
+
+    @Provides
+    @Singleton
+    fun provideFeaturedRestaurantDao(database: AppDatabase): FeaturedRestaurantDao {
+        return database.featuredRestaurantDao()
+    }
 }
