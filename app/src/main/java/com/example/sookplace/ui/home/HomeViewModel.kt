@@ -2,10 +2,16 @@ package com.example.sookplace.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.sookplace.data.remote.response.Category
+import com.example.sookplace.data.remote.response.NextAction
+import com.example.sookplace.data.remote.response.Restaurant
 import com.example.sookplace.data.remote.response.RestaurantItem
+import com.example.sookplace.data.remote.response.RouletteSpinResponse
 import com.example.sookplace.data.repository.RestaurantRepository
+import com.example.sookplace.data.repository.RouletteRepository
 import com.example.sookplace.data.repository.UserProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -16,7 +22,8 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val userProfileRepository: UserProfileRepository,
-    private val restaurantRepository: RestaurantRepository
+    private val restaurantRepository: RestaurantRepository,
+    private val rouletteRepository: RouletteRepository
 ) : ViewModel() {
     //프로필
     val userProfile = userProfileRepository.userProfileFlow
@@ -62,4 +69,77 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
+    //룰렛 돌리기
+    private val _excludedRestaurantIds = mutableListOf<Int>()
+
+    private val _rouletteState = MutableStateFlow<RouletteUiState>(RouletteUiState.Idle)
+    val rouletteState: StateFlow<RouletteUiState> = _rouletteState
+
+    fun spinRoulette(mode: String) {
+        viewModelScope.launch {
+            _rouletteState.value = RouletteUiState.Loading // 로딩 시작
+
+            delay(2000) //가짜 로딩 시간//TODO: 백엔드와 연결 후 삭제할 것
+            val dummyResponse = when (mode) {
+                "category" -> {
+                    // 카테고리 결과 모드일 때
+                    RouletteSpinResponse(
+                        type = "CATEGORY",
+                        restaurant = null,
+                        category = Category(key = "korean", name = "한식"),
+                        nextAction = NextAction(detailUrl = "", searchUrl = "")
+                    )
+                }
+
+                else -> {
+                    // 식당 결과 모드일 때 (myplace, top20)
+                    RouletteSpinResponse(
+                        type = "RESTAURANT",
+                        restaurant = Restaurant(
+                            id = 1,
+                            name = "숙대 앞 맛집 (더미)",
+                            category = "일식",
+                            thumbnailUrl = "https://picsum.photos/400/300", // 랜덤 이미지
+                            rating = 4.8,
+                            distanceMinutesFromCampus = 5
+                        ),
+                        category = null,
+                        nextAction = NextAction(detailUrl = "https://example.com", searchUrl = "")
+                    )
+                }
+            }
+
+            _rouletteState.value = RouletteUiState.Success(dummyResponse)
+            dummyResponse.restaurant?.let { _excludedRestaurantIds.add(it.id) }
+
+            try {
+                val response = rouletteRepository.spin(mode, _excludedRestaurantIds)
+                _rouletteState.value = RouletteUiState.Success(response)
+
+                response.restaurant?.let { //중복 제거 식당 리스트
+                    _excludedRestaurantIds.add(it.id)
+                }
+            } catch (e: Exception) {
+                _rouletteState.value = RouletteUiState.Error(e.message ?: "알 수 없는 오류가 발생했습니다.")
+            }
+        }
+    }
+
+    // 상태 초기화 (결과창을 닫거나 다시 시도할 때 사용)
+    fun clearExcludedIds() {
+        _excludedRestaurantIds.clear()
+    }
+
+    fun resetRouletteState() {
+        _rouletteState.value = RouletteUiState.Idle
+    }
+
+}
+
+sealed class RouletteUiState { //룰렛 상태 정의
+    object Idle : RouletteUiState() // 아무것도 안 한 상태
+    object Loading : RouletteUiState() // 서버 응답 대기 중
+    data class Success(val data: RouletteSpinResponse) : RouletteUiState() // 성공
+    data class Error(val message: String) : RouletteUiState() // 실패
 }

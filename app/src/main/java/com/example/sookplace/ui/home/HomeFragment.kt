@@ -1,10 +1,12 @@
 package com.example.sookplace.ui.home
 
+import android.R.attr.type
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,9 +16,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import coil.load
 import com.example.sookplace.R
+import com.example.sookplace.data.remote.response.RouletteSpinResponse
 import com.example.sookplace.databinding.FragmentHomeBinding
 import com.example.sookplace.ui.home.roulette.RouletteFragment
-import com.example.sookplace.ui.map.rouletteDialog.RouletteDialogFragment
+import com.example.sookplace.ui.home.roulette.RouletteLoadingFragment
+import com.example.sookplace.ui.home.roulette.RouletteResultFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -25,6 +29,9 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
+
+    private var loadingDialog: RouletteLoadingFragment? = null
+    private var currentType: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +75,36 @@ class HomeFragment : Fragment() {
                     viewModel.featuredRestaurants.collect { list ->
                         Log.d("HOME", "featured size = ${list.size}")
                         adapter.submitList(list)
+                    }
+                }
+                //룰렛 돌리기
+                launch {
+                    viewModel.rouletteState.collect { state ->
+                        when (state) {
+                            is RouletteUiState.Loading -> {
+                                // 로딩 다이얼로그 띄우기
+                                if (loadingDialog == null) {
+                                    loadingDialog = RouletteLoadingFragment()
+                                    loadingDialog?.show(parentFragmentManager, "Loading")
+                                }
+                            }
+                            is RouletteUiState.Success -> {
+                                // 서버 응답 성공 시 결과 다이얼로그 띄우기
+                                loadingDialog?.dismiss()
+                                loadingDialog = null
+
+                                showRouletteResultDialog(state.data)
+                                viewModel.resetRouletteState()
+                            }
+                            is RouletteUiState.Error -> {
+                                loadingDialog?.dismiss()
+                                loadingDialog = null
+
+                                Toast.makeText(requireContext(), state.message, Toast.LENGTH_SHORT).show()
+                                viewModel.resetRouletteState()
+                            }
+                            else -> {}
+                        }
                     }
                 }
             }
@@ -183,17 +220,50 @@ class HomeFragment : Fragment() {
         }
     }
 
-    // 룰렛 다이얼로그를 띄우는 함수
+    // 옵션 다이얼로그 띄우기
     private fun showRouletteDialog() {
         val roulette = RouletteFragment()
 
-//    rouletteDialog.setOptionClickListener { optionType ->
-//        // 1. 여기서 백엔드 API를 호출합니다. (예: viewModel.fetchRouletteResult(optionType))
-//        // 2. 응답이 오면 결과 다이얼로그를 띄웁니다.
-//        fetchAndShowResult(optionType)
-//    }
+        // 사용자가 옵션을 선택했을 때 호출될 리스너 (RouletteFragment에 이 함수를 만들어야 함)
+        roulette.setOptionClickListener { type ->
+            currentType = type
+
+            val mode = when(type) {
+                1 -> "myplace"
+                2 -> "category"
+                else -> "top20"
+            }
+            // ViewModel을 통해 서버에 요청 보냄
+            viewModel.spinRoulette(mode)
+        }
 
         roulette.show(parentFragmentManager, "RouletteOptions")
     }
+
+    // 결과 다이얼로그 띄우기
+    private fun showRouletteResultDialog(data: RouletteSpinResponse) {
+        val resultDialog = RouletteResultFragment().apply {
+            this.resultData = data
+            this.optionType = currentType
+
+            // 다시 돌리기 콜백
+            this.onRetry = {
+                val mode = when(currentType) {
+                    1 -> "myplace"
+                    2 -> "category"
+                    else -> "top20"
+                }
+                viewModel.spinRoulette(mode)
+            }
+
+            // 다른 옵션 선택 콜백
+            this.onReset = {
+                viewModel.clearExcludedIds()
+                showRouletteDialog()
+            }
+        }
+        resultDialog.show(parentFragmentManager, "RouletteResult")
+    }
+
 }
 

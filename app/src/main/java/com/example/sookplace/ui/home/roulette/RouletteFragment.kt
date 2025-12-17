@@ -16,6 +16,8 @@ class RouletteFragment : DialogFragment() {
     private var _binding: FragmentRouletteBinding? = null
     private val binding get() = _binding!!
 
+    private var optionClickListener: ((Int) -> Unit)? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -29,9 +31,8 @@ class RouletteFragment : DialogFragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun onStart() {
+        super.onStart()
         // 다이얼로그 배경을 투명하게 설정 (둥근 모서리 적용을 위함)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
@@ -39,39 +40,31 @@ class RouletteFragment : DialogFragment() {
         val params = dialog?.window?.attributes
         params?.width = (resources.displayMetrics.widthPixels * 0.9).toInt()
         dialog?.window?.attributes = params as WindowManager.LayoutParams
+    }
 
-        // 클릭 이벤트 설정 (예시)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // 클릭 이벤트 설정
         setupClickListeners()
+    }
+
+    fun setOptionClickListener(listener: (Int) -> Unit) {
+        this.optionClickListener = listener
     }
 
     private fun setupClickListeners() {
         binding.optionMyPlace.setOnClickListener {
-            fetchResultAndShow(1)
+            optionClickListener?.invoke(1)
+            dismiss() // 옵션창 닫기
         }
         binding.optionCategory.setOnClickListener {
-            fetchResultAndShow(2)
+            optionClickListener?.invoke(2)
+            dismiss()
         }
         binding.optionTop20.setOnClickListener {
-            fetchResultAndShow(3)
+            optionClickListener?.invoke(3)
+            dismiss()
         }
-    }
-
-    private fun fetchResultAndShow(type: Int) {
-        // 1. 서버에 요청 보내기 (ViewModel을 통해)
-        // viewModel.getRouletteResult(type)
-
-        // 2. 서버에서 결과가 왔다고 가정 (임시 로직)
-        val dummyResult = RestaurantItem(name = "백엔드 추천 맛집", isLiked = true, address = "숙명여대 후문", thumbnailUrl = "")
-
-        // 3. 현재 옵션창 닫기
-        dismiss()
-
-        // 4. 결과 다이얼로그 띄우기
-        val resultDialog = RouletteResultFragment(dummyResult, type) {
-            // '다시 돌리기' 콜백: 서버에 다시 요청하는 로직
-            fetchResultAndShow(type)
-        }
-        resultDialog.show(parentFragmentManager, "RouletteResult")
     }
 
     override fun onDestroyView() {
