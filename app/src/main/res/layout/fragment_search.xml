@@ -89,7 +89,6 @@
                                 android:fontFamily="@font/smu_snowflake_regular"
                                 android:gravity="center"
                                 android:text="전체"
-                                android:checked="true"
                                 android:textColor="@color/selector_food_text_color" />
 
                             <RadioButton
@@ -175,6 +174,7 @@
                         android:orientation="horizontal">
 
                         <RadioButton
+                            android:id="@+id/sortPopular"
                             android:layout_width="80dp"
                             android:layout_height="48dp"
                             android:layout_margin="5dp"
@@ -187,6 +187,7 @@
                             android:textColor="@color/selector_food_text_color" />
 
                         <RadioButton
+                            android:id="@+id/sortNear"
                             android:layout_width="80dp"
                             android:layout_height="48dp"
                             android:layout_margin="5dp"
@@ -198,6 +199,7 @@
                             android:textColor="@color/selector_food_text_color" />
 
                         <RadioButton
+                            android:id="@+id/sortRate"
                             android:layout_width="80dp"
                             android:layout_height="48dp"
                             android:layout_margin="5dp"

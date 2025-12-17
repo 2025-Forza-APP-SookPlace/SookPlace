@@ -21,6 +21,17 @@ class SearchFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val category = arguments?.getString("category")
+
+        when (category) {
+            "치킨" -> binding.foodCategoryBtn1.isChecked = true
+            "카페" -> binding.foodCategoryBtn2.isChecked = true
+            "한식" -> binding.foodCategoryBtn3.isChecked = true
+            "분식" -> binding.foodCategoryBtn4.isChecked = true
+            "양식" -> binding.foodCategoryBtn5.isChecked = true
+            "디저트" -> binding.foodCategoryBtn6.isChecked = true
+            else -> binding.foodCategoryBtn0.isChecked = true // 전체
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

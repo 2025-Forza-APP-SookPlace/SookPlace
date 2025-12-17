@@ -39,10 +39,13 @@ class HomeFragment : Fragment() {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 //프로필
                 viewModel.userProfile.collect { user ->
-                    if (user != null) {
+                    if (user != null) { //로그인 상태(프로필 노출)
+                        binding.userprofile.visibility = View.VISIBLE
                         binding.nickname.text = user.nickname
                         binding.profileImg.load(user.avatarUrl)
                         binding.level.text = user.levelTitle
+                    } else { //비로그인 상태(프로필 노출X)
+                        binding.userprofile.visibility = View.GONE
                     }
                 }
                 //오늘의 숙플레이스
@@ -70,6 +73,62 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //음식 카테고리 버튼 클릭
+        binding.foodCategoryBtn1.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("category", "치킨")
+            }
+            it.findNavController().navigate(
+                R.id.action_homeFragment_to_searchFragment,
+                bundle
+            )
+        }
+        binding.foodCategoryBtn2.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("category", "카페")
+            }
+            it.findNavController().navigate(
+                R.id.action_homeFragment_to_searchFragment,
+                bundle
+            )
+        }
+        binding.foodCategoryBtn3.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("category", "한식")
+            }
+            it.findNavController().navigate(
+                R.id.action_homeFragment_to_searchFragment,
+                bundle
+            )
+        }
+        binding.foodCategoryBtn4.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("category", "분식")
+            }
+            it.findNavController().navigate(
+                R.id.action_homeFragment_to_searchFragment,
+                bundle
+            )
+        }
+        binding.foodCategoryBtn5.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("category", "양식")
+            }
+            it.findNavController().navigate(
+                R.id.action_homeFragment_to_searchFragment,
+                bundle
+            )
+        }
+        binding.foodCategoryBtn6.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("category", "디저트")
+            }
+            it.findNavController().navigate(
+                R.id.action_homeFragment_to_searchFragment,
+                bundle
+            )
+        }
 
 
         ///하단바 프래그먼트 간의 이동 구현

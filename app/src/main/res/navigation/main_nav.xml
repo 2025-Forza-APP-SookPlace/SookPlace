@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.example.sookplace.Fragment.MapFragment"
+        android:name="com.example.sookplace.ui.map.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" >
         <action
@@ -68,6 +68,10 @@
         android:name="com.example.sookplace.ui.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
+        <argument
+            android:name="category"
+            app:argType="string"
+            android:defaultValue="전체" />
         <action
             android:id="@+id/action_searchFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
