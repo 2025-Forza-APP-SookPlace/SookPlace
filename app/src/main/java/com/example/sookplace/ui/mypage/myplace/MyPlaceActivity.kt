@@ -19,15 +19,15 @@ class MyPlaceActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_place)
 
-        ///RecyclerView
-        val rv : RecyclerView = binding.myplaceRv
-        val items = ArrayList<String>()
-        items.add("a")
-        items.add("b")
-
-        val rvAdapter = SearchRVAdapter(items)
-        rv.adapter = rvAdapter
-        rv.layoutManager = LinearLayoutManager(this)
+//        ///RecyclerView
+//        val rv : RecyclerView = binding.myplaceRv
+//        val items = ArrayList<String>()
+//        items.add("a")
+//        items.add("b")
+//
+//        val rvAdapter = SearchRVAdapter(items)
+//        rv.adapter = rvAdapter
+//        rv.layoutManager = LinearLayoutManager(this)
 
     }
 }

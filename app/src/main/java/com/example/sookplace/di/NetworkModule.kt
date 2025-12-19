@@ -10,6 +10,7 @@ import com.example.sookplace.data.local.db.AppDatabase
 import com.example.sookplace.data.remote.api.AuthApi
 import com.example.sookplace.data.remote.api.RestaurantApi
 import com.example.sookplace.data.remote.api.RouletteSpinApi
+import com.example.sookplace.data.remote.api.SearchApi
 import com.example.sookplace.data.remote.api.UserProfileApi
 import com.example.sookplace.data.remote.auth.AuthInterceptor
 import dagger.Module
@@ -87,21 +88,19 @@ object NetworkModule {
             .build()
     }
 
-    //AuthApi 제공
+    //Api 제공
     @Provides
     @Singleton
     fun provideAuthApi(retrofit: Retrofit): AuthApi {
         return retrofit.create(AuthApi::class.java)
     }
 
-    // UserProfileApi 제공
     @Provides
     @Singleton
     fun provideUserProfileApi(retrofit: Retrofit): UserProfileApi {
         return retrofit.create(UserProfileApi::class.java)
     }
 
-    // RestaurantApi
     @Provides
     @Singleton
     fun provideRestaurantApi(retrofit: Retrofit): RestaurantApi {
@@ -114,7 +113,13 @@ object NetworkModule {
         return retrofit.create(RouletteSpinApi::class.java)
     }
 
-    // UserProfileDao를 제공하는 메서드 추가
+    @Provides
+    @Singleton
+    fun provideSearchApi(retrofit: Retrofit): SearchApi {
+        return retrofit.create(SearchApi::class.java)
+    }
+
+    // Dao
     @Provides
     @Singleton
     fun provideUserProfileDao(database: AppDatabase): UserProfileDao {
