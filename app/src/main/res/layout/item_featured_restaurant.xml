@@ -28,7 +28,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:fontFamily="@font/smu_snowflake_regular"
-                android:text="숙명식당" />
+                android:text="숙명식당"
+                android:textSize="14sp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -36,7 +37,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="20dp"
+                    android:layout_width="18dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/location" />
 
@@ -47,6 +48,7 @@
                     android:layout_margin="5dp"
                     android:fontFamily="@font/smu_snowflake_regular"
                     android:text="숙명여대 정문 앞"
+                    android:textSize="14sp"
                     android:textColor="#757575" />
             </LinearLayout>
         </LinearLayout>

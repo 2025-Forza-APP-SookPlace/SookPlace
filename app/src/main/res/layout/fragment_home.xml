@@ -44,7 +44,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:fontFamily="@font/smu_snowflake_bold"
-                        android:text="익명송이"
+                        android:text="닉네임"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/profile_Img"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,7 +55,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:fontFamily="@font/smu_snowflake_regular"
-                        android:text="Young Snow"
+                        android:text="눈송이 레벨"
+                        android:textSize="14sp"
                         android:textColor="#757575"
                         app:layout_constraintStart_toEndOf="@+id/profile_Img"
                         app:layout_constraintTop_toBottomOf="@+id/nickname" />
@@ -74,7 +76,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:fontFamily="@font/smu_snowflake_bold"
-                        android:text="음식 카테고리" />
+                        android:text="음식 카테고리"
+                        android:textSize="14sp"/>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -96,6 +99,7 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/background_radius"
                                 android:text="치킨"
+                                android:textSize="14sp"
                                 android:textColor="@color/black"
                                 android:fontFamily="@font/smu_snowflake_regular"
                                 app:backgroundTint="#F8FBFF"/>
@@ -108,6 +112,7 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/background_radius"
                                 android:text="카페"
+                                android:textSize="14sp"
                                 android:textColor="@color/black"
                                 android:fontFamily="@font/smu_snowflake_regular"
                                 app:backgroundTint="#F8FBFF"/>
@@ -120,6 +125,7 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/background_radius"
                                 android:text="한식"
+                                android:textSize="14sp"
                                 android:textColor="@color/black"
                                 android:fontFamily="@font/smu_snowflake_regular"
                                 app:backgroundTint="#F8FBFF"/>
@@ -141,6 +147,7 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/background_radius_gray"
                                 android:text="분식"
+                                android:textSize="14sp"
                                 android:textColor="@color/black"
                                 android:fontFamily="@font/smu_snowflake_regular"
                                 app:backgroundTint="#F8FBFF"/>
@@ -153,6 +160,7 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/background_radius_gray"
                                 android:text="양식"
+                                android:textSize="14sp"
                                 android:textColor="@color/black"
                                 android:fontFamily="@font/smu_snowflake_regular"
                                 app:backgroundTint="#F8FBFF"/>
@@ -165,6 +173,7 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/background_radius_gray"
                                 android:text="디저트"
+                                android:textSize="14sp"
                                 android:textColor="@color/black"
                                 android:fontFamily="@font/smu_snowflake_regular"
                                 app:backgroundTint="#F8FBFF"/>
@@ -186,7 +195,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/smu_snowflake_bold"
-                        android:text="오늘의 숙플레이스" />
+                        android:text="오늘의 숙플레이스"
+                        android:textSize="14sp"/>
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/featuredViewPager"
@@ -213,7 +223,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/smu_snowflake_bold"
-                        android:text="뭐 먹을까?" />
+                        android:text="뭐 먹을까?"
+                        android:textSize="14sp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -222,6 +233,7 @@
                         android:layout_marginBottom="20dp"
                         android:fontFamily="@font/smu_snowflake_regular"
                         android:text="고민되는 메뉴 선택을 룰렛으로 해결해보세요!"
+                        android:textSize="14sp"
                         android:textColor="#bbbbbb" />
 
                     <Button
@@ -231,6 +243,7 @@
                         android:background="@drawable/background_radius_smblue"
                         android:fontFamily="@font/smu_snowflake_regular"
                         android:text="룰렛 돌리기"
+                        android:textSize="14sp"
                         android:textColor="#ffffff"
                         app:backgroundTint="@color/smblue"/>
                 </LinearLayout>
@@ -314,6 +327,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_weight="1"
                     android:text="홈"
+                    android:textSize="14sp"
                     android:textAlignment="center" />
 
                 <TextView
@@ -321,6 +335,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="탐색"
+                    android:textSize="14sp"
                     android:textAlignment="center" />
 
                 <TextView
@@ -328,6 +343,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="지도"
+                    android:textSize="14sp"
                     android:textAlignment="center" />
 
                 <TextView
@@ -335,6 +351,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="커뮤니티"
+                    android:textSize="14sp"
                     android:textAlignment="center" />
 
                 <TextView
@@ -342,6 +359,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="마이페이지"
+                    android:textSize="14sp"
                     android:textAlignment="center" />
 
             </LinearLayout>
