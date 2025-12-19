@@ -21,6 +21,13 @@ class SearchFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false)
+
+        //카테고리별 검색
         val category = arguments?.getString("category")
 
         when (category) {
@@ -32,11 +39,6 @@ class SearchFragment : Fragment() {
             "디저트" -> binding.foodCategoryBtn6.isChecked = true
             else -> binding.foodCategoryBtn0.isChecked = true // 전체
         }
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false)
 
         ///RecyclerView
         val rv : RecyclerView = binding.searchRv
