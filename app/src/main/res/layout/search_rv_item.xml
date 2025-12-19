@@ -38,6 +38,16 @@
             app:layout_constraintStart_toEndOf="@+id/thumbnailUrl"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/share"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/share"
+            android:layout_margin="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/gray" />
+
         <LinearLayout
             android:id="@+id/LinearLayout1"
             android:layout_width="wrap_content"
@@ -68,7 +78,7 @@
             <TextView
                 android:id="@+id/category"
                 android:text="category"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:fontFamily="@font/smu_snowflake_regular"
                 android:background="@drawable/background_radius_gray"
                 android:layout_width="wrap_content"
@@ -140,6 +150,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:text="장소보기"
+            android:textSize="14sp"
             android:textColor="#003087"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -162,13 +173,11 @@
         <TextView
             android:id="@+id/likeCount"
             android:text="158"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/smu_snowflake_regular"
             android:layout_marginLeft="10dp"/>
-
-
     </LinearLayout>
 
     </LinearLayout>

@@ -2,7 +2,8 @@ package com.example.sookplace.ui.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sookplace.data.remote.response.RestaurantContent
+import com.example.sookplace.data.local.dao.UserPreferenceDao
+import com.example.sookplace.data.local.entity.UserPreferenceEntity
 import com.example.sookplace.data.remote.response.SortRestaurantItem
 import com.example.sookplace.data.repository.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val searchRepository: SearchRepository
+    private val searchRepository: SearchRepository,
+    private val localDao: UserPreferenceDao
 ) : ViewModel() {
     private val _searchState = MutableStateFlow<SearchUiState> (SearchUiState.Idle)
     val searchState: StateFlow<SearchUiState> = _searchState //SearchUiState를 계속 관찰 확인
@@ -82,6 +84,52 @@ class SearchViewModel @Inject constructor(
             } catch (e: Exception) {
                 _searchState.value = SearchUiState.Error(e.message ?: "리스트를 불러오지 못했습니다.")
             }
+        }
+    }
+
+    /**
+     * 좋아요 로컬에 저장*/
+    fun toggleLike(item: SortRestaurantItem) {
+        viewModelScope.launch {
+            val nextState = !item.isLiked
+            // 로컬 DB 저장
+            if (nextState) {
+                // 좋아요를 눌렀을 때: 식당 정보를 로컬에 복사본으로 저장
+                localDao.insertOrUpdate(
+                    UserPreferenceEntity(
+                        restaurantId = item.id,
+                        name = item.name,
+                        category = item.category,
+                        thumbnailUrl = item.thumbnailUrl,
+                        rating = item.rating,
+                        address = item.locationName,
+                        isLiked = true
+                    )
+                )
+            } else {
+                // 좋아요를 취소했을 때: 로컬 DB에서 삭제하거나 상태 변경
+                localDao.deleteById(item.id)
+            }
+            //현재 화면 UI 갱신
+            updateListUI(item.id, nextState)
+        }
+    }
+
+    private fun updateListUI(restaurantId: Int, nextState: Boolean) {
+        val currentState = _searchState.value
+        if (currentState is SearchUiState.Success) {
+            val newList = currentState.list.map { listItem ->
+                if (listItem.id == restaurantId) {
+                    listItem.copy(
+                        isLiked = nextState,
+                        likeCount = if (nextState) listItem.likeCount + 1 else listItem.likeCount - 1
+                    )
+                } else {
+                    listItem
+                }
+            }
+            //UI 갱신
+            _searchState.value = SearchUiState.Success(newList)
         }
     }
 }

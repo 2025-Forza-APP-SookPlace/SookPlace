@@ -1,6 +1,7 @@
 package com.example.sookplace.ui.search
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sookplace.R
 import com.example.sookplace.databinding.FragmentSearchBinding
+import com.example.sookplace.ui.search.restaurantDetail.RestaurantDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -28,8 +30,17 @@ class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private val viewModel: SearchViewModel by viewModels()
-    private val searchAdapter = SearchRVAdapter()
-
+    private val searchAdapter = SearchRVAdapter(
+        onItemClick = { id ->
+            val intent = Intent(requireContext(), RestaurantDetailActivity::class.java).apply {
+                putExtra("RESTAURANT_ID", id)
+            }
+            startActivity(intent)
+        },
+        onLikeClick = { item ->
+            viewModel.toggleLike(item)
+        }
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

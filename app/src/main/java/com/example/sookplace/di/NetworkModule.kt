@@ -5,6 +5,7 @@ import com.example.sookplace.data.local.TokenManager
 import com.example.sookplace.data.local.dao.FeaturedRestaurantDao
 import com.example.sookplace.data.local.dao.PostDao
 import com.example.sookplace.data.local.dao.RestaurantDao
+import com.example.sookplace.data.local.dao.UserPreferenceDao
 import com.example.sookplace.data.local.dao.UserProfileDao
 import com.example.sookplace.data.local.db.AppDatabase
 import com.example.sookplace.data.remote.api.AuthApi
@@ -138,5 +139,11 @@ object NetworkModule {
     @Singleton
     fun provideFeaturedRestaurantDao(database: AppDatabase): FeaturedRestaurantDao {
         return database.featuredRestaurantDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserPreferenceDao(database: AppDatabase): UserPreferenceDao {
+        return database.userPreferenceDao()
     }
 }

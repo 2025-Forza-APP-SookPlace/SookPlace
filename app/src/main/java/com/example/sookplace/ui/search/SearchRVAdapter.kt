@@ -15,7 +15,10 @@ import com.example.sookplace.data.remote.response.RestaurantContent
 import com.example.sookplace.data.remote.response.SortRestaurantItem
 import com.example.sookplace.databinding.SearchRvItemBinding
 
-class SearchRVAdapter : ListAdapter<SortRestaurantItem, SearchRVAdapter.ViewHolder>(DiffCallback) {
+class SearchRVAdapter (
+    private val onItemClick: (Int) -> Unit, //클릭 시 id 전달(상세 페이지로 이동)
+    private val onLikeClick: (SortRestaurantItem) -> Unit //종아요 클릭
+): ListAdapter<SortRestaurantItem, SearchRVAdapter.ViewHolder>(DiffCallback) {
 
     inner class ViewHolder(val binding: SearchRvItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -39,17 +42,18 @@ class SearchRVAdapter : ListAdapter<SortRestaurantItem, SearchRVAdapter.ViewHold
             binding.like.setOnClickListener(null)
 
             binding.like.setOnClickListener { //TODO: 근데 좋아요 여부를 백엔드에 넘겨주는 api가 없는거 같은디??
-                item.isLiked = !item.isLiked //
-                binding.like.isSelected = item.isLiked // 선택 상태 변경
-                updateHeartUI(item.isLiked) // 이미지 교체
-
-                if (item.isLiked) {
-                    item.likeCount += 1
-                } else {
-                    item.likeCount -= 1
-                }
-                binding.likeCount.text = item.likeCount.toString()
-                updateHeartUI(item.isLiked)
+                onLikeClick(item)
+//                item.isLiked = !item.isLiked //
+//                binding.like.isSelected = item.isLiked // 선택 상태 변경
+//                updateHeartUI(item.isLiked) // 이미지 교체
+//
+//                if (item.isLiked) {
+//                    item.likeCount += 1
+//                } else {
+//                    item.likeCount -= 1
+//                }
+//                binding.likeCount.text = item.likeCount.toString()
+//                updateHeartUI(item.isLiked)
             }
 
             //장소 보기: 네이버 링크로 이동
@@ -66,14 +70,16 @@ class SearchRVAdapter : ListAdapter<SortRestaurantItem, SearchRVAdapter.ViewHold
                     Toast.makeText(itemView.context, "제공된 링크가 없습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
+
+            //아이템 클릭 시 상세 페이지로 이동
+            binding.root.setOnClickListener {
+                onItemClick(item.id)
+            }
         }
 
         private fun updateHeartUI(isLiked: Boolean) {
-            if (isLiked) {
-                binding.like.setImageResource(R.drawable.favorite_fill)
-            } else {
-                binding.like.setImageResource(R.drawable.favorite)
-            }
+            val icon = if (isLiked) R.drawable.favorite_fill else R.drawable.favorite
+            binding.like.setImageResource(icon)
         }
     }
 

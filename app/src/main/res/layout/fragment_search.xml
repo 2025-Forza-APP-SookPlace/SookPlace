@@ -108,6 +108,7 @@
                                 android:fontFamily="@font/smu_snowflake_regular"
                                 android:gravity="center"
                                 android:text="전체"
+                                android:textSize="14sp"
                                 android:textColor="@color/selector_food_text_color" />
 
                             <RadioButton
@@ -120,6 +121,7 @@
                                 android:fontFamily="@font/smu_snowflake_regular"
                                 android:gravity="center"
                                 android:text="치킨"
+                                android:textSize="14sp"
                                 android:textColor="@color/selector_food_text_color" />
 
                             <RadioButton
@@ -132,6 +134,7 @@
                                 android:fontFamily="@font/smu_snowflake_regular"
                                 android:gravity="center"
                                 android:text="카페"
+                                android:textSize="14sp"
                                 android:textColor="@color/selector_food_text_color" />
 
                             <RadioButton
@@ -144,6 +147,7 @@
                                 android:fontFamily="@font/smu_snowflake_regular"
                                 android:gravity="center"
                                 android:text="한식"
+                                android:textSize="14sp"
                                 android:textColor="@color/selector_food_text_color" />
 
                             <RadioButton
@@ -156,6 +160,7 @@
                                 android:fontFamily="@font/smu_snowflake_regular"
                                 android:gravity="center"
                                 android:text="분식"
+                                android:textSize="14sp"
                                 android:textColor="@color/selector_food_text_color" />
 
                             <RadioButton
@@ -168,6 +173,7 @@
                                 android:fontFamily="@font/smu_snowflake_regular"
                                 android:gravity="center"
                                 android:text="양식"
+                                android:textSize="14sp"
                                 android:textColor="@color/selector_food_text_color" />
 
                             <RadioButton
@@ -180,6 +186,7 @@
                                 android:fontFamily="@font/smu_snowflake_regular"
                                 android:gravity="center"
                                 android:text="디저트"
+                                android:textSize="14sp"
                                 android:textColor="@color/selector_food_text_color" />
                         </RadioGroup>
                     </HorizontalScrollView>
@@ -202,6 +209,7 @@
                             android:fontFamily="@font/smu_snowflake_regular"
                             android:gravity="center"
                             android:text="인기순"
+                            android:textSize="14sp"
                             android:checked="true"
                             android:textColor="@color/selector_food_text_color" />
 
@@ -215,6 +223,7 @@
                             android:fontFamily="@font/smu_snowflake_regular"
                             android:gravity="center"
                             android:text="가까운순"
+                            android:textSize="14sp"
                             android:textColor="@color/selector_food_text_color" />
 
                         <RadioButton
@@ -227,6 +236,7 @@
                             android:fontFamily="@font/smu_snowflake_regular"
                             android:gravity="center"
                             android:text="평점순"
+                            android:textSize="14sp"
                             android:textColor="@color/selector_food_text_color" />
 
                     </RadioGroup>
