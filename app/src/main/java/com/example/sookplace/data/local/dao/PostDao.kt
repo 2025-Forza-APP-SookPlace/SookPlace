@@ -5,15 +5,19 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.sookplace.data.local.entity.PostEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface  PostDao {
-    @Query("SELECT * FROM PostEntity ORDER BY id DESC LIMIT :limit")
-    fun getLatestPosts(limit: Int): List<PostEntity>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertPosts(posts: List<PostEntity>)
+    suspend fun insertPost(post: PostEntity)
 
-    @Query("DELETE FROM PostEntity WHERE id NOT IN (:keepIds)")
-    suspend fun deleteOldPosts(keepIds: List<Int>)
+    @Query("DELETE FROM PostEntity WHERE postId = :postId")
+    suspend fun deletePost(postId: String)
+
+    @Query("SELECT * FROM PostEntity")
+    fun getAllBookmarkedPosts(): Flow<List<PostEntity>>
+
+    @Query("SELECT EXISTS(SELECT 1 FROM PostEntity WHERE postId = :postId)")
+    suspend fun isBookmarked(postId: String): Boolean
 }

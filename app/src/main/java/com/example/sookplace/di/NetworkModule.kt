@@ -5,10 +5,11 @@ import com.example.sookplace.data.local.TokenManager
 import com.example.sookplace.data.local.dao.FeaturedRestaurantDao
 import com.example.sookplace.data.local.dao.PostDao
 import com.example.sookplace.data.local.dao.RestaurantDao
-import com.example.sookplace.data.local.dao.UserPreferenceDao
+import com.example.sookplace.data.local.dao.PlaceDao
 import com.example.sookplace.data.local.dao.UserProfileDao
 import com.example.sookplace.data.local.db.AppDatabase
 import com.example.sookplace.data.remote.api.AuthApi
+import com.example.sookplace.data.remote.api.CommunityApi
 import com.example.sookplace.data.remote.api.RestaurantApi
 import com.example.sookplace.data.remote.api.RouletteSpinApi
 import com.example.sookplace.data.remote.api.SearchApi
@@ -120,6 +121,12 @@ object NetworkModule {
         return retrofit.create(SearchApi::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun provideCommunityApi(retrofit: Retrofit): CommunityApi {
+        return retrofit.create(CommunityApi::class.java)
+    }
+
     // Dao
     @Provides
     @Singleton
@@ -143,7 +150,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideUserPreferenceDao(database: AppDatabase): UserPreferenceDao {
+    fun provideUserPreferenceDao(database: AppDatabase): PlaceDao {
         return database.userPreferenceDao()
     }
 }

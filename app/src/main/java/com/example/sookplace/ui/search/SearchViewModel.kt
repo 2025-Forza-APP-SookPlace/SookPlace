@@ -2,8 +2,8 @@ package com.example.sookplace.ui.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sookplace.data.local.dao.UserPreferenceDao
-import com.example.sookplace.data.local.entity.UserPreferenceEntity
+import com.example.sookplace.data.local.dao.PlaceDao
+import com.example.sookplace.data.local.entity.PlaceEntity
 import com.example.sookplace.data.remote.response.SortRestaurantItem
 import com.example.sookplace.data.repository.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchRepository: SearchRepository,
-    private val localDao: UserPreferenceDao
+    private val localDao: PlaceDao
 ) : ViewModel() {
     private val _searchState = MutableStateFlow<SearchUiState> (SearchUiState.Idle)
     val searchState: StateFlow<SearchUiState> = _searchState //SearchUiState를 계속 관찰 확인
@@ -92,26 +92,18 @@ class SearchViewModel @Inject constructor(
     fun toggleLike(item: SortRestaurantItem) {
         viewModelScope.launch {
             val nextState = !item.isLiked
-            // 로컬 DB 저장
-            if (nextState) {
-                // 좋아요를 눌렀을 때: 식당 정보를 로컬에 복사본으로 저장
-                localDao.insertOrUpdate(
-                    UserPreferenceEntity(
-                        restaurantId = item.id,
-                        name = item.name,
-                        category = item.category,
-                        thumbnailUrl = item.thumbnailUrl,
-                        rating = item.rating,
-                        address = item.locationName,
-                        isLiked = true
-                    )
-                )
-            } else {
-                // 좋아요를 취소했을 때: 로컬 DB에서 삭제하거나 상태 변경
-                localDao.deleteById(item.id)
-            }
-            //현재 화면 UI 갱신
             updateListUI(item.id, nextState)
+            //이 뒤는 백엔드
+            try {
+                // 2. 백엔드 서버에 좋아요 상태 전송
+                // searchRepository.postLike(item.id, nextState)
+
+                // 참고: 서버 API 호출이 실패할 경우를 대비해
+                // catch 블록에서 다시 updateListUI(item.id, !nextState)로 롤백 로직을 넣을 수 있습니다.
+            } catch (e: Exception) {
+                // 서버 통신 실패 시 UI 복구 (선택 사항)
+                updateListUI(item.id, !nextState)
+            }
         }
     }
 

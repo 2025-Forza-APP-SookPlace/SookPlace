@@ -19,13 +19,13 @@ class MyPostActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_post)
 
         //RecyclerView
-        val rv : RecyclerView = binding.mypostRV
-        val items = ArrayList<String>()
-        items.add("a")
-        items.add("b")
-
-        val rvAdapter = CommunityRVAdapter(items)
-        rv.adapter = rvAdapter
-        rv.layoutManager = LinearLayoutManager(this)
+//        val rv : RecyclerView = binding.mypostRV
+//        val items = ArrayList<String>()
+//        items.add("a")
+//        items.add("b")
+//
+//        val rvAdapter = CommunityRVAdapter(items)
+//        rv.adapter = rvAdapter
+//        rv.layoutManager = LinearLayoutManager(this)
     }
 }

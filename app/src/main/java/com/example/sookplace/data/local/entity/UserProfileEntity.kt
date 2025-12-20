@@ -3,7 +3,7 @@ package com.example.sookplace.data.local.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "user_profile")
+@Entity(tableName = "user_profile") //UI용 사용자 기본 정보 저장
 data class UserProfileEntity(
     @PrimaryKey
     val id: Int = 0,

@@ -7,12 +7,12 @@ import androidx.room.RoomDatabase
 import com.example.sookplace.data.local.dao.FeaturedRestaurantDao
 import com.example.sookplace.data.local.dao.PostDao
 import com.example.sookplace.data.local.dao.RestaurantDao
-import com.example.sookplace.data.local.dao.UserPreferenceDao
+import com.example.sookplace.data.local.dao.PlaceDao
 import com.example.sookplace.data.local.dao.UserProfileDao
 import com.example.sookplace.data.local.entity.FeaturedRestaurantEntity
 import com.example.sookplace.data.local.entity.PostEntity
 import com.example.sookplace.data.local.entity.RestaurantEntity
-import com.example.sookplace.data.local.entity.UserPreferenceEntity
+import com.example.sookplace.data.local.entity.PlaceEntity
 import com.example.sookplace.data.local.entity.UserProfileEntity
 
 @Database(
@@ -21,7 +21,7 @@ import com.example.sookplace.data.local.entity.UserProfileEntity
         RestaurantEntity::class,
         PostEntity::class,
         FeaturedRestaurantEntity::class,
-        UserPreferenceEntity::class
+        PlaceEntity::class
     ],
     version = 1,
     exportSchema = false
@@ -32,7 +32,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun restaurantDao() : RestaurantDao
     abstract fun postDao() : PostDao
     abstract fun featuredRestaurantDao(): FeaturedRestaurantDao
-    abstract fun userPreferenceDao(): UserPreferenceDao
+    abstract fun userPreferenceDao(): PlaceDao
 
     companion object {
         @Volatile

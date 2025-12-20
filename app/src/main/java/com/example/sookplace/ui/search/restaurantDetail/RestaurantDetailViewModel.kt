@@ -2,8 +2,8 @@ package com.example.sookplace.ui.search.restaurantDetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sookplace.data.local.dao.UserPreferenceDao
-import com.example.sookplace.data.local.entity.UserPreferenceEntity
+import com.example.sookplace.data.local.dao.PlaceDao
+import com.example.sookplace.data.local.entity.PlaceEntity
 import com.example.sookplace.data.remote.response.RestaurantDetailResponse
 import com.example.sookplace.data.repository.RestaurantRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RestaurantDetailViewModel @Inject constructor(
     private val restaurantRepository: RestaurantRepository,
-    private val localDao: UserPreferenceDao
+    private val localDao: PlaceDao
 ) : ViewModel() {
     //상태 변수
     private val _detailState = MutableStateFlow<DetailUiState>(DetailUiState.Idle)
@@ -32,24 +32,8 @@ class RestaurantDetailViewModel @Inject constructor(
         viewModelScope.launch {
             val nextState = !_isLiked.value
             _isLiked.value = nextState
+            // TODO: 백엔드 API가 있다면 여기서 호출 (예: restaurantRepository.postLike(restaurantId, nextState))
 
-            val currentState = _detailState.value
-            if (currentState is DetailUiState.Success) {
-                val data = currentState.data
-
-                val entity = UserPreferenceEntity(
-                    restaurantId = restaurantId,
-                    name = data.name,
-                    category = data.category,
-                    thumbnailUrl = data.thumbnailUrl ?: "",
-                    rating = data.rating,
-                    address = data.address,
-                    isLiked = nextState,
-                    isSaved = _isSaved.value // 현재 저장 상태 유지
-                )
-                localDao.insertOrUpdate(entity)
-                // TODO: 백엔드 API가 있다면 여기서 호출 (예: restaurantRepository.postLike(restaurantId, nextState))
-            }
         }
     }
 
@@ -63,17 +47,23 @@ class RestaurantDetailViewModel @Inject constructor(
             if (currentState is DetailUiState.Success) {
                 val data = currentState.data
 
-                val entity = UserPreferenceEntity(
-                    restaurantId = restaurantId,
-                    name = data.name,
-                    category = data.category,
-                    thumbnailUrl = data.thumbnailUrl ?: "",
-                    rating = data.rating,
-                    address = data.address,
-                    isLiked = _isLiked.value, // 현재 좋아요 상태 유지
-                    isSaved = nextState
-                )
-                localDao.insertOrUpdate(entity)
+                if (nextState) {
+                    // 핀 꽂기: PlaceEntity 구조로 저장
+                    val entity = PlaceEntity(
+                        restaurantId = restaurantId,
+                        name = data.name, // 상세 데이터의 이미지
+                        category = data.category,
+                        thumbnailUrl = data.thumbnailUrl,
+                        rating = data.rating,
+                        address = data.address,
+                        addedAt = System.currentTimeMillis()
+                    )
+                    localDao.insertPlace(entity)
+                } else {
+                    // 핀 빼기: 로컬 DB에서 삭제
+                    localDao.deletePlace(restaurantId)
+                }
+                _isSaved.value = nextState
             }
         }
     }
@@ -83,10 +73,10 @@ class RestaurantDetailViewModel @Inject constructor(
             _detailState.value = DetailUiState.Loading
             try {
                 val response = restaurantRepository.getRestaurantDetail(restaurantId)
-                val localPref = localDao.getPreferenceById(restaurantId)
+                val isSavedInLocal = localDao.isPlaceSaved(restaurantId)
 
-                _isLiked.value = localPref?.isLiked ?: false
-                _isSaved.value = localPref?.isSaved ?: false
+//                _isLiked.value = response.isLiked //TODO: 좋아요정보가 없다
+                _isSaved.value = isSavedInLocal
 
                 _detailState.value = DetailUiState.Success(response)
             } catch (e: Exception) {
