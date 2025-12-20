@@ -3,17 +3,17 @@ package com.example.sookplace.ui.home.roulette
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.example.sookplace.R
-import com.example.sookplace.data.remote.response.RestaurantItem
 import com.example.sookplace.data.remote.response.RouletteSpinResponse
 import com.example.sookplace.databinding.FragmentRouletteResultBinding
+import kotlin.jvm.java
 
 
 class RouletteResultFragment : DialogFragment() {
@@ -76,12 +76,37 @@ class RouletteResultFragment : DialogFragment() {
                         error(R.drawable.background_radius_gray) // 에러 시 이미지
                     }
                     binding.tvRestaurantRating.text = restaurant.rating.toString()
+
+                    binding.layoutRestaurantCard.setOnClickListener { //식당카드 선택 시 상세페이지로 이동
+                        val intent = android.content.Intent(
+                            requireContext(),
+                            com.example.sookplace.ui.search.restaurantDetail.RestaurantDetailActivity::class.java
+                        ).apply {
+                            putExtra("RESTAURANT_ID", restaurant.id) // 식당 ID 전달
+                        }
+                        dismiss()
+                        startActivity(intent)
+                    }
                 }
             }
             2 -> { // 카테고리 결과
                 binding.layoutRestaurantCard.visibility = View.GONE
                 binding.layoutCategoryResult.visibility = View.VISIBLE
-                binding.tvCategoryName.text = data.category?.name ?: "추천 메뉴"
+                val categoryName = data.category?.name ?: "추천 메뉴"
+                binding.tvCategoryName.text = categoryName
+
+                binding.btnGoExplore.setOnClickListener { //탐색하러가기 버튼 클릭 시 탐색화면으로 이동
+                    val bundle = Bundle().apply {
+                        putString("category", categoryName)
+                    }
+
+                    dismiss()
+
+                    findNavController().navigate(
+                        R.id.action_homeFragment_to_searchFragment,
+                        bundle
+                    )
+                }
             }
         }
     }

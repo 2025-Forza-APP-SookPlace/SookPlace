@@ -1,6 +1,6 @@
 package com.example.sookplace.ui.home
 
-import android.R.attr.type
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater

@@ -6,7 +6,6 @@ import com.example.sookplace.data.local.entity.FeaturedRestaurantEntity
 import com.example.sookplace.data.remote.response.Category
 import com.example.sookplace.data.remote.response.NextAction
 import com.example.sookplace.data.remote.response.Restaurant
-import com.example.sookplace.data.remote.response.RestaurantItem
 import com.example.sookplace.data.remote.response.RouletteSpinResponse
 import com.example.sookplace.data.repository.RestaurantRepository
 import com.example.sookplace.data.repository.RouletteRepository
