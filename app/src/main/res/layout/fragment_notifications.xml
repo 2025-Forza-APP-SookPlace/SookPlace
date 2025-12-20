@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:paddingBottom="70dp">
 
-        <!-- 🧭 상단 헤더 -->
+        <!-- 상단 헤더 -->
         <LinearLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
@@ -47,7 +47,7 @@
 
         </LinearLayout>
 
-        <!-- ⚙️ 설정 항목 -->
+        <!-- ⚙설정 항목 -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -253,7 +253,7 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- 📝 Footer -->
+        <!-- Footer -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -264,7 +264,7 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-    <!-- 🧭 하단 네비게이션 바 -->
+    <!--  하단 네비게이션 바 -->
     <LinearLayout
         android:id="@+id/bottomNavigationBar"
         android:layout_width="match_parent"

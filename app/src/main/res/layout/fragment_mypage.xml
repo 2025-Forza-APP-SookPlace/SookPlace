@@ -422,11 +422,15 @@
                             android:layout_weight="1" />
 
                         <TextView
+                            android:id="@+id/myPlaceMoreBtn"
                             android:text="전체보기"
                             android:textSize="14sp"
                             android:textColor="#1A2FA0"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackground"/>
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -485,11 +489,15 @@
                             android:layout_weight="1" />
 
                         <TextView
+                            android:id="@+id/myPostMoreBtn"
                             android:text="전체보기"
                             android:textSize="14sp"
                             android:textColor="#1A2FA0"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackground"/>
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
