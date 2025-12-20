@@ -1,5 +1,6 @@
 package com.example.sookplace.ui.search
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
@@ -43,38 +44,32 @@ class SearchRVAdapter (
 
             binding.like.setOnClickListener { //TODO: 근데 좋아요 여부를 백엔드에 넘겨주는 api가 없는거 같은디??
                 onLikeClick(item)
-//                item.isLiked = !item.isLiked //
-//                binding.like.isSelected = item.isLiked // 선택 상태 변경
-//                updateHeartUI(item.isLiked) // 이미지 교체
-//
-//                if (item.isLiked) {
-//                    item.likeCount += 1
-//                } else {
-//                    item.likeCount -= 1
-//                }
-//                binding.likeCount.text = item.likeCount.toString()
-//                updateHeartUI(item.isLiked)
             }
 
-            //장소 보기: 네이버 링크로 이동
-            binding.placeBtn.setOnClickListener {
-                val url = item.shareUrl
-                if (!url.isNullOrEmpty()) { // null 체크 추가 권장
-                    try {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                        itemView.context.startActivity(intent)
-                    } catch (e: Exception) {
-                        Toast.makeText(itemView.context, "링크를 열 수 없습니다.", Toast.LENGTH_SHORT).show()
-                    }
+            //공유 버튼 클릭(클립보드에 링크 복사)
+            binding.share.setOnClickListener {
+                val context = itemView.context
+                val urlToCopy = item.shareUrl ?: ""
+
+                if (urlToCopy.isNotBlank()) {
+                    val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+                    val clip = android.content.ClipData.newPlainText("Restaurant Link", urlToCopy)
+                    clipboard.setPrimaryClip(clip)
+                    android.widget.Toast.makeText(context, "링크가 클립보드에 복사되었습니다!", android.widget.Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(itemView.context, "제공된 링크가 없습니다.", Toast.LENGTH_SHORT).show()
+                    android.widget.Toast.makeText(context, "복사할 링크가 없습니다.", android.widget.Toast.LENGTH_SHORT).show()
                 }
             }
 
-            //아이템 클릭 시 상세 페이지로 이동
-            binding.root.setOnClickListener {
+            //장소 보기: 상세페이지로 이동
+            binding.placeBtn.setOnClickListener {
                 onItemClick(item.id)
             }
+
+            //식당 카드 클릭 시 상세 페이지로 이동
+//            binding.root.setOnClickListener {
+//                onItemClick(item.id)
+//            }
         }
 
         private fun updateHeartUI(isLiked: Boolean) {
