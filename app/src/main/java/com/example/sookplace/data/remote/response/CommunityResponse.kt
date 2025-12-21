@@ -92,3 +92,40 @@ data class WriteCommentResponse(
     @SerializedName("isOwner") val isOwner: Boolean,
     @SerializedName("postCommentCount") val postCommentCount: Int // 게시글 전체 댓글 수 갱신용
 )
+
+//게시글 작성 api 응답
+data class PostWriteResponse(
+    @SerializedName("postId") val postId: String,
+    @SerializedName("title") val title: String,
+    @SerializedName("contentPreview") val contentPreview: String,
+    @SerializedName("rating") val rating: Double,
+    @SerializedName("images") val images: List<PostImageResponse>,
+    @SerializedName("restaurant") val restaurant: RestaurantInfo,
+    @SerializedName("author") val author: AuthorInfo,
+    @SerializedName("likeCount") val likeCount: Int,
+    @SerializedName("commentCount") val commentCount: Int,
+    @SerializedName("createdAt") val createdAt: String,
+    @SerializedName("isLiked") val isLiked: Boolean,
+    @SerializedName("nextAction") val nextAction: PostWriteNextAction
+)
+
+data class PostImageResponse(
+    @SerializedName("thumbUrl") val thumbUrl: String,
+    @SerializedName("url") val url: String
+)
+
+data class RestaurantInfo(
+    @SerializedName("id") val id: Int,
+    @SerializedName("name") val name: String,
+    @SerializedName("category") val category: String
+)
+
+data class AuthorInfo(
+    @SerializedName("id") val id: String,
+    @SerializedName("nickname") val nickname: String,
+    @SerializedName("avatarUrl") val avatarUrl: String?
+)
+
+data class PostWriteNextAction(
+    @SerializedName("detailUrl") val detailUrl: String
+)

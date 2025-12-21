@@ -18,6 +18,7 @@ import com.example.sookplace.R
 import com.example.sookplace.ui.community.CommunityRVAdapter
 import com.example.sookplace.databinding.FragmentCommunityBinding
 import com.example.sookplace.ui.community.postDetail.PostDetailActivity
+import com.example.sookplace.ui.community.postWrite.PostWriteActivity
 import com.example.sookplace.ui.search.restaurantDetail.RestaurantDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -63,6 +64,12 @@ class CommunityFragment : Fragment() {
 
         setupRecyclerView() //리사이클러뷰
         observeViewModel()
+
+        //글쓰기 페이지로 이동
+        binding.editBtn.setOnClickListener {
+            val intent = Intent(requireContext(), PostWriteActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupRecyclerView() { //RecyclerView
@@ -132,5 +139,4 @@ class CommunityFragment : Fragment() {
         }
 
     )
-
 }

@@ -10,10 +10,14 @@ import com.example.sookplace.data.remote.response.LikeResponse
 import com.example.sookplace.data.remote.response.PlaceInfo
 import com.example.sookplace.data.remote.response.PostContent
 import com.example.sookplace.data.remote.response.PostDetailResponse
+import com.example.sookplace.data.remote.response.PostWriteResponse
 import com.example.sookplace.data.remote.response.WriteCommentRequest
 import com.example.sookplace.data.remote.response.WriteCommentResponse
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Response
 import javax.inject.Inject
 
 class CommunityRepository @Inject constructor(
@@ -156,6 +160,17 @@ class CommunityRepository @Inject constructor(
         }
         val response = communityApi.deleteComment(commentId)
         return response.isSuccessful
+    }
+
+    /**게시글 등록*/
+    suspend fun createPost(
+        title: RequestBody,
+        rating: RequestBody,
+        content: RequestBody,
+        restaurantId: RequestBody,
+        images: List<MultipartBody.Part>?
+    ): Response<PostWriteResponse> {
+        return communityApi.createPost(title, rating, content, restaurantId, images)
     }
 
 }
