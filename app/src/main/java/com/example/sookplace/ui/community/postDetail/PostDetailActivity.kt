@@ -1,5 +1,6 @@
 package com.example.sookplace.ui.community.postDetail
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -21,6 +22,7 @@ import coil.transform.CircleCropTransformation
 import com.example.sookplace.R
 import com.example.sookplace.data.remote.response.PostDetailResponse
 import com.example.sookplace.databinding.ActivityPostDetailBinding
+import com.example.sookplace.ui.community.postWrite.PostWriteActivity
 import com.google.android.material.internal.ViewUtils.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -73,8 +75,22 @@ class PostDetailActivity : AppCompatActivity() {
 
         //게시물 수정 버튼 클릭
         binding.tvPostEdit.setOnClickListener {
-            // TODO: PostWriteActivity로 기존 데이터를 넘기며 이동
-            // val intent = Intent(this, PostWriteActivity::class.java)...
+            val currentState = viewModel.postDetail.value
+            if (currentState is PostDetailViewModel.DetailUiState.Success) {
+                val post = currentState.data
+
+                val intent = Intent(this, PostWriteActivity::class.java).apply {
+                    putExtra("IS_EDIT_MODE", true)
+                    putExtra("POST_ID", postId)
+                    putExtra("TITLE", post.title)
+                    putExtra("CONTENT", post.content)
+                    putExtra("PLACE_ID", post.place.placeId)
+                    putExtra("PLACE_NAME", post.place.name)
+                    // 이미지 리스트도 전달 (URL 리스트)
+                    putStringArrayListExtra("IMAGES", ArrayList(post.images))
+                }
+                startActivity(intent)
+            }
             Toast.makeText(this, "수정 화면으로 이동합니다.", Toast.LENGTH_SHORT).show()
         }
 

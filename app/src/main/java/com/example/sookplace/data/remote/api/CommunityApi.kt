@@ -13,6 +13,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Multipart
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Path
@@ -63,6 +64,19 @@ interface CommunityApi {
         @Part("content") content: RequestBody,
         @Part("restaurantId") restaurantId: RequestBody,
         @Part images: List<MultipartBody.Part>?
+    ): Response<PostWriteResponse>
+
+    //게시물 수정 API
+    @Multipart
+    @PATCH("posts/{postId}")
+    suspend fun updatePost(
+        @Path("postId") postId: String,
+        @Part("title") title: RequestBody,
+        @Part("content") content: RequestBody,
+        @Part("rating") rating: RequestBody,
+        @Part("placeId") placeId: RequestBody,
+        @Part("removeImageIds") removeImageIds: List<@JvmSuppressWildcards String>?, // 삭제할 URL 리스트
+        @Part images: List<MultipartBody.Part>? // 새로 추가할 이미지 파일 리스트
     ): Response<PostWriteResponse>
 
     //게시물 삭제

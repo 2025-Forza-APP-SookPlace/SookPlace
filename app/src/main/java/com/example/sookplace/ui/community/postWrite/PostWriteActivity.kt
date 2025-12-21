@@ -25,67 +25,73 @@ import kotlin.jvm.java
 class PostWriteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPostWriteBinding
-    private val selectedImages = mutableListOf<Uri>() // 선택된 이미지 URI 저장
-    private val imageAdapter by lazy {
-        WriteImageAdapter { uri -> removeImage(uri) }
-    }
-    private var selectedRestaurantId: Int? = null // 서버로 보낼 식당 ID
-    private var currentRating: Float = 0.0f      // 서버로 보낼 평점
     private val viewModel: PostWriteViewModel by viewModels()
+    private val imageAdapter by lazy { WriteImageAdapter { uri -> viewModel.removeImage(uri) } }
+
+    private var isEditMode = false //수정모드인지?
+    private var editPostId: String? = null //수정할 게시물 ID
 
     //식당 검색 화면에서 결과를 가져오기 위한 코드
-    private val selectRestaurantLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
+    private val selectRestaurantLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
-            val restaurantId = result.data?.getIntExtra("restaurantId", -1) ?: -1
-            val restaurantName = result.data?.getStringExtra("restaurantName") ?: ""
-
-            if (restaurantId != -1) {
-                selectedRestaurantId = restaurantId
-                binding.tvRestaurantName.text = restaurantName
-                binding.tvRestaurantName.setTextColor(getColor(R.color.black))
-                updateCompleteButtonState() // 식당이 선택되었으므로 완료 버튼 상태 갱신
+            val id = result.data?.getIntExtra("restaurantId", -1) ?: -1
+            val name = result.data?.getStringExtra("restaurantName") ?: ""
+            if (id != -1) {
+                viewModel.restaurantId.value = id
+                binding.tvRestaurantName.text = name
             }
         }
     }
 
     //갤러리 열기
     private val getContent = registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { uris ->
-        if (uris.isNotEmpty()) {
-            // 최대 10장까지만 허용
-            Log.d("PhotoPicker", "선택된 이미지 개수: ${uris.size}")
-            val remainingSpace = 10 - selectedImages.size
-            val imagesToAdd = uris.take(remainingSpace)
-
-            selectedImages.addAll(imagesToAdd)
-            updateImageRecyclerView()
-        }
+        if (uris.isNotEmpty()) viewModel.addImages(uris)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_post_write)
-
         binding = ActivityPostWriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupUI()
         setupConstraints()
+        observeViewModel()
+
+        isEditMode = intent.getBooleanExtra("IS_EDIT_MODE", false) //수정모드인지 확인
+        if (isEditMode) setupEditMode()
+    }
+
+    //만약 수정 모드일 경우 활성화
+    private fun setupEditMode() {
+        editPostId = intent.getStringExtra("POST_ID")
+        binding.etTitle.setText(intent.getStringExtra("TITLE"))
+        binding.etContent.setText(intent.getStringExtra("CONTENT"))
+        binding.tvRestaurantName.text = intent.getStringExtra("PLACE_NAME")
+
+        // 변수 초기화
+        viewModel.title.value = intent.getStringExtra("TITLE") ?: ""
+        viewModel.content.value = intent.getStringExtra("CONTENT") ?: ""
+        viewModel.restaurantId.value = intent.getIntExtra("PLACE_ID", -1)
+        viewModel.rating.value = intent.getFloatExtra("RATING", 0.0f)
+        binding.ratingBar.rating = viewModel.rating.value
+
+        val existingImages = intent.getStringArrayListExtra("IMAGES")
+        existingImages?.let { urls -> viewModel.setInitialImages(urls.map { Uri.parse(it) }) }
+        binding.btnComplete.text = "수정 완료"
     }
 
     private fun setupUI() {
         // 리사이클러뷰 설정
-        binding.rvImages.apply {
-            adapter = imageAdapter
-            layoutManager = LinearLayoutManager(this@PostWriteActivity, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvImages.adapter = imageAdapter
+        binding.btnAddImage.setOnClickListener {
+            if (viewModel.displayImages.value.size < 10) getContent.launch("image/*")
         }
+
 
         //사진 추가 버튼 클릭
         binding.btnAddImage.setOnClickListener {
-            Log.d("PhotoPicker", "버튼 클릭됨")
-            if (selectedImages.size < 10) {
-                getContent.launch("image/*") // 갤러리 실행
+            if (viewModel.displayImages.value.size < 10) {
+                getContent.launch("image/*")
             } else {
                 Toast.makeText(this, "이미지는 최대 10장까지 가능합니다.", Toast.LENGTH_SHORT).show()
             }
@@ -93,27 +99,17 @@ class PostWriteActivity : AppCompatActivity() {
 
         //식당 선택 리스너
         binding.btnSelectRestaurant.setOnClickListener {
-            val intent = Intent(this, PostWriteRestaurantSearchActivity::class.java)
-            selectRestaurantLauncher.launch(intent)
-
-            updateCompleteButtonState()
+            selectRestaurantLauncher.launch(Intent(this, PostWriteRestaurantSearchActivity::class.java))
         }
 
         // 평점 변경 리스너
-        binding.ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
-            currentRating = rating
-            binding.tvRatingValue.text = rating.toString()
-            updateCompleteButtonState()
+        binding.ratingBar.setOnRatingBarChangeListener { _, r, _ ->
+            viewModel.rating.value = r
+            binding.tvRatingValue.text = r.toString()
         }
 
         // 완료 버튼 클릭 리스너
-        binding.btnComplete.setOnClickListener {
-            val title = binding.etTitle.text.toString()
-            val content = binding.etContent.text.toString()
-            val restaurantId = selectedRestaurantId ?: return@setOnClickListener
-
-            viewModel.uploadPost(title, content, currentRating, restaurantId, selectedImages)
-        }
+        binding.btnComplete.setOnClickListener { viewModel.submitPost(isEditMode, editPostId) }
 
         binding.btnBack.setOnClickListener { finish() }
     }
@@ -121,79 +117,67 @@ class PostWriteActivity : AppCompatActivity() {
     private fun observeViewModel() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.writeState.collect { state ->
-                    when (state) {
-                        is WriteUiState.Loading -> {
-                            binding.btnComplete.isEnabled = false // 중복 클릭 방지
-                            //로딩
-                        }
-                        is WriteUiState.Success -> {
-                            Toast.makeText(this@PostWriteActivity, "글이 성공적으로 등록되었습니다!", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this@PostWriteActivity, PostDetailActivity::class.java).apply {
-                                // 서버에서 받은 postId
-                                putExtra("POST_ID", state.data.postId)
-                                putExtra("IS_LIKED", false)
-                                // 뒤로가기를 눌렀을 때 다시 작성 화면으로 오지 않도록 설정
-                                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                //이미지 리스트 관찰 (이미지 추가/삭제 시 자동 UI 반영)
+                launch {
+                    viewModel.displayImages.collect { uris ->
+                        Log.d("PostWrite", "현재 이미지 개수: ${uris.size}")
+                        imageAdapter.submitList(uris)
+                        binding.rvImages.visibility = if (uris.isEmpty()) View.GONE else View.VISIBLE
+                    }
+                }
+
+                //버튼 활성화 상태
+                launch {
+                    viewModel.isFormValid.collect { isValid ->
+                        binding.btnComplete.isEnabled = isValid
+                        binding.btnComplete.setTextColor(
+                            getColor(if (isValid) R.color.smblue else R.color.gray)
+                        )
+                    }
+                }
+
+                //서버 전송 상태 관찰 (로딩/성공/에러)
+                launch {
+                    viewModel.writeState.collect { state ->
+                        when (state) {
+                            is WriteUiState.Loading -> {
+                                binding.btnComplete.isEnabled = false // 중복 클릭 방지
                             }
-                            startActivity(intent)
-                            finish() // 작성 화면 종료 및 이전 화면으로 이동
+                            is WriteUiState.Success -> {
+                                val msg = if (isEditMode) "수정되었습니다!" else "등록되었습니다!"
+                                Toast.makeText(this@PostWriteActivity, msg, Toast.LENGTH_SHORT).show()
+
+                                val intent = Intent(this@PostWriteActivity, PostDetailActivity::class.java).apply {
+                                    putExtra("POST_ID", state.data.postId)
+                                    putExtra("IS_LIKED", false)
+                                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                }
+                                startActivity(intent)
+                                finish()
+                            }
+                            is WriteUiState.Error -> {
+                                // 에러 시 다시 버튼 활성화 여부 판단 (isFormValid에 의해 결정됨)
+                                Toast.makeText(this@PostWriteActivity, state.message, Toast.LENGTH_SHORT).show()
+                            }
+                            else -> {}
                         }
-                        is WriteUiState.Error -> {
-                            binding.btnComplete.isEnabled = true
-                            Toast.makeText(this@PostWriteActivity, state.message, Toast.LENGTH_SHORT).show()
-                        }
-                        else -> {}
                     }
                 }
             }
         }
     }
 
-    private fun updateImageRecyclerView() {
-        if (selectedImages.isEmpty()) {
-            binding.rvImages.visibility = View.GONE
-        } else {
-            binding.rvImages.visibility = View.VISIBLE
-            imageAdapter.submitList(selectedImages.toList()) // 리스트 복사본 전달
-        }
-    }
-
-    private fun removeImage(uri: Uri) {
-        selectedImages.remove(uri)
-        updateImageRecyclerView()
-    }
-
     private fun setupConstraints() {
         // 제목 글자 수 0/100
-        binding.etTitle.addTextChangedListener { text ->
-            val count = text?.length ?: 0
-            binding.tvTitleCount.text = "$count/100"
-            updateCompleteButtonState() // 글자 바뀔 때마다 완료 버튼 상태 체크
+        binding.etTitle.addTextChangedListener {
+            viewModel.title.value = it.toString()
+            binding.tvTitleCount.text = "${it?.length ?: 0}/100"
         }
 
         //본문 글자 수 감시 0/5000
-        binding.etContent.addTextChangedListener { text ->
-            val count = text?.length ?: 0
-            binding.tvContentCount.text = "$count/5000"
-            updateCompleteButtonState()
+        binding.etContent.addTextChangedListener {
+            viewModel.content.value = it.toString()
+            binding.tvContentCount.text = "${it?.length ?: 0}/5000"
         }
     }
-
-    // 완료 버튼 활성화 조건 (제목과 내용이 모두 비어있지 않을 때)
-    private fun updateCompleteButtonState() {
-        val isTitleNotEmpty = binding.etTitle.text.isNotBlank()
-        val isContentNotEmpty = binding.etContent.text.isNotBlank()
-        val isRestaurantSelected = selectedRestaurantId != null
-        val isRatingSet = currentRating > 0.0f
-
-        val isEnabled = isTitleNotEmpty && isContentNotEmpty && isRestaurantSelected && isRatingSet
-
-        binding.btnComplete.apply {
-            this.isEnabled = isEnabled
-            // 활성화 여부에 따라 색상 변경
-            setTextColor(if (isEnabled) getColor(R.color.smblue) else getColor(R.color.gray))
-        }
-    }
-
 }

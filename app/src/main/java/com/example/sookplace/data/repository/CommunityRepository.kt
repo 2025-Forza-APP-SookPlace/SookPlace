@@ -173,6 +173,19 @@ class CommunityRepository @Inject constructor(
         return communityApi.createPost(title, rating, content, restaurantId, images)
     }
 
+    /**게시글 수정*/
+    suspend fun updatePost(
+        postId: String,
+        title: RequestBody,
+        rating: RequestBody,
+        content: RequestBody,
+        placeId: RequestBody,
+        removeImageIds: List<String>?,
+        images: List<MultipartBody.Part>?
+    ): Response<PostWriteResponse> {
+        return communityApi.updatePost(postId, title, content, rating, placeId, removeImageIds, images)
+    }
+
     /**게시글 삭제*/
     suspend fun deletePost(postId: String): Response<Unit> {
         return communityApi.deletePost(postId)

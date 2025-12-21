@@ -35,4 +35,10 @@ class WriteImageAdapter(private val onRemoveClick: (Uri) -> Unit) :
             override fun areContentsTheSame(oldItem: Uri, newItem: Uri): Boolean = oldItem == newItem
         }
     }
+
+    private var onDeleteClickListener: ((Int) -> Unit)? = null
+
+    fun setOnDeleteClickListener(listener: (Int) -> Unit) {
+        onDeleteClickListener = listener
+    }
 }
