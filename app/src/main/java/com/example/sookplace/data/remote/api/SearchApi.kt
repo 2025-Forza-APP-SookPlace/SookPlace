@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface SearchApi {
 
     //탐색-검색 api
-    @GET("api/v1/restaurants/search")
+    @GET("restaurants")
     suspend fun searchRestaurants(
         @Query("keyword") keyword: String,
         @Query("category") category: String?,
@@ -20,7 +20,7 @@ interface SearchApi {
     ): SearchResponse
 
     //탐색-정렬 api
-    @GET("/restaurants")
+    @GET("restaurants")
     suspend fun getSortedRestaurants(
         @Query("category") category: String?,
         @Query("sort") sort: String?,

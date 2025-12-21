@@ -21,7 +21,7 @@ class UserProfileRepository @Inject constructor(
         if (USE_DUMMY) {
             // 더미 데이터
             val dummy = UserProfileEntity(
-                nickname = "솜솜",
+                nickname = "눈송이_나",
                 level = 3,
                 levelTitle = "청소년송이",
                 avatarUrl = "https://m.blog.naver.com/ambitiones/221438972285",
@@ -33,6 +33,11 @@ class UserProfileRepository @Inject constructor(
 
         val remote = api.getUserProfile()
         userDao.upsertUserProfile(remote.toEntity())
+    }
+
+    //유저 프로필 정보 가져오기
+    suspend fun getUserProfileOnce(): UserProfileEntity? {
+        return userDao.getUserProfileOnce()
     }
 
     // lastUpdated 비교해서 서버 요청할지 결정

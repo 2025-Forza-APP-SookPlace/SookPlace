@@ -7,7 +7,7 @@ import retrofit2.http.Path
 
 interface RestaurantApi {
     //홈화면 - 오늘의 숙플레이스
-    @GET("/restaurants/featured")
+    @GET("restaurants/featured")
     suspend fun getFeaturedRestaurants(): FeaturedRestaurantsResponse
 
     //탐색화면 - 식당 상세

@@ -15,7 +15,7 @@ import com.example.sookplace.databinding.CommunityRvItemBinding
 
 class CommunityRVAdapter(
     private val onPlaceClick: (String) -> Unit, // 장소보기 클릭 리스너
-    private val onItemClick: (String) -> Unit,   // 게시글 상세 클릭 리스너
+    private val onItemClick: (PostContent) -> Unit,   // 게시글 상세 클릭 리스너
     private val onLikeClick: (PostContent) -> Unit,    // 좋아요 클릭 리스너
     private val onBookmarkClick: (PostContent) -> Unit  //북마크 클릭 리스너
 ) : ListAdapter<PostContent, CommunityRVAdapter.ViewHolder>(diffUtil) {
@@ -88,7 +88,7 @@ class CommunityRVAdapter(
             }
 
             //게시글 클릭 리스너
-            binding.root.setOnClickListener { onItemClick(post.postId) }
+            binding.root.setOnClickListener { onItemClick(post) }
         }
     }
 

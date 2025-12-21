@@ -10,13 +10,13 @@ import retrofit2.http.POST
 
 interface AuthApi {
     //회원가입
-    @POST("/auth/signup")
+    @POST("auth/signup")
     suspend fun signup(
         @Body request: UserSignupRequest
     ): UserSignupResponse
 
     //로그인
-    @POST("/auth/login")
+    @POST("auth/login")
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
 
 }

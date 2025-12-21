@@ -7,7 +7,7 @@ import retrofit2.http.POST
 
 interface RouletteSpinApi {
 
-    @POST("/roulette/spin")
+    @POST("roulette/spin")
     suspend fun spinRoulette(
         @Body request: RouletteSpinRequest
     ) : RouletteSpinResponse

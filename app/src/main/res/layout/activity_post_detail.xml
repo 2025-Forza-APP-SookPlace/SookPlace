@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -44,7 +45,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,7 +58,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp">
+                android:layout_height="65dp">
 
                 <ImageView
                     android:id="@+id/profile_Img"
@@ -69,10 +72,12 @@
                     android:id="@+id/userName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/smu_snowflake_bold"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/smu_snowflake_regular"
                     android:text="맛집탐험가 송이"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/profile_Img"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,9 +85,10 @@
                     android:id="@+id/time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:fontFamily="@font/smu_snowflake_regular"
                     android:text="1시간 전"
+                    android:textSize="12sp"
                     android:textColor="#bbbbbb"
                     app:layout_constraintStart_toEndOf="@+id/profile_Img"
                     app:layout_constraintTop_toBottomOf="@+id/userName" />
@@ -94,9 +100,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:fontFamily="@font/smu_snowflake_bold"
+                android:fontFamily="@font/smu_snowflake_regular"
                 android:text="숙명 한식당 진짜 맛있어요!"
-                android:textSize="20sp" />
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="10dp">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vpPostImages"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_radius_gray"
+                    android:clipToOutline="true" />
+
+                <TextView
+                    android:id="@+id/tvImageIndex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="12dp"
+                    android:background="@drawable/background_radius_gray"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:text="1/1" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/content"
@@ -105,15 +138,7 @@
                 android:layout_margin="5dp"
                 android:fontFamily="@font/smu_snowflake_regular"
                 android:text="오늘 점심에 갔는데 김치찌개가 정말 집밥같이 맛있었어요. 가격도 저렴하고 양도 많아서 만족스럽습니다!"
-                android:textSize="15sp" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@drawable/background_radius_gray"
-                android:clipToOutline="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/food_img2" />
+                android:textSize="14sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -126,10 +151,10 @@
                     android:id="@+id/placeName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:fontFamily="@font/smu_snowflake_regular"
                     android:text="숙명 식당"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -138,8 +163,9 @@
                     android:id="@+id/placeBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:text="장소보기"
+                    android:textSize="14sp"
                     android:textColor="#003087"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -152,35 +178,50 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:paddingLeft="5dp">
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
 
                 <ImageView
+                    android:id="@+id/heart"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/heart" />
+                    android:src="@drawable/favorite" />
 
                 <TextView
                     android:id="@+id/heartCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:fontFamily="@font/smu_snowflake_regular"
                     android:text="289"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
 
                 <ImageView
-                    android:src="@drawable/comment"
+                    android:layout_marginStart="10dp"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="10dp"/>
+                    android:src="@drawable/sms" />
+
+
                 <TextView
                     android:id="@+id/commentCount"
                     android:text="12"
-                    android:textSize="15sp"
+                    android:layout_marginStart="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/smu_snowflake_regular"
-                    android:layout_marginLeft="5dp"/>
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/bookmark"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/bookmark" />
 
             </LinearLayout>
 
@@ -191,11 +232,50 @@
                 android:background="#dddddd" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvComments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
     </ScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/white"
+        android:elevation="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="12dp">
+
+        <EditText
+            android:id="@+id/etComment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/background_radius_gray"
+            android:hint="댓글을 입력하세요..."
+            android:minHeight="52dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:textSize="14sp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/btnCommentSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/smu_snowflake_bold"
+            android:gravity="center"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="등록"
+            android:textColor="@color/smblue"
+            android:textSize="14sp" />
+    </LinearLayout>
+
 
 </LinearLayout>
+</layout>

@@ -74,30 +74,55 @@ class CommunityViewModel @Inject constructor(
     }
 
     // 좋아요 토글 로직
-    fun toggleLike(post: PostContent) {
+    fun toggleLike(postId: String) {
+        val currentState = _uiState.value
+        if (currentState !is CommunityUiState.Success) return
+
+        //현재 상태 백업 (롤백용) 및 타겟 포스트 찾기
+        val previousList = allPosts.toList()
+        val index = allPosts.indexOfFirst { it.postId == postId }
+        if (index == -1) return
+
+        val targetPost = allPosts[index]
+        val isCurrentlyLiked = targetPost.likedByMe
+
+        //[낙관적 업데이트]
+        val updatedPost = targetPost.copy(
+            likedByMe = !isCurrentlyLiked,
+            likeCount = if (isCurrentlyLiked) targetPost.likeCount - 1 else targetPost.likeCount + 1
+        )
+        allPosts[index] = updatedPost // 로컬 리스트 업데이트
+        _uiState.value = CommunityUiState.Success(allPosts.toList()) // UI에 즉시 통보
+
+        //백엔드 API 호출
         viewModelScope.launch {
-            val newLikedByMe = !post.likedByMe
-            val newLikeCount = if (newLikedByMe) post.likeCount + 1 else post.likeCount - 1
-
-            val index = allPosts.indexOfFirst { it.postId == post.postId }
-            if (index != -1) {
-                allPosts[index] = allPosts[index].copy(
-                    likedByMe = newLikedByMe,
-                    likeCount = newLikeCount
-                )
-                _uiState.value = CommunityUiState.Success(allPosts.toList())
-            }
-
             try {
-//                val isSuccess = communityRepository.postLike(post.postId)
-//
-//                if (newLikedByMe) communityRepository.insertLocalLike(post)
-//                else communityRepository.deleteLocalLike(post.postId)
+                // 리포지토리에 현재 상태를 넘겨서 더미/실제 API 결과 처리
+                val result = communityRepository.updatePostLike(postId, isCurrentlyLiked)
 
+                if (result != null) {
+                    // 서버 결과로 최종 확정 (만약 서버에서 준 숫자가 다를 경우를 대비)
+                    val finalIndex = allPosts.indexOfFirst { it.postId == postId }
+                    if (finalIndex != -1) {
+                        allPosts[finalIndex] = allPosts[finalIndex].copy(
+                            likedByMe = result.liked,
+                            likeCount = result.likeCount
+                        )
+                        _uiState.value = CommunityUiState.Success(allPosts.toList())
+                    }
+                } else {
+                    rollbackLikes(previousList)
+                }
             } catch (e: Exception) {
-                fetchPosts(isRefresh = true) // 실패 시 리스트 새로고침 등으로 대응
+                rollbackLikes(previousList)
             }
         }
+    }
+
+    private fun rollbackLikes(previousList: List<PostContent>) {
+        allPosts.clear()
+        allPosts.addAll(previousList)
+        _uiState.value = CommunityUiState.Success(allPosts.toList())
     }
 
     // 북마크 토글 로직

@@ -38,19 +38,6 @@ class CommunityFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_community, container, false)
 
-        //RecyclerView
-//        val rv : RecyclerView = binding.communityRv
-//        val items = ArrayList<String>()
-//        items.add("a")
-//        items.add("b")
-//        items.add("a")
-//        items.add("b")
-//
-//        val rvAdapter = CommunityRVAdapter(items)
-//        rv.adapter = rvAdapter
-//        rv.layoutManager = LinearLayoutManager(requireContext())
-
-
         ///하단바 프래그먼트 간의 이동 구현
         binding.searchTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_communityFragment_to_searchFragment)
@@ -130,14 +117,15 @@ class CommunityFragment : Fragment() {
             }
             startActivity(intent)
         },
-        onItemClick = { postId ->
+        onItemClick = { post ->
             val intent = Intent(requireContext(), PostDetailActivity::class.java).apply {
-                putExtra("POST_ID", postId)
+                putExtra("POST_ID",post.postId)
+                putExtra("IS_LIKED", post.likedByMe)
             }
             startActivity(intent)
         },
         onLikeClick = { post ->
-            viewModel.toggleLike(post)
+            viewModel.toggleLike(post.postId)
         },
         onBookmarkClick = { post ->
             viewModel.toggleBookmark(post)
