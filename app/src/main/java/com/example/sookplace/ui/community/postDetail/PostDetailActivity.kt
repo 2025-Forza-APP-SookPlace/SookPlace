@@ -2,6 +2,7 @@ package com.example.sookplace.ui.community.postDetail
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -62,6 +63,7 @@ class PostDetailActivity : AppCompatActivity() {
         //댓글 작성 버튼 클릭
         binding.btnCommentSubmit.setOnClickListener {
             val content = binding.etComment.text.toString().trim()
+            Log.d("CommentTest", "전송 시도 - postId: $postId, content: $content")
             if (content.isNotEmpty()) {
                 viewModel.submitComment(postId, content)
                 binding.etComment.text.clear()
@@ -69,10 +71,34 @@ class PostDetailActivity : AppCompatActivity() {
             }
         }
 
+        //게시물 수정 버튼 클릭
+        binding.tvPostEdit.setOnClickListener {
+            // TODO: PostWriteActivity로 기존 데이터를 넘기며 이동
+            // val intent = Intent(this, PostWriteActivity::class.java)...
+            Toast.makeText(this, "수정 화면으로 이동합니다.", Toast.LENGTH_SHORT).show()
+        }
+
+        //게시물 삭제 버튼 클릭
+        binding.tvPostDelete.setOnClickListener {
+            showDeletePostDialog()
+        }
+
         //좋아요 버튼 클릭
         binding.heart.setOnClickListener {
             viewModel.toggleLike(postId)
         }
+    }
+
+    //게시물 삭제 다이얼로그
+    private fun showDeletePostDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("게시글 삭제")
+            .setMessage("정말로 이 게시글을 삭제하시겠습니까?")
+            .setPositiveButton("삭제") { _, _ ->
+                viewModel.deletePost(postId)
+            }
+            .setNegativeButton("취소", null)
+            .show()
     }
 
     private fun hideSoftKeyboard() { //키보드 숨기기 코드
@@ -99,11 +125,43 @@ class PostDetailActivity : AppCompatActivity() {
                 viewModel.postDetail.collect { state ->
                     when (state) {
                         is PostDetailViewModel.DetailUiState.Success -> {
-                            updatePostUI(state.data)
-                            commentAdapter?.submitList(state.data.comments)
+                            val post = state.data
+                            updatePostUI(post)
+                            commentAdapter?.submitList(post.comments.toList())
+                            binding.commentCount.text = post.commentCount.toString()
+
+                            viewModel.currentUserId.collect { myNickname ->
+                                if (myNickname != null) {
+                                    Log.d("NicknameCheck", "게시글 작성자: ${post.author.nickname}")
+                                    Log.d("NicknameCheck", "내 닉네임: $myNickname")
+
+                                    val isMine = (post.author.nickname == myNickname)
+                                    Log.d("NicknameCheck", "일치 여부: $isMine")
+
+                                    // 일치하면 수정/삭제 메뉴 보이기
+                                    binding.layoutPostMenu.isVisible = isMine
+                                }
+                            }
                         }
                         is PostDetailViewModel.DetailUiState.Loading -> { /* 로딩 처리 */ }
                         is PostDetailViewModel.DetailUiState.Error -> { /* 에러 처리 */ }
+                    }
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.deleteState.collect { state ->
+                    when (state) {
+                        is PostDetailViewModel.DeleteUiState.Success -> {
+                            Toast.makeText(this@PostDetailActivity, "게시글이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                            finish() // 삭제 성공 시 화면 종료
+                        }
+                        is PostDetailViewModel.DeleteUiState.Error -> {
+                            Toast.makeText(this@PostDetailActivity, state.message, Toast.LENGTH_SHORT).show()
+                        }
+                        else -> {}
                     }
                 }
             }

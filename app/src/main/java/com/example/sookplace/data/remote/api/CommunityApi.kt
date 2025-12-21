@@ -64,4 +64,10 @@ interface CommunityApi {
         @Part("restaurantId") restaurantId: RequestBody,
         @Part images: List<MultipartBody.Part>?
     ): Response<PostWriteResponse>
+
+    //게시물 삭제
+    @DELETE("/posts/{postId}")
+    suspend fun deletePost(
+        @Path("postId") postId: String
+    ): Response<Unit>
 }

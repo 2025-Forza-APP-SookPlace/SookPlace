@@ -21,7 +21,7 @@ class UserProfileRepository @Inject constructor(
         if (USE_DUMMY) {
             // 더미 데이터
             val dummy = UserProfileEntity(
-                nickname = "눈송이_나",
+                nickname = "눈송이 1",
                 level = 3,
                 levelTitle = "청소년송이",
                 avatarUrl = "https://m.blog.naver.com/ambitiones/221438972285",

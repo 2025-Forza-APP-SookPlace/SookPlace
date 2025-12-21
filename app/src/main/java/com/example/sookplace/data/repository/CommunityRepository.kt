@@ -126,7 +126,7 @@ class CommunityRepository @Inject constructor(
             return WriteCommentResponse(
                 commentId = "c_${System.currentTimeMillis()}",
                 postId = postId,
-                author = Author("me", "눈송이_나", "https://picsum.photos/id/50/100/100"),
+                author = Author("me", "눈송이 1", "https://picsum.photos/id/50/100/100"),
                 content = content,
                 createdAt = "2025-12-20T22:00:00Z",
                 displayTime = "방금 전",
@@ -171,6 +171,11 @@ class CommunityRepository @Inject constructor(
         images: List<MultipartBody.Part>?
     ): Response<PostWriteResponse> {
         return communityApi.createPost(title, rating, content, restaurantId, images)
+    }
+
+    /**게시글 삭제*/
+    suspend fun deletePost(postId: String): Response<Unit> {
+        return communityApi.deletePost(postId)
     }
 
 }

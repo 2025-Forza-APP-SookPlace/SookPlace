@@ -30,10 +30,6 @@ class CommentRVAdapter (
                 placeholder(R.drawable.my_page_icon)
             }
 
-            //댓글삭제 버튼(닉네임이 일치하면 보이게)
-            Log.d("CommentDebug", "========================================")
-            Log.d("CommentDebug", "내 로컬 닉네임: [${currentUserId}]") // currentUserId에 닉네임이 담겨있어야 함
-            Log.d("CommentDebug", "댓글 작성 닉네임: [${comment.author.nickname}]")
             if (comment.author.nickname == currentUserId) {
                 binding.btnDelete.visibility = View.VISIBLE
             } else {

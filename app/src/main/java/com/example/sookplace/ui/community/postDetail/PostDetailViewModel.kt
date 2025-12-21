@@ -3,6 +3,7 @@ package com.example.sookplace.ui.community.postDetail
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.sookplace.data.remote.response.Author
 import com.example.sookplace.data.remote.response.CommentResponse
 import com.example.sookplace.data.remote.response.PostDetailResponse
 import com.example.sookplace.data.repository.CommunityRepository
@@ -22,6 +23,10 @@ class PostDetailViewModel @Inject constructor(
     //게시물 상세 정보 상태
     private val _postDetail = MutableStateFlow<DetailUiState>(DetailUiState.Loading)
     val postDetail: StateFlow<DetailUiState> = _postDetail
+
+    //게시물 삭제 상태
+    private val _deleteState = MutableStateFlow<DeleteUiState>(DeleteUiState.Idle)
+    val deleteState: StateFlow<DeleteUiState> = _deleteState
 
     private var initialLikedByMe: Boolean = false
 
@@ -93,35 +98,48 @@ class PostDetailViewModel @Inject constructor(
 
     //댓글 작성
     fun submitComment(postId: String, content: String) {
+        val currentState = _postDetail.value
+        if (currentState !is DetailUiState.Success) return
+        val previousData = currentState.data
+
         viewModelScope.launch {
             try {
                 val response = communityRepository.postComment(postId, content)
 
-                val currentState = _postDetail.value
-                if (currentState is DetailUiState.Success) {
-                    // 응답받은 데이터를 CommentResponse 형식으로 변환 (필요 시)
-                    val newComment = CommentResponse(
-                        commentId = response.commentId,
-                        author = response.author,
-                        content = response.content,
-                        createdAt = response.createdAt,
-                        displayTime = response.displayTime
-                    )
+                val newComment = CommentResponse(
+                    commentId = response.commentId,
+                    author = response.author,
+                    content = response.content,
+                    createdAt = response.createdAt,
+                    displayTime = response.displayTime
+                )
 
-                    // 댓글 리스트 맨 앞에 추가 및 댓글 수 업데이트
-                    val updatedComments = currentState.data.comments.toMutableList().apply {
-                        add(0, newComment)
-                    }
+                // 기존 리스트 + 새 댓글
+                val updatedComments =
+                    previousData.comments.toMutableList().apply { add(0, newComment) }
 
-                    val updatedData = currentState.data.copy(
+                _postDetail.value = DetailUiState.Success(
+                    previousData.copy(
                         comments = updatedComments,
-                        commentCount = response.postCommentCount // 서버가 준 최신 숫자로 동기화
+                        commentCount = response.postCommentCount
                     )
-
-                    _postDetail.value = DetailUiState.Success(updatedData)
-                }
+                )
+                Log.d("CommentSubmit", "UI 상태 업데이트 완료")
             } catch (e: Exception) {
-                // 에러 처리
+                Log.e("CommentSubmit", "댓글 등록 실패 에러: ${e.message}")
+
+                val fakeComment = CommentResponse( //TODO: 서버 연결 실패시에 추가되는 가짜 더미 데이터
+                    commentId = "fake_${System.currentTimeMillis()}",
+                    author = Author(userId="", nickname = _currentUserId.value ?: "나", profileImageUrl = ""),
+                    content = content,
+                    createdAt = "방금 전",
+                    displayTime = "방금 전"
+                )
+
+                val updatedComments = previousData.comments.toMutableList().apply { add(0, fakeComment) }
+                _postDetail.value = DetailUiState.Success(
+                    previousData.copy(comments = updatedComments, commentCount = previousData.commentCount + 1)
+                )
             }
         }
     }
@@ -155,9 +173,33 @@ class PostDetailViewModel @Inject constructor(
         }
     }
 
+    //게시글 삭제
+    fun deletePost(postId: String) {
+        viewModelScope.launch {
+            _deleteState.value = DeleteUiState.Loading
+            try {
+                val response = communityRepository.deletePost(postId)
+                if (response.isSuccessful) {
+                    _deleteState.value = DeleteUiState.Success
+                } else {
+                    _deleteState.value = DeleteUiState.Error("삭제 권한이 없거나 오류가 발생했습니다.")
+                }
+            } catch (e: Exception) {
+                _deleteState.value = DeleteUiState.Error(e.message ?: "네트워크 오류 발생")
+            }
+        }
+    }
+
     sealed class DetailUiState {
         object Loading : DetailUiState()
         data class Success(val data: PostDetailResponse) : DetailUiState()
         data class Error(val message: String) : DetailUiState()
+    }
+
+    sealed class DeleteUiState {
+        object Idle : DeleteUiState()
+        object Loading : DeleteUiState()
+        object Success : DeleteUiState()
+        data class Error(val message: String) : DeleteUiState()
     }
 }
