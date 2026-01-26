@@ -2,12 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
     <application
-        android:name=".MyApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,16 +10,29 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyPage"
+        android:theme="@style/Theme.SookPlace"
         tools:targetApi="31">
-        <meta-data
-            android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="mki5mzmwjj" />
-
+        <activity
+            android:name=".ui.mypage.mypost.MyPostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.mypage.myplace.MyPlaceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.community.postWrite.PostWriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.community.postDetail.PostDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.search.restaurantDetail.RestaurantDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

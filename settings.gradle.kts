@@ -9,7 +9,6 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
-        maven { url = uri("https://navercorp.jfrog.io/artifactory/maven/") }
     }
 }
 dependencyResolutionManagement {
@@ -17,9 +16,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven("https://repository.map.naver.com/archive/maven")
     }
 }
 
-rootProject.name = "MyPage"
+rootProject.name = "SookPlace"
 include(":app")
+ 

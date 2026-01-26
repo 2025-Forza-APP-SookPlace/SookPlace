@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,12 +9,12 @@
     android:layout_height="match_parent"
     android:background="#F5F5F5">
 
-    <!-- 🟦 스크롤 가능한 메인 콘텐츠 -->
+    <!-- 스크롤 가능한 메인 콘텐츠 -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="65dp"
         android:fillViewport="true"
         android:background="#F5F5F5">
 
@@ -23,66 +24,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- 🧭 상단 헤더 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="12dp"
-                android:background="#FFFFFF"
-                android:elevation="2dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginHorizontal="0dp">
-
-                <!-- 왼쪽 텍스트 -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:text="배고픈 송이들의 모임"
-                        android:textSize="12sp"
-                        android:textColor="#666666"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        style="@style/TitleText"
-                        android:text="SOOKPLE"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:textColor="#1A2FA0"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <!-- 오른쪽 영역: 로그인 버튼 -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="end|center_vertical">
-
-                    <TextView
-                        android:id="@+id/loginBtn"
-                        android:text="로그인"
-                        android:textSize="14sp"
-                        android:textColor="#1A2FA0"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#E0E0E0"
-                android:layout_marginBottom="12dp" />
-
-            <!-- 👤 프로필 정보 (MaterialCardView 적용) -->
+            <!-- 프로필 정보 (MaterialCardView 적용) -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -170,7 +112,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- 📊 레벨 정보 -->
+            <!-- 레벨 정보 -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -228,7 +170,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- 🎯 퀘스트 카드 -->
+            <!--  퀘스트 카드 -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -253,7 +195,7 @@
 
                     <!-- Keep all existing quest children unchanged -->
                     <TextView
-                        android:text="🎯 퀘스트"
+                        android:text="퀘스트"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
@@ -286,9 +228,9 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="12dp" />
 
-                    <!-- 💬 댓글 남기기 -->
+                    <!-- 댓글 남기기 -->
                     <TextView
-                        android:text="💬 댓글 남기기"
+                        android:text="댓글 남기기"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:layout_width="match_parent"
@@ -312,9 +254,9 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="12dp" />
 
-                    <!-- 📍 맛집 탐방 -->
+                    <!-- 맛집 탐방 -->
                     <TextView
-                        android:text="📍 맛집 탐방"
+                        android:text="맛집 탐방"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:layout_width="match_parent"
@@ -340,7 +282,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- 📈 통계 카드 -->
+            <!-- 통계 카드 -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -436,11 +378,11 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- 🏠 My Place -->
+            <!-- My Place -->
 
             <!-- ===================== 새 디자인 섹션 추가 ===================== -->
 
-            <!-- ✅ My Places Section (MaterialCardView) -->
+            <!-- My Places Section (MaterialCardView) -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -480,11 +422,15 @@
                             android:layout_weight="1" />
 
                         <TextView
+                            android:id="@+id/myPlaceMoreBtn"
                             android:text="전체보기"
                             android:textSize="14sp"
                             android:textColor="#1A2FA0"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackground"/>
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -503,7 +449,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- ✅ My Posts Section (MaterialCardView) -->
+            <!-- My Posts Section (MaterialCardView) -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -543,11 +489,15 @@
                             android:layout_weight="1" />
 
                         <TextView
+                            android:id="@+id/myPostMoreBtn"
                             android:text="전체보기"
                             android:textSize="14sp"
                             android:textColor="#1A2FA0"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackground"/>
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -565,7 +515,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- ✅ 설정 Section -->
+            <!-- 설정 Section -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -691,118 +641,107 @@
 
     </ScrollView>
 
-    <!-- 하단 고정 탭바 -->
-    <LinearLayout
-        android:id="@+id/bottomNavigationBar"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="bottom"
-        android:background="#FFFFFF"
-        android:elevation="8dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/bottomNav"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:weightSum="5">
+            android:layout_height="35dp"
+            android:background="#FFFFFF"
+            android:weightSum="5"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout">
 
             <ImageView
                 android:id="@+id/homeTap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/home_icon"
-                android:scaleType="centerInside"
-                android:padding="6dp" />
+                android:src="@drawable/home_icon" />
 
             <ImageView
                 android:id="@+id/searchTap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/search_icon"
-                android:scaleType="centerInside"
-                android:padding="6dp" />
+                android:src="@drawable/search_icon" />
 
             <ImageView
                 android:id="@+id/mapTap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/map_icon"
-                android:scaleType="centerInside"
-                android:padding="6dp"
-                android:contentDescription="지도 탭" />
+                android:src="@drawable/map_icon" />
 
             <ImageView
                 android:id="@+id/communityTap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/community_icon"
-                android:scaleType="centerInside"
-                android:padding="6dp" />
+                android:src="@drawable/cummunity_icon" />
 
             <ImageView
                 android:id="@+id/mypageTap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:layout_weight="1"
                 android:src="@drawable/my_page_icon"
-                android:scaleType="centerInside"
-                android:padding="6dp" />
+                app:tint="@color/smblue" />
+
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:weightSum="5">
+            android:background="#FFFFFF"
+            android:weightSum="5"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:text="홈"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="12sp" />
+                android:layout_marginBottom="5dp"
+                android:textAlignment="center" />
+
             <TextView
-                android:text="검색"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="#000000"
-                android:textSize="12sp" />
+                android:text="탐색"
+                android:textAlignment="center" />
 
             <TextView
                 android:text="지도"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="#000000"
-                android:textSize="12sp" />
+                android:layout_height="wrap_content"
+                android:textAlignment="center" />
 
             <TextView
                 android:text="커뮤니티"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="#000000"
-                android:textSize="12sp" />
+                android:layout_height="wrap_content"
+                android:textAlignment="center" />
 
             <TextView
                 android:text="마이페이지"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="#000000"
-                android:textSize="12sp" />
+                android:layout_height="wrap_content"
+                android:textAlignment="center" />
 
         </LinearLayout>
-    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
+</layout>
