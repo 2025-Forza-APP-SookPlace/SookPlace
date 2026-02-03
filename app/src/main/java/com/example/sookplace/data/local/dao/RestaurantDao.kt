@@ -9,11 +9,11 @@ import com.example.sookplace.data.local.entity.RestaurantEntity
 @Dao
 interface RestaurantDao {
     @Query("SELECT * FROM RestaurantEntity")
-    fun getAllData() : List<RestaurantEntity>
+    suspend fun getAllData() : List<RestaurantEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(restaurants: List<RestaurantEntity>)
 
     @Query("DELETE FROM RestaurantEntity")
-    fun deleteAllData()
+    suspend fun deleteAllData()
 }

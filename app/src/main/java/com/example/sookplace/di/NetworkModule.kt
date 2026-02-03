@@ -31,7 +31,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "https://your.api.base.url" // <-- 실제 주소로 교체
+    private const val BASE_URL = "https://pseudofeverish-nonsympathizingly-cecily.ngrok-free.dev/" // <-- 실제 주소로 교체
 
     // AppDatabase
     @Provides

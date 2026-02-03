@@ -3,19 +3,18 @@ package com.example.sookplace.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import com.example.sookplace.R
 import com.example.sookplace.databinding.ActivitySignUpBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivitySignUpBinding
-    lateinit var viewModel: SignupViewModel
+    private val viewModel: SignupViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +42,9 @@ class SignUpActivity : AppCompatActivity() {
                     finish()
 
                 },
-                onError = {
-                    Toast.makeText(this, "회원가입 실패: ${it.message}", Toast.LENGTH_SHORT).show()
+                onError = { error ->
+                    Toast.makeText(this, "회원가입 실패: ${error.localizedMessage}", Toast.LENGTH_LONG).show()
+                    android.util.Log.e("SIGNUP_ERROR", "원인: ", error)
                 }
             )
         }

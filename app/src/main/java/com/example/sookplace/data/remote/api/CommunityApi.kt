@@ -80,7 +80,7 @@ interface CommunityApi {
     ): Response<PostWriteResponse>
 
     //게시물 삭제
-    @DELETE("/posts/{postId}")
+    @DELETE("posts/{postId}")
     suspend fun deletePost(
         @Path("postId") postId: String
     ): Response<Unit>

@@ -5,9 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.sookplace.data.remote.request.UserSignupRequest
 import com.example.sookplace.data.remote.response.UserSignupResponse
 import com.example.sookplace.data.repository.AuthRepository
-import jakarta.inject.Inject
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@HiltViewModel
 class SignupViewModel @Inject constructor(
     private val repository: AuthRepository
 ) : ViewModel() {

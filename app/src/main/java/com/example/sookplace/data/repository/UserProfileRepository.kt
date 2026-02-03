@@ -14,25 +14,25 @@ class UserProfileRepository @Inject constructor(
     val userProfileFlow: Flow<UserProfileEntity?> =
         userDao.getUserProfile()
 
-    private val USE_DUMMY = true //디버깅용
+    private val USE_DUMMY = false //디버깅용
 
-    // 서버에서 최신 프로필 가져와 로컬 업데이트
+    //서버에서 최신 프로필 가져와 로컬 업데이트
     suspend fun refreshUserProfile() {
-        if (USE_DUMMY) {
-            // 더미 데이터
-            val dummy = UserProfileEntity(
-                nickname = "눈송이 1",
-                level = 3,
-                levelTitle = "청소년송이",
-                avatarUrl = "https://m.blog.naver.com/ambitiones/221438972285",
-                lastUpdated = System.currentTimeMillis()
-            )
-            userDao.upsertUserProfile(dummy)
-            return
-        }
+        try {
+            //현재 로컬에 저장된 정보를 가져옵니다 (로그인 시 저장된 ID를 쓰기 위함)
+            val localUser = userDao.getUserProfileOnce()
+            if (localUser == null) return
 
-        val remote = api.getUserProfile()
-        userDao.upsertUserProfile(remote.toEntity())
+            //서버에서 상세 프로필(/me) 정보를 가져옵니다
+            val remote = api.getUserProfile()
+            val updatedEntity = remote.toEntity(localUser.id)
+
+            //DB에 업데이트
+            userDao.upsertUserProfile(updatedEntity)
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     //유저 프로필 정보 가져오기

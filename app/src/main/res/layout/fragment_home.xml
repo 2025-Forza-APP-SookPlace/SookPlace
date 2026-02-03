@@ -25,7 +25,7 @@
                     android:id="@+id/userprofile"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    android:layout_margin="15dp"
+                    android:layout_margin="10dp"
                     android:background="@drawable/background_radius"
                     android:padding="15dp">
 
@@ -43,7 +43,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:fontFamily="@font/smu_snowflake_bold"
                         android:text="닉네임"
                         android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/profile_Img"
@@ -54,7 +53,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:fontFamily="@font/smu_snowflake_regular"
                         android:text="눈송이 레벨"
                         android:textSize="14sp"
                         android:textColor="#757575"
@@ -67,7 +65,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:layout_margin="15dp"
+                    android:layout_margin="10dp"
                     android:background="@drawable/background_radius"
                     android:orientation="vertical"
                     android:padding="15dp">
@@ -75,7 +73,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
-                        android:fontFamily="@font/smu_snowflake_bold"
                         android:text="음식 카테고리"
                         android:textSize="14sp"/>
 
@@ -101,7 +98,6 @@
                                 android:text="치킨"
                                 android:textSize="14sp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/smu_snowflake_regular"
                                 app:backgroundTint="#F8FBFF"/>
 
                             <Button
@@ -114,7 +110,6 @@
                                 android:text="카페"
                                 android:textSize="14sp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/smu_snowflake_regular"
                                 app:backgroundTint="#F8FBFF"/>
 
                             <Button
@@ -127,7 +122,6 @@
                                 android:text="한식"
                                 android:textSize="14sp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/smu_snowflake_regular"
                                 app:backgroundTint="#F8FBFF"/>
                         </LinearLayout>
 
@@ -149,7 +143,6 @@
                                 android:text="분식"
                                 android:textSize="14sp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/smu_snowflake_regular"
                                 app:backgroundTint="#F8FBFF"/>
 
                             <Button
@@ -162,7 +155,6 @@
                                 android:text="양식"
                                 android:textSize="14sp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/smu_snowflake_regular"
                                 app:backgroundTint="#F8FBFF"/>
 
                             <Button
@@ -175,7 +167,6 @@
                                 android:text="디저트"
                                 android:textSize="14sp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/smu_snowflake_regular"
                                 app:backgroundTint="#F8FBFF"/>
                         </LinearLayout>
 
@@ -186,7 +177,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_margin="10dp"
                     android:background="@drawable/background_radius"
                     android:orientation="vertical"
                     android:padding="15dp">
@@ -194,7 +185,6 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/smu_snowflake_bold"
                         android:text="오늘의 숙플레이스"
                         android:textSize="14sp"/>
 
@@ -214,7 +204,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_margin="15dp"
+                    android:layout_margin="10dp"
                     android:background="@drawable/background_radius"
                     android:orientation="vertical"
                     android:padding="15dp">
@@ -222,7 +212,6 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/smu_snowflake_bold"
                         android:text="뭐 먹을까?"
                         android:textSize="14sp"/>
 
@@ -231,7 +220,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="20dp"
-                        android:fontFamily="@font/smu_snowflake_regular"
                         android:text="고민되는 메뉴 선택을 룰렛으로 해결해보세요!"
                         android:textSize="14sp"
                         android:textColor="#bbbbbb" />
@@ -241,7 +229,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/background_radius_smblue"
-                        android:fontFamily="@font/smu_snowflake_regular"
                         android:text="룰렛 돌리기"
                         android:textSize="14sp"
                         android:textColor="#ffffff"
@@ -258,7 +245,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1.5dp"
+                android:layout_height="0.5dp"
                 android:background="#bbbbbb"
                 app:layout_constraintBottom_toTopOf="@+id/bottomNav" />
 

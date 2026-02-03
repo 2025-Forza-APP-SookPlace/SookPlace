@@ -11,7 +11,7 @@ import javax.inject.Inject
 class SearchRepository @Inject constructor(
     private val searchApi: SearchApi
 ) {
-    private val USE_DUMMY = true
+    private val USE_DUMMY = false
     private val dummyAllList = listOf(
         SortRestaurantItem(
             id = 1,

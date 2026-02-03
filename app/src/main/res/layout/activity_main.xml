@@ -66,11 +66,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray"/>
-
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/main_container"

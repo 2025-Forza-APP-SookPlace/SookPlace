@@ -19,10 +19,9 @@ class AuthInterceptor @Inject constructor(
 
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
-
-        if (request.url.encodedPath.contains("/login") ||
-            request.url.encodedPath.contains("/signup") ||
-            request.url.encodedPath.contains("/restaurants/featured")) {
+        //로그인,회원가입 api는 토큰없이 통과
+        if (request.url.encodedPath.contains("auth/login") ||
+            request.url.encodedPath.contains("auth/signup")) {
             return chain.proceed(request)
         }
 

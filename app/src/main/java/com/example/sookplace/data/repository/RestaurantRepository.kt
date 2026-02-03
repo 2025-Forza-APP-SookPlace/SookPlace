@@ -6,11 +6,9 @@ import com.example.sookplace.data.local.entity.FeaturedRestaurantEntity
 import com.example.sookplace.data.remote.api.RestaurantApi
 import com.example.sookplace.data.remote.response.RestaurantItem
 import com.example.sookplace.data.remote.response.FeaturedRestaurantsResponse
-import com.example.sookplace.data.remote.response.GeoCoordinates
 import com.example.sookplace.data.remote.response.LatestReview
 import com.example.sookplace.data.remote.response.MenuItem
 import com.example.sookplace.data.remote.response.OpeningHour
-import com.example.sookplace.data.remote.response.Partnership
 import com.example.sookplace.data.remote.response.RestaurantDetailResponse
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -55,7 +53,7 @@ class RestaurantRepository @Inject constructor(
     }
 
     /**식당 상세 페이지*/
-    private val USE_DUMMY = true
+    private val USE_DUMMY = false
 
     suspend fun getRestaurantDetail(id: Int): RestaurantDetailResponse {
         if (USE_DUMMY) {
@@ -71,9 +69,7 @@ class RestaurantRepository @Inject constructor(
                 images = listOf("https://picsum.photos/id/102/800/600", "https://picsum.photos/id/103/800/600"),
                 distanceMinutesFromCampus = 5,
                 address = "서울 용산구 청파로 47",
-                geo = GeoCoordinates(37.545, 126.97),
                 naverMapUrl = "https://map.naver.com/",
-                partnership = com.example.sookplace.data.remote.response.Partnership("숙명 재학생", 20, "2024-12-31"),
                 openingHours = listOf(
                     OpeningHour("Mon-Fri", "11:00-21:00"),
                     OpeningHour("Sat-Sun", "12:00-20:00")

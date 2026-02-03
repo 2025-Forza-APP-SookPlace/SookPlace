@@ -8,7 +8,7 @@ data class LoginResponse(
 )
 
 data class LoginUser(
-    val id: String,
+    val id: String, //내부 식별자
     val userId: String,
     val email: String,
     val lastLoginAt: String
