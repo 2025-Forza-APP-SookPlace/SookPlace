@@ -14,6 +14,7 @@ import com.example.sookplace.data.remote.api.RestaurantApi
 import com.example.sookplace.data.remote.api.RouletteSpinApi
 import com.example.sookplace.data.remote.api.SearchApi
 import com.example.sookplace.data.remote.api.UserProfileApi
+import com.example.sookplace.data.remote.api.UserApi // [중요] 새로 추가된 Import
 import com.example.sookplace.data.remote.auth.AuthInterceptor
 import dagger.Module
 import dagger.Provides
@@ -31,7 +32,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE_URL = "https://pseudofeverish-nonsympathizingly-cecily.ngrok-free.dev/" // <-- 실제 주소로 교체
+    // 주의: ngrok 주소는 서버 재시작 시 바뀔 수 있으니, 접속 안 되면 최신 주소인지 확인하세요.
+    private const val BASE_URL = "https://pseudofeverish-nonsympathizingly-cecily.ngrok-free.dev/"
 
     // AppDatabase
     @Provides
@@ -71,7 +73,7 @@ object NetworkModule {
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(logging)
-            .addInterceptor(authInterceptor) // <-- 여기서 토큰 자동 추가
+            .addInterceptor(authInterceptor) // <-- 여기서 토큰 자동 추가됨
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .build()
@@ -125,6 +127,13 @@ object NetworkModule {
     @Singleton
     fun provideCommunityApi(retrofit: Retrofit): CommunityApi {
         return retrofit.create(CommunityApi::class.java)
+    }
+
+    // [중요] 새로 추가된 마이페이지 API 등록
+    @Provides
+    @Singleton
+    fun provideUserApi(retrofit: Retrofit): UserApi {
+        return retrofit.create(UserApi::class.java)
     }
 
     // Dao

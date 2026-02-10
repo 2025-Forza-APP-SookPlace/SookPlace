@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
+    id ("kotlin-kapt")
 }
 
 android {
@@ -39,6 +40,10 @@ android {
         enable = true
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
 }
 
 dependencies {
@@ -50,7 +55,11 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
     testImplementation(libs.junit)
+
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
@@ -77,4 +86,5 @@ dependencies {
     implementation("io.coil-kt:coil:2.6.0")
 
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
+
 }

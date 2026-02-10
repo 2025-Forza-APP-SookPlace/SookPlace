@@ -5,5 +5,6 @@ data class UserProfile(
     val email: String,
     val level: String,
     val progressPercent: Int,
-    val levelBadge: Boolean
+    val levelBadge: Boolean,
+    val profileImageUrl: String?
 )
