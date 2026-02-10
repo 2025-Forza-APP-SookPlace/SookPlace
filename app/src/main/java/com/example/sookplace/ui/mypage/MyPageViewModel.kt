@@ -1,62 +1,68 @@
 package com.example.sookplace.ui.mypage
 
-import com.example.sookplace.R
-
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.sookplace.ui.mypage.model.*
+import androidx.lifecycle.viewModelScope
+import com.example.sookplace.data.remote.response.*
+import com.example.sookplace.data.repository.UserRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MyPageViewModel : ViewModel() {
+@HiltViewModel
+class MyPageViewModel @Inject constructor(
+    private val userRepository: UserRepository
+) : ViewModel() {
 
-    private val _myPlaces = MutableLiveData<List<MyPlace>>()
-    val myPlaces: LiveData<List<MyPlace>> = _myPlaces
+    // UI 상태 관리 (로딩, 에러, 데이터)
+    private val _userMe = MutableStateFlow<UserMeResponse?>(null)
+    val userMe: StateFlow<UserMeResponse?> = _userMe.asStateFlow()
 
-    private val _myPosts = MutableLiveData<List<MyPost>>()
-    val myPosts: LiveData<List<MyPost>> = _myPosts
+    private val _userQuests = MutableStateFlow<UserQuestResponse?>(null)
+    val userQuests: StateFlow<UserQuestResponse?> = _userQuests.asStateFlow()
 
-    fun loadMyPage() {
+    private val _userStats = MutableStateFlow<UserStatsResponse?>(null)
+    val userStats: StateFlow<UserStatsResponse?> = _userStats.asStateFlow()
 
-        // 🔹 My Places (2개만)
-        _myPlaces.value = listOf(
-            MyPlace(
-                id = 1,
-                name = "속성 한상",
-                category = "한식",
-                rating = 4.5,
-                imageRes = R.drawable.food_img
-            ),
-            MyPlace(
-                id = 2,
-                name = "피자마루",
-                category = "양식",
-                rating = 4.2,
-                imageRes = R.drawable.food_img2
-            )
-        )
+    private val _myPlaces = MutableStateFlow<List<MyPlaceItem>>(emptyList())
+    val myPlaces: StateFlow<List<MyPlaceItem>> = _myPlaces.asStateFlow()
 
-        // 🔹 My Posts (2개만)
-        _myPosts.value = listOf(
-            MyPost(
-                id = 1,
-                title = "여기 진짜 맛있어요!",
-                imageRes = R.drawable.food_img,
-                restaurantName = "속성 한상",
-                rating = 4.5,
-                likes = 12,
-                comments = 3,
-                date = "2024.12.18"
-            ),
-            MyPost(
-                id = 2,
-                title = "재방문 의사 있음",
-                imageRes = R.drawable.food_img2,
-                restaurantName = "피자마루",
-                rating = 4.0,
-                likes = 8,
-                comments = 1,
-                date = "2024.12.15"
-            )
-        )
+    private val _myPosts = MutableStateFlow<List<MyPostItem>>(emptyList())
+    val myPosts: StateFlow<List<MyPostItem>> = _myPosts.asStateFlow()
+
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
+
+    init {
+        fetchAllMyPageData()
+    }
+
+    fun fetchAllMyPageData() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                // 병렬 호출 (동시에 실행해서 속도 최적화)
+                val meDeferred = async { userRepository.getUserMe() }
+                val questsDeferred = async { userRepository.getUserQuests() }
+                val statsDeferred = async { userRepository.getUserStats() }
+                val placesDeferred = async { userRepository.getMyPlaces(1, 4) } // 미리보기 4개
+                val postsDeferred = async { userRepository.getMyPosts(0, 3) } // 미리보기 3개
+
+                _userMe.value = meDeferred.await()
+                _userQuests.value = questsDeferred.await()
+                _userStats.value = statsDeferred.await()
+                _myPlaces.value = placesDeferred.await().items
+                _myPosts.value = postsDeferred.await().content
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // 에러 처리 로직 추가 가능 (Toast 메시지 등)
+            } finally {
+                _isLoading.value = false
+            }
+        }
     }
 }
