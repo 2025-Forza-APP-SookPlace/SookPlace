@@ -64,7 +64,7 @@ class HomeFragment : Fragment() {
                             binding.userprofile.visibility = View.VISIBLE
                             binding.nickname.text = user.nickname
                             binding.profileImg.load(user.avatarUrl)
-                            binding.level.text = user.levelTitle
+                            binding.level.text = user.levelTitleEn
                         } else {
                             binding.userprofile.visibility = View.GONE
                         }

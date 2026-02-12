@@ -2,7 +2,6 @@ package com.example.sookplace.data.repository
 
 import com.example.sookplace.data.local.TokenManager
 import com.example.sookplace.data.local.dao.UserProfileDao
-import com.example.sookplace.data.mapper.toEntity
 import com.example.sookplace.data.remote.request.LoginRequest
 import com.example.sookplace.data.remote.response.LoginResponse
 import com.example.sookplace.data.remote.request.UserSignupRequest
@@ -29,9 +28,6 @@ class AuthRepository @Inject constructor(
             if (response.isSuccessful) {
                 val body = response.body()!!
                 tokenManager.saveTokens(body.accessToken, body.refreshToken)
-
-                val userEntity = body.toEntity()
-                userDao.upsertUserProfile(userEntity)
 
                 return Result.success(body)
             } else {
