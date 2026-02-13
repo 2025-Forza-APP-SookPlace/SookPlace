@@ -23,7 +23,7 @@ import com.example.sookplace.data.local.entity.UserProfileEntity
         FeaturedRestaurantEntity::class,
         PlaceEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -43,10 +43,12 @@ abstract class AppDatabase : RoomDatabase() {
                 instance ?: Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "app_database.db"
-                ).build().also {
-                    instance = it
-                }
+                    "sookplace_db" // [수정] NetworkModule과 이름을 "sookplace_db"로 통일했습니다.
+                )
+                    .fallbackToDestructiveMigration() // [중요] 버전 변경 시 기존 데이터 초기화 (앱 죽음 방지)
+                    .build().also {
+                        instance = it
+                    }
             }
     }
 }

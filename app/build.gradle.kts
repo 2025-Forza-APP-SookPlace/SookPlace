@@ -58,15 +58,12 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     testImplementation(libs.junit)
 
-    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation("androidx.room:room-runtime:2.8.4")
-    annotationProcessor("androidx.room:room-compiler:2.8.4")
-
-    // To use Kotlin annotation processing tool (kapt)
     ksp("androidx.room:room-compiler:2.8.4")
 
     // Coroutine
@@ -81,7 +78,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation("com.google.dagger:hilt-android:2.52")
-    ksp("com.google.dagger:hilt-compiler:2.52")
+    kapt("com.google.dagger:hilt-compiler:2.52")
 
     implementation("io.coil-kt:coil:2.6.0")
 
