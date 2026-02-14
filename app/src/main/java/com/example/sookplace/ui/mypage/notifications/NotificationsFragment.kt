@@ -7,11 +7,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.sookplace.databinding.FragmentNotificationsBinding
+// [수정] 레이아웃 파일명(activity_notification.xml)에 맞춰 바인딩 클래스 import 변경
+import com.example.sookplace.databinding.ActivityNotificationBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NotificationsFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    // [수정] 바인딩 클래스 타입 변경
+    private var _binding: ActivityNotificationBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,9 +29,11 @@ class NotificationsFragment : Fragment() {
         val notificationsViewModel =
             ViewModelProvider(this).get(NotificationsViewModel::class.java)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        // [수정] inflate 메서드 호출 대상 변경
+        _binding = ActivityNotificationBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        // [주의] activity_notification.xml 안에 'textNotifications'라는 ID를 가진 TextView가 있어야 오류가 나지 않습니다.
         val textView: TextView = binding.textNotifications
         notificationsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it

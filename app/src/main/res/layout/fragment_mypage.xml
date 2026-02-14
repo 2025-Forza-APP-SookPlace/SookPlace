@@ -1,522 +1,664 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
 
-    <!--
-      주의: 데이터 바인딩을 위해 주요 TextView, ProgressBar 등에 ID를 추가했습니다.
-      기존 코드에 덮어쓰거나, ID 부분만 참고해서 수정하세요.
-    -->
-    <FrameLayout
-        tools:ignore="HardcodedText,TouchTargetSizeCheck,ContentDescription,UseCompoundDrawables"
+    <!-- 메인 컨텐츠 (스크롤 영역) -->
+    <!-- 하단 네비게이션 높이(약 65dp)만큼 띄워서 가려지지 않게 함 -->
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F5F5F5">
+        android:layout_marginBottom="65dp"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <ScrollView
-            android:id="@+id/scrollView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="65dp"
-            android:fillViewport="true"
-            android:background="#F5F5F5">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <!-- 1. 프로필 정보 -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_margin="12dp"
+                app:cardCornerRadius="10dp"
+                app:strokeWidth="0dp"
+                android:backgroundTint="#FFFFFF"
+                app:cardElevation="4dp">
 
-                <!-- 1. 프로필 정보 -->
-                <com.google.android.material.card.MaterialCardView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
-                    app:cardCornerRadius="10dp"
-                    app:strokeWidth="0dp"
-                    android:backgroundTint="#FFFFFF"
-                    app:cardElevation="4dp">
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <FrameLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp">
+
+                        <ImageView
+                            android:id="@+id/profileImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/egg_song"
+                            android:scaleType="centerCrop" />
+                    </FrameLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="16dp"
-                        android:gravity="center_vertical">
-
-                        <FrameLayout
-                            android:layout_width="60dp"
-                            android:layout_height="60dp">
-                            <ImageView
-                                android:id="@+id/profileImage"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/egg_song"
-                                android:scaleType="centerCrop" />
-                        </FrameLayout>
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingStart="12dp">
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:paddingStart="12dp">
-
-                            <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:id="@+id/username"
-                                    tools:text="맛집탐험가송이"
-                                    android:textStyle="bold"
-                                    android:textSize="18sp"
-                                    android:textColor="#000000"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
-
-                                <TextView
-                                    android:id="@+id/badge"
-                                    android:text="숙명인증"
-                                    android:textSize="12sp"
-                                    android:textColor="@android:color/white"
-                                    android:background="#3F51B5"
-                                    android:paddingHorizontal="6dp"
-                                    android:paddingVertical="2dp"
-                                    android:layout_marginStart="8dp"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:visibility="gone"
-                                    tools:visibility="visible"/>
-                            </LinearLayout>
+                            android:gravity="center_vertical">
 
                             <TextView
-                                android:id="@+id/email"
-                                tools:text="songi@sookmyung.ac.kr"
-                                android:textSize="14sp"
-                                android:textColor="#666666"
+                                android:id="@+id/username"
+                                tools:text="맛집탐험가송이"
+                                android:textStyle="bold"
+                                android:textSize="18sp"
+                                android:textColor="#000000"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/badge"
+                                android:text="숙명인증"
+                                android:textSize="12sp"
+                                android:textColor="@android:color/white"
+                                android:background="#3F51B5"
+                                android:paddingHorizontal="6dp"
+                                android:paddingVertical="2dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                tools:visibility="visible"/>
                         </LinearLayout>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- 2. 레벨 정보 -->
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginVertical="6dp"
-                    app:cardCornerRadius="10dp"
-                    app:strokeWidth="0dp"
-                    android:backgroundTint="#FFFFFF"
-                    app:cardElevation="4dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp">
 
                         <TextView
-                            android:id="@+id/tvLevelTitle"
-                            tools:text="알송이"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:textColor="#000000"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:id="@+id/tvLevelDescription"
-                            tools:text="어린이송이까지 | 35%"
-                            android:textSize="12sp"
+                            android:id="@+id/email"
+                            tools:text="songi@sookmyung.ac.kr"
+                            android:textSize="14sp"
                             android:textColor="#666666"
-                            android:layout_marginTop="4dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
-
-                        <ProgressBar
-                            android:id="@+id/pbLevelProgress"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:progress="35"
-                            android:max="100"
-                            android:progressTint="#1A2FA0"
-                            android:layout_marginTop="6dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="8dp" />
                     </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                <!-- 3. 퀘스트 카드 (ID 추가됨) -->
-                <com.google.android.material.card.MaterialCardView
+            <!-- 2. 레벨 정보 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginVertical="6dp"
+                app:cardCornerRadius="10dp"
+                app:strokeWidth="0dp"
+                android:backgroundTint="#FFFFFF"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginVertical="6dp"
-                    app:cardCornerRadius="10dp"
-                    app:strokeWidth="0dp"
-                    android:backgroundTint="#FFFFFF"
-                    app:cardElevation="4dp">
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/tvLevelTitle"
+                        tools:text="알송이"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="#000000"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvLevelDescription"
+                        tools:text="어린이송이까지 | 35%"
+                        android:textSize="12sp"
+                        android:textColor="#666666"
+                        android:layout_marginTop="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ProgressBar
+                        android:id="@+id/pbLevelProgress"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:progress="35"
+                        android:max="100"
+                        android:progressTint="#1A2FA0"
+                        android:layout_marginTop="6dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 3. 퀘스트 카드 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginVertical="6dp"
+                app:cardCornerRadius="10dp"
+                app:strokeWidth="0dp"
+                android:backgroundTint="#FFFFFF"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:text="퀘스트"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- 퀘스트 1 -->
+                    <TextView
+                        android:id="@+id/tvQuest1Title"
+                        tools:text="✍ 리뷰 작성하기"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvQuest1Desc"
+                        tools:text="맛집 후기 3개 더 작성하면 경험치 +15!"
+                        android:textSize="12sp"
+                        android:textColor="#666666"
+                        android:layout_marginTop="4dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <ProgressBar
+                        android:id="@+id/pbQuest1"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:progress="66"
+                        android:max="100"
+                        android:progressTint="#1A2FA0"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- 퀘스트 2 -->
+                    <TextView
+                        android:id="@+id/tvQuest2Title"
+                        tools:text="댓글 남기기"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvQuest2Desc"
+                        tools:text="다른 송이들의 글에 댓글 5개 작성하기"
+                        android:textSize="12sp"
+                        android:textColor="#666666"
+                        android:layout_marginTop="4dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <ProgressBar
+                        android:id="@+id/pbQuest2"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:progress="60"
+                        android:max="100"
+                        android:progressTint="#1A2FA0"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- 퀘스트 3 -->
+                    <TextView
+                        android:id="@+id/tvQuest3Title"
+                        tools:text="맛집 탐방"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvQuest3Desc"
+                        tools:text="저장한 맛집 1곳 방문해서 인증하기"
+                        android:textSize="12sp"
+                        android:textColor="#666666"
+                        android:layout_marginTop="4dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <ProgressBar
+                        android:id="@+id/pbQuest3"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:progress="0"
+                        android:max="100"
+                        android:progressTint="#1A2FA0"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 4. 통계 카드 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginVertical="6dp"
+                app:cardCornerRadius="10dp"
+                app:strokeWidth="0dp"
+                android:backgroundTint="#FFFFFF"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:gravity="center"
+                    android:padding="16dp">
 
                     <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:padding="16dp">
+                        android:orientation="vertical"
+                        android:gravity="center">
 
                         <TextView
-                            android:text="퀘스트"
+                            android:id="@+id/tvPostCount"
+                            tools:text="12"
                             android:textSize="18sp"
                             android:textStyle="bold"
+                            android:textColor="#1A2FA0"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp" />
-
-                        <!-- 퀘스트 1 (리뷰) -->
-                        <TextView
-                            android:id="@+id/tvQuest1Title"
-                            tools:text="✍ 리뷰 작성하기"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 
                         <TextView
-                            android:id="@+id/tvQuest1Desc"
-                            tools:text="맛집 후기 3개 더 작성하면 경험치 +15!"
+                            android:text="작성한 글"
                             android:textSize="12sp"
-                            android:textColor="#666666"
-                            android:layout_marginTop="4dp"
-                            android:layout_width="match_parent"
+                            android:textColor="#888888"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
-
-                        <ProgressBar
-                            android:id="@+id/pbQuest1"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="8dp"
-                            android:progress="66"
-                            android:max="100"
-                            android:progressTint="#1A2FA0"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginBottom="12dp" />
-
-                        <!-- 퀘스트 2 (댓글) -->
-                        <TextView
-                            android:id="@+id/tvQuest2Title"
-                            tools:text="댓글 남기기"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:id="@+id/tvQuest2Desc"
-                            tools:text="다른 송이들의 글에 댓글 5개 작성하기"
-                            android:textSize="12sp"
-                            android:textColor="#666666"
-                            android:layout_marginTop="4dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                        <ProgressBar
-                            android:id="@+id/pbQuest2"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="8dp"
-                            android:progress="60"
-                            android:max="100"
-                            android:progressTint="#1A2FA0"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginBottom="12dp" />
-
-                        <!-- 퀘스트 3 (탐방) -->
-                        <TextView
-                            android:id="@+id/tvQuest3Title"
-                            tools:text="맛집 탐방"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:id="@+id/tvQuest3Desc"
-                            tools:text="저장한 맛집 1곳 방문해서 인증하기"
-                            android:textSize="12sp"
-                            android:textColor="#666666"
-                            android:layout_marginTop="4dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                        <ProgressBar
-                            android:id="@+id/pbQuest3"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="8dp"
-                            android:progress="0"
-                            android:max="100"
-                            android:progressTint="#1A2FA0"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginBottom="12dp" />
                     </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
 
-                <!-- 4. 통계 카드 (ID 추가됨) -->
-                <com.google.android.material.card.MaterialCardView
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tvSavedPlaceCount"
+                            tools:text="8"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#1A2FA0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:text="저장한 맛집"
+                            android:textSize="12sp"
+                            android:textColor="#888888"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tvReceivedLikeCount"
+                            tools:text="156"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#1A2FA0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:text="받은 좋아요"
+                            android:textSize="12sp"
+                            android:textColor="#888888"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- My Place -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginVertical="6dp"
+                app:cardCornerRadius="10dp"
+                app:strokeWidth="0dp"
+                android:backgroundTint="#FFFFFF"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginVertical="6dp"
-                    app:cardCornerRadius="10dp"
-                    app:strokeWidth="0dp"
-                    android:backgroundTint="#FFFFFF"
-                    app:cardElevation="4dp">
+                    android:padding="16dp">
 
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="3"
-                        android:gravity="center"
-                        android:padding="16dp">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <TextView
-                                android:id="@+id/tvPostCount"
-                                tools:text="12"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                android:textColor="#1A2FA0"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:text="작성한 글"
-                                android:textSize="12sp"
-                                android:textColor="#888888"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <TextView
-                                android:id="@+id/tvSavedPlaceCount"
-                                tools:text="8"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                android:textColor="#1A2FA0"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:text="저장한 맛집"
-                                android:textSize="12sp"
-                                android:textColor="#888888"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:gravity="center">
-
-                            <TextView
-                                android:id="@+id/tvReceivedLikeCount"
-                                tools:text="156"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                android:textColor="#1A2FA0"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:text="받은 좋아요"
-                                android:textSize="12sp"
-                                android:textColor="#888888"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- My Place -->
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginVertical="6dp"
-                    app:cardCornerRadius="10dp"
-                    app:strokeWidth="0dp"
-                    android:backgroundTint="#FFFFFF"
-                    app:cardElevation="4dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp">
-
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical">
-
-                            <TextView
-                                android:text="My Places"
-                                android:textStyle="bold"
-                                android:textSize="18sp"
-                                android:textColor="#000000"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1" />
-
-                            <TextView
-                                android:id="@+id/myPlaceMoreBtn"
-                                android:text="전체보기"
-                                android:textSize="14sp"
-                                android:textColor="#1A2FA0"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:foreground="?attr/selectableItemBackground"/>
-                        </LinearLayout>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/newMyPlaceRecycler"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:overScrollMode="never"
-                            android:clipToPadding="false"
-                            android:paddingTop="12dp"
-                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                            app:spanCount="2"
-                            android:nestedScrollingEnabled="false"
-                            android:scrollbars="none" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- My Posts -->
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginVertical="6dp"
-                    app:cardCornerRadius="10dp"
-                    app:strokeWidth="0dp"
-                    android:backgroundTint="#FFFFFF"
-                    app:cardElevation="4dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp">
-
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical">
-
-                            <TextView
-                                android:text="My Posts"
-                                android:textStyle="bold"
-                                android:textSize="18sp"
-                                android:textColor="#000000"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1" />
-
-                            <TextView
-                                android:id="@+id/myPostMoreBtn"
-                                android:text="전체보기"
-                                android:textSize="14sp"
-                                android:textColor="#1A2FA0"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:foreground="?attr/selectableItemBackground"/>
-                        </LinearLayout>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/newMyPostRecycler"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:overScrollMode="never"
-                            android:clipToPadding="false"
-                            android:paddingTop="12dp"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            android:nestedScrollingEnabled="false"
-                            android:scrollbars="none" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- 설정 (기존 유지) -->
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginVertical="6dp"
-                    app:cardCornerRadius="10dp"
-                    app:strokeWidth="0dp"
-                    android:backgroundTint="#FFFFFF"
-                    app:cardElevation="4dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp">
+                        android:gravity="center_vertical">
 
                         <TextView
-                            android:text="설정"
+                            android:text="My Places"
                             android:textStyle="bold"
-                            android:textSize="16sp"
+                            android:textSize="18sp"
                             android:textColor="#000000"
-                            android:layout_marginBottom="8dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <!-- 알림 설정 -->
-                        <LinearLayout
-                            android:id="@+id/notificationRow"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:paddingVertical="8dp"
-                            android:gravity="center_vertical"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/myPlaceMoreBtn"
+                            android:text="전체보기"
+                            android:textSize="14sp"
+                            android:textColor="#1A2FA0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:clickable="true"
                             android:focusable="true"
-                            android:foreground="?attr/selectableItemBackground">
-                            <!-- 기존 아이콘/텍스트 유지 -->
-                            <TextView android:text="알림 설정" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <!-- ... 기타 설정 항목 ... -->
+                            android:background="?attr/selectableItemBackground"/>
                     </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
 
-            </LinearLayout>
-        </ScrollView>
-        <!-- 하단 네비게이션바 등은 기존 프래그먼트 바깥 혹은 액티비티에 있다면 생략 가능 -->
-    </FrameLayout>
-</layout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/newMyPlaceRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never"
+                        android:clipToPadding="false"
+                        android:paddingTop="12dp"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="2"
+                        android:nestedScrollingEnabled="false"
+                        android:scrollbars="none" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- My Posts -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginVertical="6dp"
+                app:cardCornerRadius="10dp"
+                app:strokeWidth="0dp"
+                android:backgroundTint="#FFFFFF"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:text="My Posts"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="#000000"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/myPostMoreBtn"
+                            android:text="전체보기"
+                            android:textSize="14sp"
+                            android:textColor="#1A2FA0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground"/>
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/newMyPostRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never"
+                        android:clipToPadding="false"
+                        android:paddingTop="12dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:nestedScrollingEnabled="false"
+                        android:scrollbars="none" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 설정 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginVertical="6dp"
+                app:cardCornerRadius="10dp"
+                app:strokeWidth="0dp"
+                android:backgroundTint="#FFFFFF"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:text="설정"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="#000000"
+                        android:layout_marginBottom="12dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <!-- 알림 설정 -->
+                    <LinearLayout
+                        android:id="@+id/notificationRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="12dp"
+                        android:gravity="center_vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView
+                            android:text="알림 설정"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000000"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+
+                    <!-- 계정 관리 -->
+                    <LinearLayout
+                        android:id="@+id/accountManageRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="12dp"
+                        android:gravity="center_vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView
+                            android:text="계정 관리"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000000"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+
+                    <!-- 로그아웃 -->
+                    <LinearLayout
+                        android:id="@+id/logoutRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="12dp"
+                        android:gravity="center_vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView
+                            android:text="로그아웃"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#FF4B4B"
+                            android:textStyle="bold"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- [추가된 부분] 하단 네비게이션 아이콘 (ConstraintLayout으로 하단 고정) -->
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#FFFFFF"
+        android:weightSum="5"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout">
+
+        <ImageView
+            android:id="@+id/homeTap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:src="@drawable/home_icon" />
+
+        <ImageView
+            android:id="@+id/searchTap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:src="@drawable/search_icon" />
+
+        <ImageView
+            android:id="@+id/mapTap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:src="@drawable/map_icon" />
+
+        <ImageView
+            android:id="@+id/communityTap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:src="@drawable/cummunity_icon" />
+
+        <!-- 마이페이지 탭 활성화 (파란색) -->
+        <ImageView
+            android:id="@+id/mypageTap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:src="@drawable/my_page_icon"
+            app:tint="@color/smblue" />
+
+    </LinearLayout>
+
+    <!-- [추가된 부분] 하단 네비게이션 텍스트 -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#FFFFFF"
+        android:weightSum="5"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:text="홈"
+            android:textAlignment="center"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="탐색"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="지도"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="커뮤니티"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="마이페이지"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.example.sookplace.di
 
 import android.content.Context
+import androidx.room.Room // Room import 추가
 import com.example.sookplace.data.local.TokenManager
 import com.example.sookplace.data.local.dao.FeaturedRestaurantDao
 import com.example.sookplace.data.local.dao.PostDao
@@ -14,7 +15,7 @@ import com.example.sookplace.data.remote.api.RestaurantApi
 import com.example.sookplace.data.remote.api.RouletteSpinApi
 import com.example.sookplace.data.remote.api.SearchApi
 import com.example.sookplace.data.remote.api.UserProfileApi
-import com.example.sookplace.data.remote.api.UserApi // [중요] 새로 추가된 Import
+import com.example.sookplace.data.remote.api.UserApi
 import com.example.sookplace.data.remote.auth.AuthInterceptor
 import dagger.Module
 import dagger.Provides
@@ -32,16 +33,24 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    // 주의: ngrok 주소는 서버 재시작 시 바뀔 수 있으니, 접속 안 되면 최신 주소인지 확인하세요.
+    // [체크] ngrok 주소가 최신인지 확인해주세요. (서버 껐다 켜면 바뀝니다)
     private const val BASE_URL = "https://pseudofeverish-nonsympathizingly-cecily.ngrok-free.dev/"
 
-    // AppDatabase
+    // [수정됨] AppDatabase 제공 (충돌 방지 옵션 추가)
     @Provides
     @Singleton
     fun provideAppDatabase(
         @ApplicationContext context: Context
     ): AppDatabase {
-        return AppDatabase.getDatabase(context)
+        // 기존: return AppDatabase.getDatabase(context)
+        // 변경: 아래와 같이 작성하여 데이터 충돌 시 초기화 옵션을 켭니다.
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "sookplace_db"
+        )
+            .fallbackToDestructiveMigration() // ★ 데이터 구조 바뀌면 자동 초기화 (앱 죽음 방지)
+            .build()
     }
 
     //LoggingInterceptor 제공

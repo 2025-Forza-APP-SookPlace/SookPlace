@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,11 +25,15 @@
             android:elevation="2dp">
 
             <ImageView
-                android:id="@+id/backButton"
+                android:id="@+id/ivBack"
                 android:src="@drawable/ic_back"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:padding="4dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="뒤로가기"
                 app:tint="#1A2FA0" />
 
             <TextView
@@ -76,7 +78,7 @@
                     android:orientation="vertical"
                     android:showDividers="middle">
 
-                    <!-- 각 항목 -->
+                    <!-- 푸시 알림 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -97,8 +99,7 @@
                                 android:textSize="16sp"
                                 android:textStyle="bold"
                                 android:textColor="#FF000000"
-                                android:layout_marginBottom="4dp"
-                                android:visibility="visible" />
+                                android:layout_marginBottom="4dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -106,8 +107,7 @@
                                 android:text="앱 알림을 받습니다"
                                 android:textSize="13sp"
                                 android:textColor="#FF444444"
-                                android:layout_marginTop="2dp"
-                                android:visibility="visible" />
+                                android:layout_marginTop="2dp" />
                         </LinearLayout>
 
                         <Switch
@@ -120,6 +120,7 @@
                             android:layout_marginStart="8dp" />
                     </LinearLayout>
 
+                    <!-- 댓글 알림 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -140,8 +141,7 @@
                                 android:textSize="16sp"
                                 android:textStyle="bold"
                                 android:textColor="#FF000000"
-                                android:layout_marginBottom="4dp"
-                                android:visibility="visible" />
+                                android:layout_marginBottom="4dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -149,8 +149,7 @@
                                 android:text="내 게시글에 댓글이 달리면 알려드립니다"
                                 android:textSize="13sp"
                                 android:textColor="#FF444444"
-                                android:layout_marginTop="2dp"
-                                android:visibility="visible" />
+                                android:layout_marginTop="2dp" />
                         </LinearLayout>
 
                         <Switch
@@ -163,6 +162,7 @@
                             android:layout_marginStart="8dp" />
                     </LinearLayout>
 
+                    <!-- 좋아요 알림 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -183,8 +183,7 @@
                                 android:textSize="16sp"
                                 android:textStyle="bold"
                                 android:textColor="#FF000000"
-                                android:layout_marginBottom="4dp"
-                                android:visibility="visible" />
+                                android:layout_marginBottom="4dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -192,8 +191,7 @@
                                 android:text="게시글에 좋아요가 달리면 알려드립니다"
                                 android:textSize="13sp"
                                 android:textColor="#FF444444"
-                                android:layout_marginTop="2dp"
-                                android:visibility="visible" />
+                                android:layout_marginTop="2dp" />
                         </LinearLayout>
 
                         <Switch
@@ -206,6 +204,7 @@
                             android:layout_marginStart="8dp" />
                     </LinearLayout>
 
+                    <!-- 맛집 추천 알림 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -226,8 +225,7 @@
                                 android:textSize="16sp"
                                 android:textStyle="bold"
                                 android:textColor="#FF000000"
-                                android:layout_marginBottom="4dp"
-                                android:visibility="visible" />
+                                android:layout_marginBottom="4dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -235,8 +233,7 @@
                                 android:text="주변 맛집 추천을 받습니다"
                                 android:textSize="13sp"
                                 android:textColor="#FF444444"
-                                android:layout_marginTop="2dp"
-                                android:visibility="visible" />
+                                android:layout_marginTop="2dp" />
                         </LinearLayout>
 
                         <Switch
@@ -264,122 +261,4 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-    <!--  하단 네비게이션 바 -->
-    <LinearLayout
-        android:id="@+id/bottomNavigationBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="#FFFFFF"
-        android:elevation="8dp"
-        android:orientation="vertical">
-
-        <!-- 아이콘 줄 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:weightSum="5">
-
-            <ImageView
-                android:id="@+id/homeTap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="6dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/home_icon" />
-
-            <ImageView
-                android:id="@+id/searchTap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="6dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/search_icon" />
-
-            <ImageView
-                android:id="@+id/mapTap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="6dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/map_icon" />
-
-            <ImageView
-                android:id="@+id/communityTap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="6dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/community_icon" />
-
-            <ImageView
-                android:id="@+id/mypageTap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="6dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/my_page_icon" />
-        </LinearLayout>
-
-        <!-- 텍스트 줄 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:weightSum="5">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="홈"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="검색"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="지도"
-                android:textColor="#1A2FA0"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="커뮤니티"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="마이페이지"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-        </LinearLayout>
-    </LinearLayout>
-    </FrameLayout>
-</layout>
+</FrameLayout>
