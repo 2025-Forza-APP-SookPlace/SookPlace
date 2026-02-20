@@ -1,21 +1,11 @@
 package com.example.sookplace.di
 
 import android.content.Context
-import androidx.room.Room // Room import 추가
+import androidx.room.Room
 import com.example.sookplace.data.local.TokenManager
-import com.example.sookplace.data.local.dao.FeaturedRestaurantDao
-import com.example.sookplace.data.local.dao.PostDao
-import com.example.sookplace.data.local.dao.RestaurantDao
-import com.example.sookplace.data.local.dao.PlaceDao
-import com.example.sookplace.data.local.dao.UserProfileDao
+import com.example.sookplace.data.local.dao.*
 import com.example.sookplace.data.local.db.AppDatabase
-import com.example.sookplace.data.remote.api.AuthApi
-import com.example.sookplace.data.remote.api.CommunityApi
-import com.example.sookplace.data.remote.api.RestaurantApi
-import com.example.sookplace.data.remote.api.RouletteSpinApi
-import com.example.sookplace.data.remote.api.SearchApi
-import com.example.sookplace.data.remote.api.UserProfileApi
-import com.example.sookplace.data.remote.api.UserApi
+import com.example.sookplace.data.remote.api.*
 import com.example.sookplace.data.remote.auth.AuthInterceptor
 import dagger.Module
 import dagger.Provides
@@ -33,36 +23,33 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    // [체크] ngrok 주소가 최신인지 확인해주세요. (서버 껐다 켜면 바뀝니다)
-    private const val BASE_URL = "https://pseudofeverish-nonsympathizingly-cecily.ngrok-free.dev/"
+    // ★★★ [매우 중요] 여기 주소를 지금 실행 중인 ngrok 주소로 꼭 바꿔주세요! ★★★
+    // 끝에 '/' 슬래시를 빠뜨리지 마세요.
+    private const val BASE_URL = "http://10.0.2.2:8080/"
 
-    // [수정됨] AppDatabase 제공 (충돌 방지 옵션 추가)
+    // [수정됨] 데이터베이스 충돌 방지 옵션 추가
     @Provides
     @Singleton
     fun provideAppDatabase(
         @ApplicationContext context: Context
     ): AppDatabase {
-        // 기존: return AppDatabase.getDatabase(context)
-        // 변경: 아래와 같이 작성하여 데이터 충돌 시 초기화 옵션을 켭니다.
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java,
             "sookplace_db"
         )
-            .fallbackToDestructiveMigration() // ★ 데이터 구조 바뀌면 자동 초기화 (앱 죽음 방지)
+            .fallbackToDestructiveMigration() // 데이터 구조 변경 시 자동 초기화
             .build()
     }
 
-    //LoggingInterceptor 제공
     @Provides
     @Singleton
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         val log = HttpLoggingInterceptor()
-        log.level = HttpLoggingInterceptor.Level.BODY
+        log.level = HttpLoggingInterceptor.Level.BODY // 통신 내용 로그 확인용
         return log
     }
 
-    //AuthInterceptor 제공 (토큰 자동 포함)
     @Provides
     @Singleton
     fun provideAuthInterceptor(
@@ -73,7 +60,6 @@ object NetworkModule {
         return AuthInterceptor(tokenManager, userDao, authApi)
     }
 
-    //OkHttpClient 제공 (Interceptor 포함)
     @Provides
     @Singleton
     fun provideOkHttpClient(
@@ -82,13 +68,12 @@ object NetworkModule {
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(logging)
-            .addInterceptor(authInterceptor) // <-- 여기서 토큰 자동 추가됨
+            .addInterceptor(authInterceptor) // 토큰 자동 전송
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .build()
     }
 
-    //Retrofit 제공
     @Provides
     @Singleton
     fun provideRetrofit(
@@ -101,56 +86,40 @@ object NetworkModule {
             .build()
     }
 
-    //Api 제공
+    // --- API 제공 ---
     @Provides
     @Singleton
-    fun provideAuthApi(retrofit: Retrofit): AuthApi {
-        return retrofit.create(AuthApi::class.java)
-    }
+    fun provideAuthApi(retrofit: Retrofit): AuthApi = retrofit.create(AuthApi::class.java)
 
     @Provides
     @Singleton
-    fun provideUserProfileApi(retrofit: Retrofit): UserProfileApi {
-        return retrofit.create(UserProfileApi::class.java)
-    }
+    fun provideUserProfileApi(retrofit: Retrofit): UserProfileApi = retrofit.create(UserProfileApi::class.java)
 
     @Provides
     @Singleton
-    fun provideRestaurantApi(retrofit: Retrofit): RestaurantApi {
-        return retrofit.create(RestaurantApi::class.java)
-    }
+    fun provideRestaurantApi(retrofit: Retrofit): RestaurantApi = retrofit.create(RestaurantApi::class.java)
 
     @Provides
     @Singleton
-    fun provideRouletteSpinApi(retrofit: Retrofit): RouletteSpinApi {
-        return retrofit.create(RouletteSpinApi::class.java)
-    }
+    fun provideRouletteSpinApi(retrofit: Retrofit): RouletteSpinApi = retrofit.create(RouletteSpinApi::class.java)
 
     @Provides
     @Singleton
-    fun provideSearchApi(retrofit: Retrofit): SearchApi {
-        return retrofit.create(SearchApi::class.java)
-    }
+    fun provideSearchApi(retrofit: Retrofit): SearchApi = retrofit.create(SearchApi::class.java)
 
     @Provides
     @Singleton
-    fun provideCommunityApi(retrofit: Retrofit): CommunityApi {
-        return retrofit.create(CommunityApi::class.java)
-    }
+    fun provideCommunityApi(retrofit: Retrofit): CommunityApi = retrofit.create(CommunityApi::class.java)
 
-    // [중요] 새로 추가된 마이페이지 API 등록
+    // [마이페이지용 API]
     @Provides
     @Singleton
-    fun provideUserApi(retrofit: Retrofit): UserApi {
-        return retrofit.create(UserApi::class.java)
-    }
+    fun provideUserApi(retrofit: Retrofit): UserApi = retrofit.create(UserApi::class.java)
 
-    // Dao
+    // --- DAO 제공 ---
     @Provides
     @Singleton
-    fun provideUserProfileDao(database: AppDatabase): UserProfileDao {
-        return database.userDao()
-    }
+    fun provideUserProfileDao(database: AppDatabase): UserProfileDao = database.userDao()
 
     @Provides
     @Singleton
@@ -162,13 +131,9 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideFeaturedRestaurantDao(database: AppDatabase): FeaturedRestaurantDao {
-        return database.featuredRestaurantDao()
-    }
+    fun provideFeaturedRestaurantDao(database: AppDatabase): FeaturedRestaurantDao = database.featuredRestaurantDao()
 
     @Provides
     @Singleton
-    fun provideUserPreferenceDao(database: AppDatabase): PlaceDao {
-        return database.userPreferenceDao()
-    }
+    fun provideUserPreferenceDao(database: AppDatabase): PlaceDao = database.userPreferenceDao()
 }
