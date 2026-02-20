@@ -24,23 +24,14 @@ class MyPlaceListFragment : Fragment() {
 
     private val viewModel: MyPageViewModel by viewModels()
 
-    // [수정] 어댑터 생성 시 클릭 리스너(람다)를 전달해야 합니다.
     private val adapter = MyPlacePreviewAdapter { item ->
-        // 아이템 클릭 시 실행될 코드
         viewModel.checkLoginAndAction {
-            // [수정] placeName -> name 으로 변경 (서버 모델 필드명 확인 필요)
             Toast.makeText(context, "${item.name} 선택됨", Toast.LENGTH_SHORT).show()
-            // 추후 상세 페이지 이동 로직 추가
-            // val intent = Intent(requireContext(), RestaurantDetailActivity::class.java)
-            // intent.putExtra("placeId", item.id)
-            // startActivity(intent)
         }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMyplaceListBinding.inflate(inflater, container, false)
         return binding.root
@@ -49,26 +40,54 @@ class MyPlaceListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView()
-        setupObservers()
+        // [핵심 1] 뒤로가기 버튼 기능 연결
+        binding.ivBack.setOnClickListener {
+            requireActivity().finish()
+        }
+
+        binding.placeListRecycler.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.placeListRecycler.adapter = adapter
 
         // 데이터 로드
         viewModel.loadMyPage()
-    }
 
-    private fun setupRecyclerView() {
-        binding.placeListRecycler.layoutManager =
-            GridLayoutManager(requireContext(), 2)
-        binding.placeListRecycler.adapter = adapter
-    }
-
-    private fun setupObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.myPlaces.collect { items ->
-                    adapter.submitList(items)
+                // 1. 데이터 관찰 및 안내 문구 처리
+                launch {
+                    viewModel.myPlaces.collect { items ->
+                        adapter.submitList(items)
+                        // 데이터가 비었는지 확인해서 문구 갱신
+                        updateEmptyState(items.isEmpty())
+                    }
+                }
+
+                // 2. 로그인 상태 관찰 (비로그인이면 문구 변경)
+                launch {
+                    viewModel.isGuestMode.collect {
+                        // 현재 리스트 상태와 함께 체크
+                        updateEmptyState(adapter.currentList.isEmpty())
+                    }
                 }
             }
+        }
+    }
+
+    // [핵심 2] 안내 문구 제어 함수
+    private fun updateEmptyState(isListEmpty: Boolean) {
+        val isGuest = viewModel.isGuestMode.value
+
+        if (isGuest) {
+            binding.tvEmptyState.text = "아직 로그인을 하지 않았습니다."
+            binding.tvEmptyState.visibility = View.VISIBLE
+            binding.placeListRecycler.visibility = View.GONE
+        } else if (isListEmpty) {
+            binding.tvEmptyState.text = "아직 저장된 장소가 없습니다."
+            binding.tvEmptyState.visibility = View.VISIBLE
+            binding.placeListRecycler.visibility = View.GONE
+        } else {
+            binding.tvEmptyState.visibility = View.GONE
+            binding.placeListRecycler.visibility = View.VISIBLE
         }
     }
 

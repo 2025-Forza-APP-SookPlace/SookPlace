@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SookPlace"
         tools:targetApi="31">
+
         <activity
             android:name=".ui.community.postWrite.PostWriteRestaurantSearchActivity"
             android:exported="false" />
@@ -40,6 +41,15 @@
         <activity
             android:name=".ui.search.restaurantDetail.RestaurantDetailActivity"
             android:exported="false" />
+
+        <!-- [여기가 추가된 부분입니다!] 알림 설정 & 계정 관리 화면 등록 -->
+        <activity
+            android:name=".ui.mypage.settings.NotificationSettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.mypage.settings.AccountManagementActivity"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
