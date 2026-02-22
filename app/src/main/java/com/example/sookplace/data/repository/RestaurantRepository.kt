@@ -7,6 +7,7 @@ import com.example.sookplace.data.remote.api.RestaurantApi
 import com.example.sookplace.data.remote.response.RestaurantItem
 import com.example.sookplace.data.remote.response.FeaturedRestaurantsResponse
 import com.example.sookplace.data.remote.response.LatestReview
+import com.example.sookplace.data.remote.response.LikeToggleResponse
 import com.example.sookplace.data.remote.response.MenuItem
 import com.example.sookplace.data.remote.response.OpeningHour
 import com.example.sookplace.data.remote.response.RestaurantDetailResponse
@@ -87,5 +88,10 @@ class RestaurantRepository @Inject constructor(
             )
         }
         return api.getRestaurantDetail(id)
+    }
+
+    /**식당 좋아요**/
+    suspend fun toggleLike(restaurantId: Int): LikeToggleResponse {
+        return api.toggleLike(restaurantId) // (앞서 만든 API 인터페이스 사용)
     }
 }

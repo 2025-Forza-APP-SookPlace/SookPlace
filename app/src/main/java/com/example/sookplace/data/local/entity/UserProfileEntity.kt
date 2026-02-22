@@ -13,11 +13,11 @@ data class UserProfileEntity(
     val sookVerified: Boolean,
     val level: Int,
     val levelTitleEn: String,
-    val nextLevel: Int,
-    val nextLevelTitleEn: String,
+    val nextLevel: Int?,
+    val nextLevelTitleEn: String?,
     val progressToNextPercent: Int,
-    val avatarId: String,
-    val avatarUrl: String,
+    val avatarId: String?,
+    val avatarUrl: String?,
     val createdAt: String,
     val updatedAt: String
 )

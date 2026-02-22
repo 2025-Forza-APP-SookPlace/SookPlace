@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -17,6 +18,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sookplace.R
 import com.example.sookplace.databinding.FragmentMypageBinding
 import com.example.sookplace.ui.login.LoginActivity
+import com.example.sookplace.ui.mypage.adapter.MyPlaceAdapter
+import com.example.sookplace.ui.mypage.adapter.MyPostAdapter
+import com.example.sookplace.ui.mypage.auth.AuthViewModel
 import com.example.sookplace.ui.mypage.myplace.MyPlaceActivity
 import com.example.sookplace.ui.mypage.myplace.MyPlacePreviewAdapter
 import com.example.sookplace.ui.mypage.mypost.MyPostActivity
@@ -33,6 +37,7 @@ class MyPageFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: MyPageViewModel by viewModels()
+    private val authViewModel: AuthViewModel by viewModels() //로그아웃api 호출을 위해 추가
 
     private lateinit var myPlaceAdapter: MyPlacePreviewAdapter
     private lateinit var myPostAdapter: MyPostPreviewAdapter
@@ -53,6 +58,7 @@ class MyPageFragment : Fragment() {
         observeViewModel()
 
         viewModel.loadMyPage()
+        observeAuthViewModel()
     }
 
     private fun setupRecyclerViews() {
@@ -111,10 +117,19 @@ class MyPageFragment : Fragment() {
         }
 
         binding.logoutRow.setOnClickListener {
-            val intent = Intent(requireContext(), LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            requireActivity().finish()
+//            val intent = Intent(requireContext(), LoginActivity::class.java)
+//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//            startActivity(intent)
+//            requireActivity().finish()
+            AlertDialog.Builder(requireContext())
+                .setTitle("로그아웃")
+                .setMessage("정말 로그아웃 하시겠습니까?")
+                .setPositiveButton("로그아웃") { _, _ ->
+                    authViewModel.logout()
+                }
+                .setNegativeButton("취소", null)
+                .show()
+
         }
 
         // 하단 네비게이션
@@ -201,6 +216,21 @@ class MyPageFragment : Fragment() {
                         msg?.let { Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() }
                     }
                 }
+            }
+        }
+    }
+
+    private fun observeAuthViewModel() { //로그아웃 결과를 관찰하는 함수
+        authViewModel.logoutSuccess.observe(viewLifecycleOwner) { isSuccess ->
+            if (isSuccess) {
+                Toast.makeText(requireContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
+                // 로그아웃 성공 시 로그인 화면으로 이동
+//                val intent = Intent(requireContext(), LoginActivity::class.java)
+//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                startActivity(intent)
+//                requireActivity().finish()
+            } else {
+                Toast.makeText(requireContext(), "로그아웃에 실패했습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
             }
         }
     }

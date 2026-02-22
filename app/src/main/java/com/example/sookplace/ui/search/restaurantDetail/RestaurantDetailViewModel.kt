@@ -2,7 +2,6 @@ package com.example.sookplace.ui.search.restaurantDetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sookplace.data.local.dao.PlaceDao
 import com.example.sookplace.data.local.entity.PlaceEntity
 import com.example.sookplace.data.remote.response.RestaurantDetailResponse
 import com.example.sookplace.data.repository.RestaurantRepository
@@ -14,14 +13,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RestaurantDetailViewModel @Inject constructor(
-    private val restaurantRepository: RestaurantRepository,
-    private val localDao: PlaceDao
+    private val restaurantRepository: RestaurantRepository
 ) : ViewModel() {
     //상태 변수
     private val _detailState = MutableStateFlow<DetailUiState>(DetailUiState.Idle)
     val detailState: StateFlow<DetailUiState> = _detailState
 
-    //종아요&&마이플레이스
+    sealed class DetailUiState {
+        object Idle : DetailUiState()
+        object Loading : DetailUiState()
+        data class Success(val data: RestaurantDetailResponse) : DetailUiState()
+        data class Error(val message: String) : DetailUiState()
+    }
+
+    //종아요 && 마이플레이스
     private val _isLiked = MutableStateFlow(false)
     val isLiked: StateFlow<Boolean> = _isLiked
     private val _isSaved = MutableStateFlow(false)
@@ -29,41 +34,34 @@ class RestaurantDetailViewModel @Inject constructor(
 
     //좋아요
     fun toggleLike(restaurantId: Int) {
-        viewModelScope.launch {
-            val nextState = !_isLiked.value
-            _isLiked.value = nextState
-            // TODO: 백엔드 API가 있다면 여기서 호출 (예: restaurantRepository.postLike(restaurantId, nextState))
+        val originalIsLiked = _isLiked.value
 
+        viewModelScope.launch {
+            _isLiked.value = !originalIsLiked
+
+            try {
+                val response = restaurantRepository.toggleLike(restaurantId)
+                _isLiked.value = response.liked
+
+            } catch (e: Exception) {
+                //에러 발생 시 원래 하트 상태로 복구
+                _isLiked.value = originalIsLiked
+            }
         }
     }
 
     //마이 플레이스
     fun toggleSave(restaurantId: Int) {
+        val originalIsSaved = _isSaved.value
+
         viewModelScope.launch {
-            val nextState = !_isSaved.value
-            _isSaved.value = nextState
+            _isSaved.value = !originalIsSaved
 
-            val currentState = _detailState.value
-            if (currentState is DetailUiState.Success) {
-                val data = currentState.data
-
-                if (nextState) {
-                    // 핀 꽂기: PlaceEntity 구조로 저장
-                    val entity = PlaceEntity(
-                        restaurantId = restaurantId,
-                        name = data.name, // 상세 데이터의 이미지
-                        category = data.category,
-                        thumbnailUrl = data.thumbnailUrl,
-                        rating = data.rating,
-                        address = data.address,
-                        addedAt = System.currentTimeMillis()
-                    )
-                    localDao.insertPlace(entity)
-                } else {
-                    // 핀 빼기: 로컬 DB에서 삭제
-                    localDao.deletePlace(restaurantId)
-                }
-                _isSaved.value = nextState
+            try {
+                // val response = restaurantRepository.toggleSave(restaurantId)
+                // _isSaved.value = response.isSaved
+            } catch (e: Exception) {
+                _isSaved.value = originalIsSaved
             }
         }
     }
@@ -73,10 +71,9 @@ class RestaurantDetailViewModel @Inject constructor(
             _detailState.value = DetailUiState.Loading
             try {
                 val response = restaurantRepository.getRestaurantDetail(restaurantId)
-                val isSavedInLocal = localDao.isPlaceSaved(restaurantId)
 
-//                _isLiked.value = response.isLiked //TODO: 좋아요정보가 없다
-                _isSaved.value = isSavedInLocal
+//                _isLiked.value = response.isLiked //TODO: 서버 응답에 좋아요&핀 정보가 없다
+//                _isSaved.value = response.isSaved
 
                 _detailState.value = DetailUiState.Success(response)
             } catch (e: Exception) {
@@ -85,12 +82,7 @@ class RestaurantDetailViewModel @Inject constructor(
         }
     }
 
-    sealed class DetailUiState {
-        object Idle : DetailUiState()
-        object Loading : DetailUiState()
-        data class Success(val data: RestaurantDetailResponse) : DetailUiState()
-        data class Error(val message: String) : DetailUiState()
-    }
+
 }
 
 

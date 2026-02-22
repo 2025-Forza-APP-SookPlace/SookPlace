@@ -1,26 +1,25 @@
 package com.example.sookplace.data.repository
 
+import android.util.Log
 import com.example.sookplace.data.local.dao.UserProfileDao
 import com.example.sookplace.data.local.entity.UserProfileEntity
-import com.example.sookplace.data.remote.api.UserProfileApi
+import com.example.sookplace.data.remote.api.UserApi
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 
 class UserProfileRepository @Inject constructor(
     private val userDao: UserProfileDao,
-    private val api: UserProfileApi
+    private val api: UserApi
 ) {
     val userProfileFlow: Flow<UserProfileEntity?> =
         userDao.getUserProfile()
-
-    private val USE_DUMMY = false //디버깅용
 
     //서버에서 최신 프로필 가져와 로컬 업데이트
     suspend fun refreshUserProfile() {
         try {
             // 서버에서 상세 프로필(/me) 정보를 가져옵니다
-            val remote = api.getUserProfile()
-
+            val remote = api.getUserMe()
+            Log.d("DEBUG_AUTH", "Remote Profile: $remote")
             // /me 응답과 로컬 엔티티의 필드가 동일하므로 별도 mapper 없이 직접 매핑
             val updatedEntity = UserProfileEntity(
                 id = remote.id,
@@ -41,8 +40,9 @@ class UserProfileRepository @Inject constructor(
 
             //DB에 업데이트
             userDao.upsertUserProfile(updatedEntity)
-
+            Log.d("DEBUG_AUTH", "DB Update Success")
         } catch (e: Exception) {
+            Log.e("DEBUG_AUTH", "Refresh Error: ${e.message}")
             e.printStackTrace()
         }
     }

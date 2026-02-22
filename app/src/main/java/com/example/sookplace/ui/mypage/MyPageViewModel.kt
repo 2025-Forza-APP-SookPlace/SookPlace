@@ -85,7 +85,6 @@ class MyPageViewModel @Inject constructor(
                     _myPlaces.value = placesDeferred.await().items
                     _myPosts.value = postsDeferred.await().content
                 }
-
             } catch (e: HttpException) {
                 e.printStackTrace()
                 // 401/403 에러 -> 비로그인(게스트) 상태로 전환

@@ -9,7 +9,7 @@ data class RestaurantDetailResponse(
     val likeCount: Int,
     val thumbnailUrl: String?,
     val images: List<String>,
-    val distanceMinutesFromCampus: Int,
+    val distanceMinutesFromCampus: Int, //얘는 뭘까
     val address: String,
     val naverMapUrl: String,
     val openingHours: List<OpeningHour>,

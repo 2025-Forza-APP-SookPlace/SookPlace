@@ -2,31 +2,21 @@ package com.example.sookplace.data.remote.response
 
 //검색
 data class SearchResponse(
-    val content: List<RestaurantContent>,
     val totalElements: Int,
     val totalPages: Int,
-    val page: Int,
-    val size: Int
+    val currentPage: Int,
+    val restaurants: List<RestaurantContent>
 )
 
-data class RestaurantContent(
-    val id: Int,
-    val name: String,
-    val address: String,
-    val rating: Double,
-    val likeCount: Int,
-    val thumbnailUrl: String?
-)
-
-//정렬
+//검색 & 정렬
 data class SortResponse(
     val totalElements: Int,
     val totalPages: Int,
     val currentPage: Int,
-    val restaurants: List<SortRestaurantItem>
+    val restaurants: List<RestaurantContent>
 )
 
-data class SortRestaurantItem(
+data class RestaurantContent(
     val id: Int,
     val name: String,
     val category: String,
@@ -35,6 +25,14 @@ data class SortRestaurantItem(
     var likeCount: Int,
     var isLiked: Boolean,
     val distanceMinutesFromCampus: Int?,
-    val locationName: String,
-    val shareUrl: String
+    val locationName: String?,
+    val shareUrl: String?
 )
+
+//식당 좋아요
+data class LikeToggleResponse(
+    val likeCount: Int,
+    val liked: Boolean
+)
+
+//식당 핀
