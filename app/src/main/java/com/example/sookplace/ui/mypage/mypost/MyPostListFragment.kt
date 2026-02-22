@@ -24,23 +24,14 @@ class MyPostListFragment : Fragment() {
 
     private val viewModel: MyPageViewModel by viewModels()
 
-    // [수정] 어댑터 생성 시 클릭 리스너(람다)를 전달해야 오류가 사라집니다.
     private val adapter = MyPostPreviewAdapter { item ->
         viewModel.checkLoginAndAction {
-            // 클릭 시 실행할 동작 (예: 상세 페이지 이동)
             Toast.makeText(context, "${item.title} 선택됨", Toast.LENGTH_SHORT).show()
-
-            // 추후 상세 페이지 이동 로직 추가
-            // val intent = Intent(requireContext(), PostDetailActivity::class.java)
-            // intent.putExtra("postId", item.postId) // 또는 item.id
-            // startActivity(intent)
         }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMyPostListBinding.inflate(inflater, container, false)
         return binding.root
@@ -49,18 +40,49 @@ class MyPostListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // [핵심 1] 뒤로가기 버튼
+        binding.ivBack.setOnClickListener {
+            requireActivity().finish()
+        }
+
         binding.myPostRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.myPostRecycler.adapter = adapter
 
-        // 데이터 로드 (이미 로드되어 있다면 생략 가능하지만, 확실하게 하기 위해 호출)
         viewModel.loadMyPage()
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.myPosts.collect { posts ->
-                    adapter.submitList(posts)
+                launch {
+                    viewModel.myPosts.collect { posts ->
+                        adapter.submitList(posts)
+                        updateEmptyState(posts.isEmpty())
+                    }
+                }
+
+                launch {
+                    viewModel.isGuestMode.collect {
+                        updateEmptyState(adapter.currentList.isEmpty())
+                    }
                 }
             }
+        }
+    }
+
+    // [핵심 2] 안내 문구 처리
+    private fun updateEmptyState(isListEmpty: Boolean) {
+        val isGuest = viewModel.isGuestMode.value
+
+        if (isGuest) {
+            binding.tvEmptyState.text = "아직 로그인을 하지 않았습니다."
+            binding.tvEmptyState.visibility = View.VISIBLE
+            binding.myPostRecycler.visibility = View.GONE
+        } else if (isListEmpty) {
+            binding.tvEmptyState.text = "아직 작성한 글이 없습니다."
+            binding.tvEmptyState.visibility = View.VISIBLE
+            binding.myPostRecycler.visibility = View.GONE
+        } else {
+            binding.tvEmptyState.visibility = View.GONE
+            binding.myPostRecycler.visibility = View.VISIBLE
         }
     }
 

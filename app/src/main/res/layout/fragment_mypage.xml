@@ -8,7 +8,6 @@
     android:background="#F5F5F5">
 
     <!-- 메인 컨텐츠 (스크롤 영역) -->
-    <!-- 하단 네비게이션 높이(약 65dp)만큼 띄워서 가려지지 않게 함 -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -400,6 +399,18 @@
                             android:background="?attr/selectableItemBackground"/>
                     </LinearLayout>
 
+                    <!-- [추가] 데이터 없을 때 문구 -->
+                    <TextView
+                        android:id="@+id/tvEmptyMyPlace"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="아직 저장된 장소가 없습니다."
+                        android:textColor="#888888"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:paddingVertical="20dp"
+                        android:visibility="gone" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/newMyPlaceRecycler"
                         android:layout_width="match_parent"
@@ -457,6 +468,18 @@
                             android:focusable="true"
                             android:background="?attr/selectableItemBackground"/>
                     </LinearLayout>
+
+                    <!-- [추가] 데이터 없을 때 문구 -->
+                    <TextView
+                        android:id="@+id/tvEmptyMyPost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="아직 작성한 글이 없습니다."
+                        android:textColor="#888888"
+                        android:textSize="14sp"
+                        android:gravity="center"
+                        android:paddingVertical="20dp"
+                        android:visibility="gone" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/newMyPostRecycler"
@@ -561,7 +584,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- [추가된 부분] 하단 네비게이션 아이콘 (ConstraintLayout으로 하단 고정) -->
+    <!-- 하단 네비게이션 아이콘 (ConstraintLayout으로 하단 고정) -->
     <LinearLayout
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
@@ -614,7 +637,7 @@
 
     </LinearLayout>
 
-    <!-- [추가된 부분] 하단 네비게이션 텍스트 -->
+    <!-- 하단 네비게이션 텍스트 -->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"

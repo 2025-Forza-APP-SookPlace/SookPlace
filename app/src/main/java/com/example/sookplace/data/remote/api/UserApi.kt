@@ -8,20 +8,22 @@ import retrofit2.http.Query
 
 interface UserApi {
 
+    // 모든 경로 앞에 "api/"를 추가하여 수정합니다.
+
     // 사용자 정보 조회
-    @GET("me")
+    @GET("api/me")
     suspend fun getUserMe(): UserMeResponse
 
     // 퀘스트 현황 및 목표 조회
-    @GET("me/quests")
+    @GET("api/me/quests")
     suspend fun getUserQuests(): UserQuestResponse
 
     // 현황 리포트 (통계)
-    @GET("me/stats")
+    @GET("api/me/stats")
     suspend fun getUserStats(): UserStatsResponse
 
     // My Places 조회
-    @GET("me/favorites")
+    @GET("api/me/favorites")
     suspend fun getMyPlaces(
         @Query("page") page: Int = 1,
         @Query("size") size: Int = 10,
@@ -29,21 +31,21 @@ interface UserApi {
     ): MyPlaceResponse
 
     // My Posts 조회
-    @GET("me/posts")
+    @GET("api/me/posts")
     suspend fun getMyPosts(
         @Query("page") page: Int = 0,
         @Query("size") size: Int = 10,
         @Query("sort") sort: String? = null
     ): MyPostResponse
 
-    // 알림 설정 조회 (GET이 없다면 생략 가능하지만 보통 초기값을 위해 존재)
-    @GET("me/settings")
+    // 알림 설정 조회
+    @GET("api/me/settings")
     suspend fun getNotificationSettings(): NotificationSettingResponse
 
-    // 알림 설정 변경 (PATCH)
-    @PATCH("me/settings")
+    // 알림 설정 변경
+    @PATCH("api/me/settings")
     suspend fun updateNotificationSettings(
-        @Query("type") type: String, // 예: "push", "like" 등
+        @Query("type") type: String,
         @Query("value") value: Boolean
     ): Response<NotificationSettingResponse>
 }
