@@ -1,5 +1,6 @@
 package com.example.sookplace.ui.mypage
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sookplace.data.remote.response.*
@@ -72,18 +73,18 @@ class MyPageViewModel @Inject constructor(
             try {
                 supervisorScope {
                     // 병렬 호출 시작
-                    val meDeferred = async { userRepository.getUserMe() }
-                    val questsDeferred = async { userRepository.getUserQuests() }
-                    val statsDeferred = async { userRepository.getUserStats() }
-                    val placesDeferred = async { userRepository.getMyPlaces(1, 4) }
-                    val postsDeferred = async { userRepository.getMyPosts(0, 3) }
+                    val meDeferred = async { runCatching { userRepository.getUserMe() }.getOrNull() } //<---오류나도 다음 코드 실행
+                    val statsDeferred = async { runCatching { userRepository.getUserStats() }.getOrNull() }
+                    val questsDeferred = async { runCatching { userRepository.getUserQuests() }.getOrNull() }
+                    val placesDeferred = async { runCatching { userRepository.getMyPlaces(1, 4) }.getOrNull() }
+                    val postsDeferred = async { runCatching { userRepository.getMyPosts(0, 3) }.getOrNull() }
 
                     // 결과 대기 및 저장
-                    _userMe.value = meDeferred.await()
-                    _userQuests.value = questsDeferred.await()
-                    _userStats.value = statsDeferred.await()
-                    _myPlaces.value = placesDeferred.await().items
-                    _myPosts.value = postsDeferred.await().content
+                    meDeferred.await()?.let { _userMe.value = it } //<---오류나도 다음 코드 실행
+                    statsDeferred.await()?.let { _userStats.value = it }
+                    questsDeferred.await()?.let { _userQuests.value = it }
+                    placesDeferred.await()?.let { _myPlaces.value = it.items }
+                    postsDeferred.await()?.let { _myPosts.value = it.content }
                 }
             } catch (e: HttpException) {
                 e.printStackTrace()

@@ -1,6 +1,7 @@
 package com.example.sookplace.ui.map
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sookplace.R
 import com.example.sookplace.databinding.FragmentMapBinding
 import com.example.sookplace.ui.search.restaurantDetail.RestaurantDetailActivity
-import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.CameraPosition
-import com.naver.maps.map.NaverMap
-import com.naver.maps.map.NaverMapOptions
 import dagger.hilt.android.AndroidEntryPoint
 import com.naver.maps.map.MapFragment as NaverMapFragment
+
 @AndroidEntryPoint
 class MapFragment : Fragment() {
 
@@ -82,3 +80,4 @@ class MapFragment : Fragment() {
         }
     }
 }
+

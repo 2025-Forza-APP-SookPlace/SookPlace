@@ -10,3 +10,5 @@ data class RestaurantItem(
     val thumbnailUrl: String,
     val isLiked: Boolean
 )
+
+

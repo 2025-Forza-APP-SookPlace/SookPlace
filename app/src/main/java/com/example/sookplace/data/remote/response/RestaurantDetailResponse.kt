@@ -1,6 +1,6 @@
 package com.example.sookplace.data.remote.response
 
-data class RestaurantDetailResponse(
+data class RestaurantDetailResponse( //TODO isLiked 추가
     val id: Int,
     val name: String,
     val category: String,
@@ -16,7 +16,9 @@ data class RestaurantDetailResponse(
     val phone: String,
     val menus: List<MenuItem>,
     val latestReviews: List<LatestReview>,
-    val shareUrl: String
+    val shareUrl: String,
+    val isLiked: Boolean,
+    val isFavorited: Boolean? //true=찜등록됨상태, false=찜해제상태, null=비로그인
 )
 
 data class OpeningHour(
@@ -36,4 +38,9 @@ data class LatestReview(
     val title: String,
     val rating: Double,
     val contentSnippet: String
+)
+
+//식당 핀
+data class FavoriteToggleResponse( //true=찜등록됨, false=찜해제됨
+    val favorited: Boolean
 )

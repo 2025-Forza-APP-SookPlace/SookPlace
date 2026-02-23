@@ -4,6 +4,7 @@ import com.example.sookplace.data.local.dao.FeaturedRestaurantDao
 import com.example.sookplace.data.local.dao.RestaurantDao
 import com.example.sookplace.data.local.entity.FeaturedRestaurantEntity
 import com.example.sookplace.data.remote.api.RestaurantApi
+import com.example.sookplace.data.remote.response.FavoriteToggleResponse
 import com.example.sookplace.data.remote.response.RestaurantItem
 import com.example.sookplace.data.remote.response.FeaturedRestaurantsResponse
 import com.example.sookplace.data.remote.response.LatestReview
@@ -54,44 +55,17 @@ class RestaurantRepository @Inject constructor(
     }
 
     /**식당 상세 페이지*/
-    private val USE_DUMMY = false
-
     suspend fun getRestaurantDetail(id: Int): RestaurantDetailResponse {
-        if (USE_DUMMY) {
-            kotlinx.coroutines.delay(500)
-            return RestaurantDetailResponse(
-                id = id,
-                name = "숙명 한식당",
-                category = "한식",
-                rating = 4.5,
-                reviewCount = 27,
-                likeCount = 89,
-                thumbnailUrl = "https://picsum.photos/id/102/400/300",
-                images = listOf("https://picsum.photos/id/102/800/600", "https://picsum.photos/id/103/800/600"),
-                distanceMinutesFromCampus = 5,
-                address = "서울 용산구 청파로 47",
-                naverMapUrl = "https://map.naver.com/",
-                openingHours = listOf(
-                    OpeningHour("Mon-Fri", "11:00-21:00"),
-                    OpeningHour("Sat-Sun", "12:00-20:00")
-                ),
-                phone = "02-123-4567",
-                menus = listOf(
-                    MenuItem("김치찌개", 8000),
-                    MenuItem("된장찌개", 7500),
-                    MenuItem("비빔밥", 9000)
-                ),
-                latestReviews = listOf(
-                    LatestReview("https://picsum.photos/id/111/200/200", "맛집탐험가송이", "2024-12-14", "김치찌개 진짜 맛있어요!", 4.8, "정말 깔끔하고 맛있어서 자주 가는 곳이에요…")
-                ),
-                shareUrl = "https://sookplace.app/r/$id"
-            )
-        }
         return api.getRestaurantDetail(id)
     }
 
     /**식당 좋아요**/
     suspend fun toggleLike(restaurantId: Int): LikeToggleResponse {
         return api.toggleLike(restaurantId) // (앞서 만든 API 인터페이스 사용)
+    }
+
+    /**식당 핀**/
+    suspend fun togglePin(restaurantId: Int): FavoriteToggleResponse{
+        return api.postPin(restaurantId)
     }
 }

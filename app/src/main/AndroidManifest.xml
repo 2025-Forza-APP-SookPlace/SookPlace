@@ -17,9 +17,9 @@
         android:theme="@style/Theme.SookPlace"
         tools:targetApi="31">
         <!--네이버지도API-->
-        <meta-data
-            android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="c1j6y5byty" />
+<!--        <meta-data-->
+<!--            android:name="com.naver.maps.map.CLIENT_ID"-->
+<!--            android:value="c1j6y5byty" />-->
 
         <activity
             android:name=".ui.community.postWrite.PostWriteRestaurantSearchActivity"

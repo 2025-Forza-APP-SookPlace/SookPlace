@@ -2,7 +2,9 @@ package com.example.sookplace.ui.search.restaurantDetail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.sookplace.data.local.TokenManager
 import com.example.sookplace.data.local.entity.PlaceEntity
+import com.example.sookplace.data.remote.response.FavoriteToggleResponse
 import com.example.sookplace.data.remote.response.RestaurantDetailResponse
 import com.example.sookplace.data.repository.RestaurantRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RestaurantDetailViewModel @Inject constructor(
-    private val restaurantRepository: RestaurantRepository
+    private val restaurantRepository: RestaurantRepository,
+    private val tokenManager: TokenManager
 ) : ViewModel() {
     //상태 변수
     private val _detailState = MutableStateFlow<DetailUiState>(DetailUiState.Idle)
@@ -26,13 +29,13 @@ class RestaurantDetailViewModel @Inject constructor(
         data class Error(val message: String) : DetailUiState()
     }
 
-    //종아요 && 마이플레이스
+    //종아요 && 마이플레이스(핀)
     private val _isLiked = MutableStateFlow(false)
     val isLiked: StateFlow<Boolean> = _isLiked
     private val _isSaved = MutableStateFlow(false)
     val isSaved: StateFlow<Boolean> = _isSaved
 
-    //좋아요
+    //좋아요 클릭
     fun toggleLike(restaurantId: Int) {
         val originalIsLiked = _isLiked.value
 
@@ -50,7 +53,7 @@ class RestaurantDetailViewModel @Inject constructor(
         }
     }
 
-    //마이 플레이스
+    //마이 플레이스(핀) 클릭
     fun toggleSave(restaurantId: Int) {
         val originalIsSaved = _isSaved.value
 
@@ -58,28 +61,34 @@ class RestaurantDetailViewModel @Inject constructor(
             _isSaved.value = !originalIsSaved
 
             try {
-                // val response = restaurantRepository.toggleSave(restaurantId)
-                // _isSaved.value = response.isSaved
+                val response = restaurantRepository.togglePin(restaurantId)
+                _isSaved.value = response.favorited
             } catch (e: Exception) {
                 _isSaved.value = originalIsSaved
             }
         }
     }
 
+    //식당 상세 정보
     fun fetchRestaurantDetail(restaurantId: Int) {
         viewModelScope.launch {
             _detailState.value = DetailUiState.Loading
             try {
                 val response = restaurantRepository.getRestaurantDetail(restaurantId)
 
-//                _isLiked.value = response.isLiked //TODO: 서버 응답에 좋아요&핀 정보가 없다
-//                _isSaved.value = response.isSaved
+                _isLiked.value = response.isLiked
+                _isSaved.value = response.isFavorited ?: false
 
                 _detailState.value = DetailUiState.Success(response)
             } catch (e: Exception) {
                 _detailState.value = DetailUiState.Error(e.message ?: "상세 정보를 불러오지 못했습니다.")
             }
         }
+    }
+
+    //로그인 여부 체크
+    fun checkUserLoggedIn(): Boolean {
+        return tokenManager.isLoggedIn()
     }
 
 

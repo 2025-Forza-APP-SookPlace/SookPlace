@@ -33,7 +33,7 @@ interface SearchApi {
     ): SortResponse
 
     //식당 좋아요
-    @POST("/restaurants/{id}/like")
+    @POST("restaurants/{id}/like")
     suspend fun toggleLike(
         @Path("id") restaurantId: Int
     ): LikeToggleResponse

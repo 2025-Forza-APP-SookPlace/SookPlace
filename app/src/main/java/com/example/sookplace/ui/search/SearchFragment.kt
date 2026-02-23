@@ -164,7 +164,7 @@ class SearchFragment : Fragment() {
     private fun setupDropdowns() {
         // 드롭다운에 보여줄 목록 리스트 생성
         val categories = arrayOf("전체", "치킨", "카페", "한식", "분식", "양식", "디저트")
-        val sorts = arrayOf("인기순", "가까운순", "평점순")
+        val sorts = arrayOf("인기순", "거리순", "평점순")
 
         // 어댑터 연결
         val categoryAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, categories)
@@ -187,7 +187,7 @@ class SearchFragment : Fragment() {
             val selectedSort = sorts[position]
 
             val sortKey = when(selectedSort) {
-                "가까운순" -> "distance"
+                "거리순" -> "distance"
                 "평점순" -> "rating"
                 else -> "popularity"
             }

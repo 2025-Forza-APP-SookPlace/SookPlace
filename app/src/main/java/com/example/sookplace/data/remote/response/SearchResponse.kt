@@ -35,4 +35,4 @@ data class LikeToggleResponse(
     val liked: Boolean
 )
 
-//식당 핀
+

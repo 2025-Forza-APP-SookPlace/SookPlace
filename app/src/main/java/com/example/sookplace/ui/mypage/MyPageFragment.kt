@@ -117,10 +117,6 @@ class MyPageFragment : Fragment() {
         }
 
         binding.logoutRow.setOnClickListener {
-//            val intent = Intent(requireContext(), LoginActivity::class.java)
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            startActivity(intent)
-//            requireActivity().finish()
             AlertDialog.Builder(requireContext())
                 .setTitle("로그아웃")
                 .setMessage("정말 로그아웃 하시겠습니까?")
@@ -224,11 +220,6 @@ class MyPageFragment : Fragment() {
         authViewModel.logoutSuccess.observe(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
                 Toast.makeText(requireContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
-                // 로그아웃 성공 시 로그인 화면으로 이동
-//                val intent = Intent(requireContext(), LoginActivity::class.java)
-//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                startActivity(intent)
-//                requireActivity().finish()
             } else {
                 Toast.makeText(requireContext(), "로그아웃에 실패했습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
             }
