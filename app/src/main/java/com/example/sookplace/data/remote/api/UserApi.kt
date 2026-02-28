@@ -13,7 +13,7 @@ import retrofit2.http.Query
 interface UserApi {
     // =========================================
     // 1. 사용자 기본 정보 및 현황 조회 API
-    // ==========================================
+    // =========================================
 
     @GET("api/me")
     suspend fun getUserMe(): UserMeResponse
