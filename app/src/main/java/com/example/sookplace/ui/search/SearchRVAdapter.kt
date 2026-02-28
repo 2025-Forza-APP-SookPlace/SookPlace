@@ -1,29 +1,25 @@
 package com.example.sookplace.ui.search
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.sookplace.R
 import com.example.sookplace.data.remote.response.RestaurantContent
-import com.example.sookplace.data.remote.response.SortRestaurantItem
 import com.example.sookplace.databinding.SearchRvItemBinding
 
 class SearchRVAdapter (
+    //인수로 전달받을 람다식
     private val onItemClick: (Int) -> Unit, //클릭 시 id 전달(상세 페이지로 이동)
-    private val onLikeClick: (SortRestaurantItem) -> Unit //종아요 클릭
-): ListAdapter<SortRestaurantItem, SearchRVAdapter.ViewHolder>(DiffCallback) {
+    private val onLikeClick: (RestaurantContent) -> Unit //종아요 클릭
+): ListAdapter<RestaurantContent, SearchRVAdapter.ViewHolder>(DiffCallback) {
 
     inner class ViewHolder(val binding: SearchRvItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: SortRestaurantItem) {
+        fun bind(item: RestaurantContent) {
             //가게 카드 UI
             binding.thumbnailUrl.load(item.thumbnailUrl)
             binding.category.text = item.category
@@ -42,7 +38,7 @@ class SearchRVAdapter (
             updateHeartUI(item.isLiked)
             binding.like.setOnClickListener(null)
 
-            binding.like.setOnClickListener { //TODO: 근데 좋아요 여부를 백엔드에 넘겨주는 api가 없는거 같은디??
+            binding.like.setOnClickListener {
                 onLikeClick(item)
             }
 
@@ -66,10 +62,6 @@ class SearchRVAdapter (
                 onItemClick(item.id)
             }
 
-            //식당 카드 클릭 시 상세 페이지로 이동
-//            binding.root.setOnClickListener {
-//                onItemClick(item.id)
-//            }
         }
 
         private fun updateHeartUI(isLiked: Boolean) {
@@ -91,11 +83,11 @@ class SearchRVAdapter (
     }
 
     companion object {
-        private val DiffCallback = object : DiffUtil.ItemCallback<SortRestaurantItem>() {
-            override fun areItemsTheSame(oldItem: SortRestaurantItem, newItem: SortRestaurantItem) =
+        private val DiffCallback = object : DiffUtil.ItemCallback<RestaurantContent>() {
+            override fun areItemsTheSame(oldItem: RestaurantContent, newItem: RestaurantContent) =
                 oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: SortRestaurantItem, newItem: SortRestaurantItem) =
+            override fun areContentsTheSame(oldItem: RestaurantContent, newItem: RestaurantContent) =
                 oldItem == newItem
         }
     }

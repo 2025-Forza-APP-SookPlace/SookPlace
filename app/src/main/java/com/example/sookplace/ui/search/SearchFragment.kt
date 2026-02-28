@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
@@ -19,6 +20,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.sookplace.R
 import com.example.sookplace.databinding.FragmentSearchBinding
 import com.example.sookplace.ui.search.restaurantDetail.RestaurantDetailActivity
@@ -53,31 +55,15 @@ class SearchFragment : Fragment() {
 
         setupRecyclerView() //RV 구현
         setupSearchInput()  //검색창 로직 구현
-        setupCategoryButtons() //카테고리 정렬 로직 구현
+        setupDropdowns() //카테고리 정렬 로직 구현
         observeViewModel()  //
 
         //카테고리별 검색
         val category = arguments?.getString("category")
+        val initialDisplayText = category ?: "전체"
+        binding.categoryDropdown.setText(initialDisplayText, false)
 
-        when (category) {
-            "치킨" -> binding.foodCategoryBtn1.isChecked = true
-            "카페" -> binding.foodCategoryBtn2.isChecked = true
-            "한식" -> binding.foodCategoryBtn3.isChecked = true
-            "분식" -> binding.foodCategoryBtn4.isChecked = true
-            "양식" -> binding.foodCategoryBtn5.isChecked = true
-            "디저트" -> binding.foodCategoryBtn6.isChecked = true
-            else -> binding.foodCategoryBtn0.isChecked = true // 전체
-        }
-
-        val initialCategoryKey = when(category) {
-            "치킨" -> "chicken"
-            "카페" -> "cafe"
-            "한식" -> "korean"
-            "분식" -> "bunsik"
-            "양식" -> "western"
-            "디저트" -> "dessert"
-            else -> "all"
-        }
+        val initialCategoryKey = getCategoryKey(initialDisplayText)
         viewModel.fetchSortedList(category = initialCategoryKey)
 
         ///하단바 프래그먼트 간의 이동 구현
@@ -108,9 +94,31 @@ class SearchFragment : Fragment() {
 
     //RV 구현 함수
     private fun setupRecyclerView() {
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+
         binding.searchRv.apply {
             adapter = searchAdapter
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = linearLayoutManager
+
+            addOnScrollListener(object : RecyclerView.OnScrollListener() { //무한 스크롤 리스너
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    // 스크롤을 아래로 내릴 때만 동작
+                    if (dy > 0) {
+                        val visibleItemCount = linearLayoutManager.childCount
+                        val totalItemCount = linearLayoutManager.itemCount
+                        val firstVisibleItemPosition =
+                            linearLayoutManager.findFirstVisibleItemPosition()
+
+                        // 바닥에 닿았는지 계산
+                        if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount) {
+                            // 뷰모델에게 다음 페이지 요청
+                            viewModel.loadNextPage()
+                        }
+                    }
+                }
+            })
         }
     }
 
@@ -127,10 +135,6 @@ class SearchFragment : Fragment() {
                 true
             } else false
         }
-        binding.etSearch.doOnTextChanged { text, _, _, _ -> //EditText에 글자가 있을때만 X버튼 노출
-            binding.ivClear.isVisible = !text.isNullOrEmpty()
-        }
-        binding.ivClear.setOnClickListener { binding.etSearch.text.clear() } //X버튼 클릭 시 텍스트 삭제
     }
 
     private fun observeViewModel() {
@@ -157,24 +161,49 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun setupCategoryButtons() {
-        val categoryMap = mapOf(
-            binding.foodCategoryBtn0 to "all",
-            binding.foodCategoryBtn1 to "chicken",
-            binding.foodCategoryBtn2 to "cafe",
-            binding.foodCategoryBtn3 to "korean",
-            binding.foodCategoryBtn4 to "bunsik",
-            binding.foodCategoryBtn5 to "western",
-            binding.foodCategoryBtn6 to "dessert"
-        )
+    private fun setupDropdowns() {
+        // 드롭다운에 보여줄 목록 리스트 생성
+        val categories = arrayOf("전체", "치킨", "카페", "한식", "분식", "양식", "디저트")
+        val sorts = arrayOf("인기순", "거리순", "평점순")
 
-        categoryMap.forEach { (button, categoryKey) ->
-            button.setOnClickListener {
-                viewModel.fetchSortedList(category = categoryKey)
+        // 어댑터 연결
+        val categoryAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, categories)
+        val sortAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, sorts)
 
-                binding.etSearch.text.clear()
-                binding.etSearch.clearFocus()
+        binding.categoryDropdown.setAdapter(categoryAdapter)
+        binding.sortDropdown.setAdapter(sortAdapter)
+
+        binding.categoryDropdown.setDropDownBackgroundResource(R.drawable.background_radius)
+        binding.sortDropdown.setDropDownBackgroundResource(R.drawable.background_radius)
+
+        // 카테고리 클릭 이벤트 처리
+        binding.categoryDropdown.setOnItemClickListener { _, _, position, _ ->
+            val selectedCategory = categories[position]
+            viewModel.fetchSortedList(category = getCategoryKey(selectedCategory))
+        }
+
+        // 정렬 클릭 이벤트 처리
+        binding.sortDropdown.setOnItemClickListener { _, _, position, _ ->
+            val selectedSort = sorts[position]
+
+            val sortKey = when(selectedSort) {
+                "거리순" -> "distance"
+                "평점순" -> "rating"
+                else -> "popularity"
             }
+            viewModel.fetchSortedList(sort = sortKey)
+        }
+    }
+    //한글 카테고리명을 서버 API용 영어 키워드로 변환
+    private fun getCategoryKey(koreanCategory: String): String {
+        return when (koreanCategory) {
+            "치킨" -> "chicken"
+            "카페" -> "cafe"
+            "한식" -> "korean"
+            "분식" -> "bunsik"
+            "양식" -> "western"
+            "디저트" -> "dessert"
+            else -> "all" // "전체" 또는 그 외의 경우
         }
     }
 }

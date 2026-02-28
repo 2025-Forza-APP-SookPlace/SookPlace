@@ -11,7 +11,8 @@
         <!--컨텐츠-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
             <!--건색창-->
             <com.google.android.material.appbar.AppBarLayout
@@ -19,7 +20,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                app:elevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -27,228 +27,106 @@
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
+                    android:layout_height="wrap_content"
                     app:contentInsetStart="0dp">
 
-                    <LinearLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
-                        android:background="@drawable/background_radius_gray"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="12dp">
+                        android:layout_marginVertical="8dp"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="#8E8E93"
+                        app:hintEnabled="false"
+                        app:startIconDrawable="@drawable/search_icon"
+                        app:startIconTint="#8E8E93">
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/search_icon"
-                            app:tint="#8E8E93" />
-
-                        <EditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etSearch"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="8dp"
-                            android:layout_weight="1"
-                            android:background="@null"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_radius_gray"
                             android:hint="맛집을 찾아보세요"
                             android:imeOptions="actionSearch"
                             android:inputType="text"
                             android:maxLines="1"
+                            android:fontFamily="@font/smu_snowflake_regular"
+                            android:paddingVertical="12dp"
                             android:textSize="14sp" />
-
-                        <ImageView
-                            android:id="@+id/ivClear"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/close"
-                            android:visibility="gone" />
-                    </LinearLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </com.google.android.material.appbar.MaterialToolbar>
             </com.google.android.material.appbar.AppBarLayout>
 
-            <!--식당종류-->
-            <ScrollView
+            <!--카테고리 & 정렬순서 -->
+            <LinearLayout
+                android:id="@+id/dropdown_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="60dp"
-                android:layout_marginBottom="65dp"
-                app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <!--카테고리로 검색-->
-                    <HorizontalScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:overScrollMode="never"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:scrollbars="none">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    app:boxCornerRadiusBottomEnd="20dp"
+                    app:boxCornerRadiusBottomStart="20dp"
+                    app:boxCornerRadiusTopEnd="20dp"
+                    app:boxCornerRadiusTopStart="20dp"
+                    app:boxStrokeColor="@color/smblue">
 
-                        <RadioGroup
-                            android:layout_width="wrap_content"
-                            android:layout_height="80dp"
-                            android:orientation="horizontal">
-
-                            <RadioButton
-                                android:id="@+id/foodCategory_Btn0"
-                                android:layout_width="80dp"
-                                android:layout_height="match_parent"
-                                android:layout_margin="5dp"
-                                android:background="@drawable/selector_food_category"
-                                android:button="@null"
-                                android:fontFamily="@font/smu_snowflake_regular"
-                                android:gravity="center"
-                                android:text="전체"
-                                android:textSize="14sp"
-                                android:textColor="@color/selector_food_text_color" />
-
-                            <RadioButton
-                                android:id="@+id/foodCategory_Btn1"
-                                android:layout_width="80dp"
-                                android:layout_height="match_parent"
-                                android:layout_margin="5dp"
-                                android:background="@drawable/selector_food_category"
-                                android:button="@null"
-                                android:fontFamily="@font/smu_snowflake_regular"
-                                android:gravity="center"
-                                android:text="치킨"
-                                android:textSize="14sp"
-                                android:textColor="@color/selector_food_text_color" />
-
-                            <RadioButton
-                                android:id="@+id/foodCategory_Btn2"
-                                android:layout_width="80dp"
-                                android:layout_height="match_parent"
-                                android:layout_margin="5dp"
-                                android:background="@drawable/selector_food_category"
-                                android:button="@null"
-                                android:fontFamily="@font/smu_snowflake_regular"
-                                android:gravity="center"
-                                android:text="카페"
-                                android:textSize="14sp"
-                                android:textColor="@color/selector_food_text_color" />
-
-                            <RadioButton
-                                android:id="@+id/foodCategory_Btn3"
-                                android:layout_width="80dp"
-                                android:layout_height="match_parent"
-                                android:layout_margin="5dp"
-                                android:background="@drawable/selector_food_category"
-                                android:button="@null"
-                                android:fontFamily="@font/smu_snowflake_regular"
-                                android:gravity="center"
-                                android:text="한식"
-                                android:textSize="14sp"
-                                android:textColor="@color/selector_food_text_color" />
-
-                            <RadioButton
-                                android:id="@+id/foodCategory_Btn4"
-                                android:layout_width="80dp"
-                                android:layout_height="match_parent"
-                                android:layout_margin="5dp"
-                                android:background="@drawable/selector_food_category"
-                                android:button="@null"
-                                android:fontFamily="@font/smu_snowflake_regular"
-                                android:gravity="center"
-                                android:text="분식"
-                                android:textSize="14sp"
-                                android:textColor="@color/selector_food_text_color" />
-
-                            <RadioButton
-                                android:id="@+id/foodCategory_Btn5"
-                                android:layout_width="80dp"
-                                android:layout_height="match_parent"
-                                android:layout_margin="5dp"
-                                android:background="@drawable/selector_food_category"
-                                android:button="@null"
-                                android:fontFamily="@font/smu_snowflake_regular"
-                                android:gravity="center"
-                                android:text="양식"
-                                android:textSize="14sp"
-                                android:textColor="@color/selector_food_text_color" />
-
-                            <RadioButton
-                                android:id="@+id/foodCategory_Btn6"
-                                android:layout_width="80dp"
-                                android:layout_height="match_parent"
-                                android:layout_margin="5dp"
-                                android:background="@drawable/selector_food_category"
-                                android:button="@null"
-                                android:fontFamily="@font/smu_snowflake_regular"
-                                android:gravity="center"
-                                android:text="디저트"
-                                android:textSize="14sp"
-                                android:textColor="@color/selector_food_text_color" />
-                        </RadioGroup>
-                    </HorizontalScrollView>
-
-                    <!--검색정렬-->
-
-                    <RadioGroup
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/sortPopular"
-                            android:layout_width="80dp"
-                            android:layout_height="48dp"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/selector_food_category"
-                            android:button="@null"
-                            android:fontFamily="@font/smu_snowflake_regular"
-                            android:gravity="center"
-                            android:text="인기순"
-                            android:textSize="14sp"
-                            android:checked="true"
-                            android:textColor="@color/selector_food_text_color" />
-
-                        <RadioButton
-                            android:id="@+id/sortNear"
-                            android:layout_width="80dp"
-                            android:layout_height="48dp"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/selector_food_category"
-                            android:button="@null"
-                            android:fontFamily="@font/smu_snowflake_regular"
-                            android:gravity="center"
-                            android:text="가까운순"
-                            android:textSize="14sp"
-                            android:textColor="@color/selector_food_text_color" />
-
-                        <RadioButton
-                            android:id="@+id/sortRate"
-                            android:layout_width="80dp"
-                            android:layout_height="48dp"
-                            android:layout_margin="5dp"
-                            android:background="@drawable/selector_food_category"
-                            android:button="@null"
-                            android:fontFamily="@font/smu_snowflake_regular"
-                            android:gravity="center"
-                            android:text="평점순"
-                            android:textSize="14sp"
-                            android:textColor="@color/selector_food_text_color" />
-
-                    </RadioGroup>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/search_rv"
+                    <AutoCompleteTextView
+                        android:id="@+id/categoryDropdown"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        tools:listitem="@layout/search_rv_item"/>
-                </LinearLayout>
+                        android:fontFamily="@font/smu_snowflake_regular"
+                        android:inputType="none"
+                        android:padding="8dp"
+                        android:text="전체"
+                        android:textSize="13sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            </ScrollView>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    app:boxCornerRadiusBottomEnd="20dp"
+                    app:boxCornerRadiusBottomStart="20dp"
+                    app:boxCornerRadiusTopEnd="20dp"
+                    app:boxCornerRadiusTopStart="20dp"
+                    app:boxStrokeColor="@color/smblue">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/sortDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/smu_snowflake_regular"
+                        android:inputType="none"
+                        android:padding="8dp"
+                        android:text="인기순"
+                        android:textSize="13sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <!--식당카드-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/search_rv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/dropdown_layout"
+                app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:listitem="@layout/search_rv_item"/>
 
             <!--하단바-->
             <LinearLayout

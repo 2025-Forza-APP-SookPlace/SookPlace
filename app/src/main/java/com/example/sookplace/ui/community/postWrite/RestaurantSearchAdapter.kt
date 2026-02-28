@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sookplace.data.remote.response.SortRestaurantItem
+import com.example.sookplace.data.remote.response.RestaurantContent
 import com.example.sookplace.databinding.ItemPostRestaurantSearchBinding
 
 //식당 리스트를 구성하는 RV
-class RestaurantSearchAdapter(private val onClick: (SortRestaurantItem) -> Unit) :
-    ListAdapter<SortRestaurantItem, RestaurantSearchAdapter.ViewHolder>(diffUtil) {
+class RestaurantSearchAdapter(private val onClick: (RestaurantContent) -> Unit) :
+    ListAdapter<RestaurantContent, RestaurantSearchAdapter.ViewHolder>(diffUtil) {
 
     inner class ViewHolder(private val binding: ItemPostRestaurantSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: SortRestaurantItem) {
+        fun bind(item: RestaurantContent) {
             binding.tvName.text = item.name
             binding.tvCategory.text = item.locationName // 카테고리
             binding.root.setOnClickListener { onClick(item) }
@@ -31,9 +31,9 @@ class RestaurantSearchAdapter(private val onClick: (SortRestaurantItem) -> Unit)
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<SortRestaurantItem>() {
-            override fun areItemsTheSame(old: SortRestaurantItem, new: SortRestaurantItem) = old.id == new.id
-            override fun areContentsTheSame(old: SortRestaurantItem, new: SortRestaurantItem) = old == new
+        val diffUtil = object : DiffUtil.ItemCallback<RestaurantContent>() {
+            override fun areItemsTheSame(old: RestaurantContent, new: RestaurantContent) = old.id == new.id
+            override fun areContentsTheSame(old: RestaurantContent, new: RestaurantContent) = old == new
         }
     }
 }

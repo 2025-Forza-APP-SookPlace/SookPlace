@@ -29,12 +29,6 @@ class HomeViewModel @Inject constructor(
     val userProfile = userProfileRepository.userProfileFlow
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
-    init {
-        viewModelScope.launch {
-            userProfileRepository.refreshIfNeeded()
-        }
-    }
-
     //오늘의 숙플레이스
     val featuredRestaurants: StateFlow<List<FeaturedRestaurantEntity>> =
         restaurantRepository.featuredRestaurants // Repository에서 가져온 Flow
@@ -47,6 +41,7 @@ class HomeViewModel @Inject constructor(
     init {
         // 앱 실행 시 숙플레이스 정보를 갱신 시도
         viewModelScope.launch {
+            delay(500)
             userProfileRepository.refreshIfNeeded()
             loadFeaturedRestaurants()
         }

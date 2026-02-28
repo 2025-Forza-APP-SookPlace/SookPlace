@@ -9,16 +9,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="#ffffff"
+    android:background="#F5F5F5"
     android:fitsSystemWindows="true">
 
     <!-- 상단 헤더 -->
     <LinearLayout
+        android:id="@+id/main_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:padding="12dp"
+        android:padding="8dp"
         android:background="#FFFFFF"
         android:elevation="2dp"
         android:layout_marginTop="0dp"

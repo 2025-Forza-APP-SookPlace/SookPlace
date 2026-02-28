@@ -23,11 +23,10 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    // ★★★ [매우 중요] 여기 주소를 지금 실행 중인 ngrok 주소로 꼭 바꿔주세요! ★★★
-    // 끝에 '/' 슬래시를 빠뜨리지 마세요.
-    private const val BASE_URL = "http://10.0.2.2:8080/"
+    // 주의: ngrok 주소는 서버 재시작 시 바뀔 수 있으니, 접속 안 되면 최신 주소인지 확인하세요.
+    private const val BASE_URL = "https://pseudofeverish-nonsympathizingly-cecily.ngrok-free.dev/"
 
-    // [수정됨] 데이터베이스 충돌 방지 옵션 추가
+    // AppDatabase
     @Provides
     @Singleton
     fun provideAppDatabase(
@@ -40,6 +39,8 @@ object NetworkModule {
         )
             .fallbackToDestructiveMigration() // 데이터 구조 변경 시 자동 초기화
             .build()
+
+        return AppDatabase.getDatabase(context)
     }
 
     @Provides
@@ -93,11 +94,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideUserProfileApi(retrofit: Retrofit): UserProfileApi = retrofit.create(UserProfileApi::class.java)
-
-    @Provides
-    @Singleton
     fun provideRestaurantApi(retrofit: Retrofit): RestaurantApi = retrofit.create(RestaurantApi::class.java)
+
 
     @Provides
     @Singleton
@@ -110,6 +108,12 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideCommunityApi(retrofit: Retrofit): CommunityApi = retrofit.create(CommunityApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideMapApi(retrofit: Retrofit): MapApi {
+        return retrofit.create(MapApi::class.java)
+    }
 
     // [마이페이지용 API]
     @Provides

@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.NavHostFragment
 import com.example.sookplace.databinding.ActivityMainBinding
 import com.example.sookplace.ui.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,6 +54,20 @@ class MainActivity : AppCompatActivity() {
 
         binding.loginBtn.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
+        }
+
+        // 네비게이션 컨트롤러 찾기
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_container) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.searchFragment) {
+                // 탐색 화면이면 상단바 숨기기
+                binding.mainHeader.visibility = View.GONE
+            } else {
+                // 다른 화면(홈, 커뮤니티 등)이면 다시 보여주기
+                binding.mainHeader.visibility = View.VISIBLE
+            }
         }
 
     }

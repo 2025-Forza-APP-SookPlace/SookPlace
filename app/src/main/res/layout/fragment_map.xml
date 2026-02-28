@@ -1,113 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Fragment.MapFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        tools:context=".ui.map.MapFragment">
 
-        <LinearLayout
-            android:id="@+id/bottomNav"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="#FFFFFF"
-            android:weightSum="5"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/homeTap"
+            <!--네이버 지도 API-->
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:layout_weight="1"
-                android:src="@drawable/home_icon" />
+                android:layout_height="match_parent"
+                android:paddingBottom="65dp">
 
-            <ImageView
-                android:id="@+id/searchTap"
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/map"
+                    android:name="com.naver.maps.map.MapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:navermap_latitude="37.545419"
+                    app:navermap_longitude="126.964649"
+                    app:navermap_mapType="Basic"
+                    app:navermap_zoom="15" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--바텀시트-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bottom_sheet"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:layout_weight="1"
-                android:src="@drawable/search_icon" />
+                android:layout_height="match_parent"
+                android:layout_marginBottom="65dp"
+                android:background="@drawable/background_radius"
+                android:elevation="10dp"
+                app:behavior_hideable="false"
+                app:behavior_peekHeight="200dp"
+                app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-            <ImageView
-                android:id="@+id/mapTap"
+                <View
+                    android:id="@+id/handler"
+                    android:layout_width="40dp"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="12dp"
+                    android:background="#DEDEDE"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="My Place"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/handler" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_pins"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title"
+                    tools:listitem="@layout/map_rv_item"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--하단메뉴바-->
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:layout_weight="1"
-                android:src="@drawable/map_icon" />
+                android:layout_height="65dp"
+                android:layout_gravity="bottom"
+                android:background="#FFFFFF"
+                android:elevation="20dp">
 
-            <ImageView
-                android:id="@+id/communityTap"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:layout_weight="1"
-                android:src="@drawable/cummunity_icon" />
+                <LinearLayout
+                    android:id="@+id/bottomNav"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
+                    android:weightSum="5"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/mypageTap"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:layout_weight="1"
-                android:src="@drawable/my_page_icon"/>
+                    <ImageView
+                        android:id="@+id/homeTap"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="10dp"
+                        android:src="@drawable/home_icon" />
 
-        </LinearLayout>
+                    <ImageView
+                        android:id="@+id/searchTap"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="10dp"
+                        android:src="@drawable/search_icon" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="#FFFFFF"
-            android:weightSum="5"
-            app:layout_constraintBottom_toBottomOf="parent">
+                    <ImageView
+                        android:id="@+id/mapTap"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="10dp"
+                        android:src="@drawable/map_icon" />
 
-            <TextView
-                android:text="홈"
-                android:textAlignment="center"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/communityTap"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="10dp"
+                        android:src="@drawable/cummunity_icon" />
 
-            <TextView
-                android:text="탐색"
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/mypageTap"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="10dp"
+                        android:src="@drawable/my_page_icon" />
+                </LinearLayout>
 
-            <TextView
-                android:text="지도"
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:weightSum="5"
+                    app:layout_constraintBottom_toBottomOf="parent">
 
-            <TextView
-                android:text="커뮤니티"
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="홈"
+                        android:textAlignment="center" />
 
-            <TextView
-                android:text="마이페이지"
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="탐색"
+                        android:textAlignment="center" />
 
-        </LinearLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="지도"
+                        android:textAlignment="center" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="커뮤니티"
+                        android:textAlignment="center" />
 
-</FrameLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="마이페이지"
+                        android:textAlignment="center" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </FrameLayout>
 </layout>

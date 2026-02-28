@@ -1,8 +1,12 @@
 package com.example.sookplace.data.remote.api
 
+import com.example.sookplace.data.remote.response.FavoriteToggleResponse
 import com.example.sookplace.data.remote.response.FeaturedRestaurantsResponse
+import com.example.sookplace.data.remote.response.LikeToggleResponse
 import com.example.sookplace.data.remote.response.RestaurantDetailResponse
+import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface RestaurantApi {
@@ -15,4 +19,16 @@ interface RestaurantApi {
     suspend fun getRestaurantDetail(
         @Path("restaurantId") restaurantId: Int
     ): RestaurantDetailResponse
+
+    //식당 좋아요 //TODO: 식당 좋아요, 핀 기능 구현 후 주석 해제
+    @POST("restaurants/{id}/like")
+    suspend fun toggleLike(
+        @Path("id") restaurantId: Int
+    ): LikeToggleResponse
+
+    //식당 핀
+    @POST("restaurants/{id}/favorite")
+    suspend fun postPin(
+        @Path("restaurantId") restaurantId: Int
+    ) : FavoriteToggleResponse
 }

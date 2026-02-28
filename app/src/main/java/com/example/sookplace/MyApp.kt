@@ -8,8 +8,7 @@ class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        // TODO: 네이버 클라이언트 ID 넣기
-//        NaverMapSdk.getInstance(this).client =
-//            NaverMapSdk.NaverCloudPlatformClient("mki5mzmwjj")
+        com.naver.maps.map.NaverMapSdk.getInstance(this).client =
+            com.naver.maps.map.NaverMapSdk.NaverCloudPlatformClient("c1j6y5byty")
     }
 }

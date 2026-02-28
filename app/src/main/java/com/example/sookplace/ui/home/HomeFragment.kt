@@ -44,6 +44,7 @@ class HomeFragment : Fragment() {
     ): View? {
         //데이터바인딩
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
         // ViewModel
         val adapter = FeaturedRestaurantAdapter()
         binding.featuredViewPager.adapter = adapter
@@ -60,11 +61,14 @@ class HomeFragment : Fragment() {
                 //프로필
                 launch {
                     viewModel.userProfile.collect { user ->
+                        Log.d("DEBUG_UI", "Received User: $user")
                         if (user != null) {
                             binding.userprofile.visibility = View.VISIBLE
                             binding.nickname.text = user.nickname
                             binding.profileImg.load(user.avatarUrl)
-                            binding.level.text = user.levelTitle
+                            binding.level.text = user.levelTitleEn
+
+                            binding.executePendingBindings()
                         } else {
                             binding.userprofile.visibility = View.GONE
                         }
@@ -112,15 +116,6 @@ class HomeFragment : Fragment() {
 
         // Fragment onCreateView 또는 onViewCreated에서 호출
         viewModel.loadFeaturedRestaurants()
-
-
-//        // 로그아웃 버튼 예시
-//        binding.logoutBtn.setOnClickListener {
-//            viewModel.logout()
-//            startActivity(Intent(requireContext(), LoginActivity::class.java).apply {
-//                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            })
-//        }
 
         return binding.root
     }

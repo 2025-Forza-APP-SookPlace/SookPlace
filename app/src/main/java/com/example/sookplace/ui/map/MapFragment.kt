@@ -1,5 +1,7 @@
 package com.example.sookplace.ui.map
 
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,13 +10,16 @@ import androidx.fragment.app.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sookplace.R
 import com.example.sookplace.databinding.FragmentMapBinding
+import com.example.sookplace.ui.search.restaurantDetail.RestaurantDetailActivity
+import dagger.hilt.android.AndroidEntryPoint
+import com.naver.maps.map.MapFragment as NaverMapFragment
 
+@AndroidEntryPoint
 class MapFragment : Fragment() {
 
-    //    private lateinit var naverMap: NaverMap
-//    private lateinit var mapView: MapView
     private lateinit var binding: FragmentMapBinding
     private val viewModel: MapViewModel by viewModels()
 
@@ -24,9 +29,25 @@ class MapFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        ///하단바 프래그먼트 간의 이동 구현
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_map, container, false)
 
+        val adapter = FavoriteAdapter { detailUrl ->
+            val intent = Intent(requireContext(), RestaurantDetailActivity::class.java).apply {
+//                putExtra("RESTAURANT_URL", detailUrl) // 상세 페이지 식별자 전달
+            }
+            startActivity(intent)
+        }
+
+        binding.rvPins.apply {
+            this.adapter = adapter
+            layoutManager = LinearLayoutManager(context)
+        }
+
+        viewModel.favorites.observe(viewLifecycleOwner) { response ->
+            adapter.submitList(response.items)
+        }
+
+        ///하단바 프래그먼트 간의 이동 구현
         binding.searchTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_mapFragment_to_searchFragment)
         }
@@ -49,20 +70,14 @@ class MapFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        mapView = view.findViewById(R.id.naverMapView)
-//        mapView.onCreate(savedInstanceState)
-//
-//        mapView.getMapAsync(this)
-    }
+        viewModel.fetchFavorites(10)
 
-//    override fun onMapReady(map: NaverMap) {
-//        naverMap = map
-//
-//        // 숙명여대 근처로 카메라 이동
-//        val cameraPosition = CameraPosition(
-//            LatLng(37.5450, 126.9647),
-//            15.0
-//        )
-//        naverMap.cameraPosition = cameraPosition
-//    }
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as NaverMapFragment?
+
+        mapFragment?.getMapAsync { naverMap ->
+            // 여기에 코드를 작성하면 지도가 뜬 직후에 실행
+            // 마커 찍기, 현재 위치 버튼 활성화 등
+        }
+    }
 }
+

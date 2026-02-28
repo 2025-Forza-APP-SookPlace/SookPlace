@@ -18,4 +18,8 @@ interface AuthApi {
     //로그인
     @POST("auth/login")
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
+
+    //로그아웃
+    @POST("auth/logout")
+    suspend fun logout(): Response<Unit>
 }

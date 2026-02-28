@@ -26,4 +26,8 @@ class TokenManager @Inject constructor(
     fun clearTokens() {
         prefs.edit().clear().apply()
     }
+
+    fun isLoggedIn(): Boolean {// AccessToken이 null이 아니거나 비어있지 않으면 로그인된 것으로 간주
+        return !getAccessToken().isNullOrEmpty()
+    }
 }
