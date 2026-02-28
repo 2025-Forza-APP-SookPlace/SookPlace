@@ -11,6 +11,10 @@ import retrofit2.http.PATCH
 import retrofit2.http.Query
 
 interface UserApi {
+    // ==========================================
+    // 1. 사용자 기본 정보 및 현황 조회 API
+    // ==========================================
+
     @GET("api/me")
     suspend fun getUserMe(): UserMeResponse
 
@@ -34,7 +38,10 @@ interface UserApi {
         @Query("sort") sort: String
     ): MyPostResponse
 
-    // [🔥 뷰모델의 빨간 줄을 없애줄 새로운 계정 관리 API들]
+
+    // ==========================================
+    // 2. [계정 관리] 프로필, 비밀번호, 인증 변경 API
+    // ==========================================
 
     @PATCH("api/me/profile")
     suspend fun updateNickname(@Body request: NicknameChangeRequest): NicknameChangeResponse
@@ -44,4 +51,18 @@ interface UserApi {
 
     @PATCH("api/me/verify")
     suspend fun verifyUniversity(@Body request: UniversityVerifyRequest): UniversityVerifyResponse
+
+
+    // ==========================================
+    // 3. [알림 설정] 알림 조회 및 변경 API
+    // ==========================================
+
+    @GET("api/me/settings")
+    suspend fun getNotificationSettings(): NotificationSettingResponse
+
+    @PATCH("api/me/settings")
+    suspend fun updateNotificationSettings(
+        @Query("type") type: String,
+        @Query("value") value: Boolean
+    ): Response<NotificationSettingResponse>
 }
