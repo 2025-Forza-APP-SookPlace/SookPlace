@@ -2,23 +2,7 @@ package com.example.sookplace.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-// 1. 사용자 정보 (/me)
-data class UserMeResponse(
-    val id: String,
-    val userId: String,
-    val nickname: String,
-    val email: String,
-    val sookVerified: Boolean,
-    val level: Int,
-    val levelTitleEn: String, // 예: "Egg Song"
-    val nextLevel: Int?,
-    val nextLevelTitleEn: String?,
-    val progressToNextPercent: Int,
-    val avatarId: String,
-    val avatarUrl: String, // 읽기 전용 URL
-    val createdAt: String,
-    val updatedAt: String
-)
+
 
 // 2. 퀘스트 현황 및 목표 (/me/quests)
 data class UserQuestResponse(

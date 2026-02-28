@@ -23,7 +23,7 @@ class AccountManagementFragment : Fragment() {
     private var _binding: FragmentAccountManagementBinding? = null
     private val binding get() = _binding!!
 
-    // 직접 만드신 전용 뷰모델을 사용합니다!
+    // 뷰모델 연결
     private val viewModel: AccountManagementViewModel by viewModels()
 
     override fun onCreateView(
@@ -41,9 +41,12 @@ class AccountManagementFragment : Fragment() {
     }
 
     private fun setupListeners() {
-        // 뒤로가기
-        binding.backButton.setOnClickListener {
-            requireActivity().finish()
+        // [🔥핵심 해결!] 클릭이 되는지 확인하기 위해 Toast(알림창)를 추가하고, 가장 강력한 종료 함수를 썼습니다.
+        binding.ivBack.setOnClickListener {
+            Toast.makeText(requireContext(), "뒤로가기 클릭됨!", Toast.LENGTH_SHORT).show()
+
+            // 현재 프래그먼트를 담고 있는 액티비티를 강제로 종료하여 마이페이지로 돌아갑니다.
+            activity?.finish()
         }
 
         binding.btnNickname.setOnClickListener {
@@ -64,35 +67,34 @@ class AccountManagementFragment : Fragment() {
 
         // 하단 네비게이션
         val navListener = View.OnClickListener {
+            Toast.makeText(requireContext(), "화면 이동 중...", Toast.LENGTH_SHORT).show()
             val intent = Intent(requireContext(), MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(intent)
-            requireActivity().finish()
+            activity?.finish()
         }
 
-        binding.homeTap.setOnClickListener(navListener)
-        binding.searchTap.setOnClickListener(navListener)
-        binding.mapTap.setOnClickListener(navListener)
-        binding.communityTap.setOnClickListener(navListener)
-
-        // 마이페이지 탭 클릭 시 뒤로가기
-        binding.mypageTap.setOnClickListener {
-            requireActivity().finish()
+        // 하단 탭 아이콘들에 리스너 연결
+        try {
+            binding.homeTap?.setOnClickListener(navListener)
+            binding.searchTap?.setOnClickListener(navListener)
+            binding.mapTap?.setOnClickListener(navListener)
+            binding.communityTap?.setOnClickListener(navListener)
+        } catch (e: Exception) {
+            e.printStackTrace() // 하단 탭이 XML에 없더라도 앱이 죽지 않게 방어
         }
     }
 
     private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                // 직접 만든 뷰모델의 userMe 관찰
                 viewModel.userMe.collect { user ->
                     user?.let {
                         binding.username.text = it.nickname
                         binding.email.text = it.email
                         binding.badge.visibility = if (it.sookVerified) View.VISIBLE else View.GONE
 
-                        // [수정] 계속 오류를 발생시키던 Glide 로직을 완전히 제거했습니다.
-                        // 서버 통신 이미지 대신 기본 이미지가 항상 보이도록 안전하게 처리했습니다.
+                        // 서버 이미지 대신 기본 이미지 표시
                         binding.profileImage.setImageResource(R.drawable.egg_song)
                     }
                 }
