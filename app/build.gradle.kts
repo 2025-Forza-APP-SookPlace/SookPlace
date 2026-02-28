@@ -84,4 +84,7 @@ dependencies {
 
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
 
+    // 네이버 지도 SDK
+    implementation("com.naver.maps:map-sdk:3.23.1")
+
 }

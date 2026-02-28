@@ -2,7 +2,6 @@ package com.example.sookplace.data.repository
 
 import com.example.sookplace.data.local.TokenManager
 import com.example.sookplace.data.local.dao.UserProfileDao
-import com.example.sookplace.data.mapper.toEntity
 import com.example.sookplace.data.remote.request.LoginRequest
 import com.example.sookplace.data.remote.response.LoginResponse
 import com.example.sookplace.data.remote.request.UserSignupRequest
@@ -15,7 +14,7 @@ import javax.inject.Singleton
 class AuthRepository @Inject constructor(
     private val api: AuthApi,
     private val tokenManager: TokenManager,
-    private val userDao: UserProfileDao
+    private val userProfileDao: UserProfileDao
 ) {
     //회원가입
     suspend fun signup(request: UserSignupRequest): UserSignupResponse {
@@ -30,9 +29,6 @@ class AuthRepository @Inject constructor(
                 val body = response.body()!!
                 tokenManager.saveTokens(body.accessToken, body.refreshToken)
 
-                val userEntity = body.toEntity()
-                userDao.upsertUserProfile(userEntity)
-
                 return Result.success(body)
             } else {
                 Result.failure(Exception("로그인 실패: ${response.code()}"))
@@ -42,5 +38,32 @@ class AuthRepository @Inject constructor(
         }
     }
 
+    //로그아웃
+    suspend fun logout(): Result<Unit> {
+        return try {
+            val response = api.logout()
 
+            if (!response.isSuccessful) {
+                // 서버 응답이 실패하더라도 로컬 로그아웃은 진행해야 하므로 로그만 남김
+                android.util.Log.e("AUTH", "Server logout failed with code: ${response.code()}")
+            }
+
+            tokenManager.clearTokens()
+            userProfileDao.clearUserProfile()
+            Result.success(Unit)
+
+//            if (response.isSuccessful) {
+//                tokenManager.clearTokens()
+//                userProfileDao.clearUserProfile()
+//                Result.success(Unit)
+//            } else {
+//                Result.failure(Exception("로그아웃 실패: ${response.code()}"))
+//            }
+        }catch (e: Exception){
+            android.util.Log.e("AUTH", "Logout exception: ${e.message}")
+            tokenManager.clearTokens()
+            userProfileDao.clearUserProfile()
+            Result.failure(e)
+        }
+    }
 }

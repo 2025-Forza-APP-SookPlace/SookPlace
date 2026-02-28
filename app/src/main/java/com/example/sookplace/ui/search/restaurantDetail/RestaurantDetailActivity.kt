@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -44,19 +45,36 @@ class RestaurantDetailActivity : AppCompatActivity() {
         observeViewModel()
 
         if (restaurantId != -1) {
-            viewModel.fetchRestaurantDetail(restaurantId)
+            viewModel.fetchRestaurantDetail(restaurantId) // 식당 상세 정보 가져오기
         }
     }
 
-    private fun setupListeners(restaurantId: Int) { //버튼 정의
+    //버튼 클릭 정의
+    private fun setupListeners(restaurantId: Int) {
         binding.btnBack.setOnClickListener { finish() }//뒤로가기
 
         binding.btnLike.setOnClickListener { //좋아요 버튼
-            viewModel.toggleLike(restaurantId)
+            if (!viewModel.checkUserLoggedIn()) {
+                Toast.makeText(this, "로그인 후 이용 가능합니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val currentState = viewModel.detailState.value
+            if (currentState is DetailUiState.Success) {
+                viewModel.toggleLike(restaurantId)
+            }
         }
 
         binding.btnSave.setOnClickListener { //핀 버튼
-            viewModel.toggleSave(restaurantId)
+            if (!viewModel.checkUserLoggedIn()) {
+                Toast.makeText(this, "로그인 후 이용 가능합니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val currentState = viewModel.detailState.value
+            if (currentState is DetailUiState.Success) {
+                viewModel.toggleSave(restaurantId)
+            }
         }
     }
 

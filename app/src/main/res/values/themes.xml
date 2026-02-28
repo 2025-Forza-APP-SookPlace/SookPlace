@@ -3,15 +3,17 @@
     <style name="Base.Theme.SookPlace" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Status bar color. -->
     </style>
 
 
     <style name="Theme.SookPlace" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:colorPrimary">@color/smblue</item>
+        <item name="android:colorPrimary">@color/white</item>
         <item name="android:textColorPrimary">#212121</item>
         <item name="android:textColorSecondary">#757575</item>
         <item name="android:windowBackground">#ffffff</item>
-        <item name="android:statusBarColor">@color/smblue</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/white</item>
     </style>
 
 </resources>

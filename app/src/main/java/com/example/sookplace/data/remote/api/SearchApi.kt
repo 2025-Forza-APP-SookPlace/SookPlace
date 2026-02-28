@@ -1,10 +1,13 @@
 package com.example.sookplace.data.remote.api
 
 import com.example.sookplace.data.remote.request.SearchRequest
+import com.example.sookplace.data.remote.response.LikeToggleResponse
 import com.example.sookplace.data.remote.response.SearchResponse
 import com.example.sookplace.data.remote.response.SortResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface SearchApi {
@@ -29,5 +32,10 @@ interface SearchApi {
         @Query("size") size: Int
     ): SortResponse
 
+    //식당 좋아요
+    @POST("restaurants/{id}/like")
+    suspend fun toggleLike(
+        @Path("id") restaurantId: Int
+    ): LikeToggleResponse
 
 }
