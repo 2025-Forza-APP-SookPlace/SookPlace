@@ -50,6 +50,17 @@
             android:name=".ui.mypage.settings.AccountManagementActivity"
             android:exported="false" />
 
+        <!-- [추가된 3개의 설정 화면 등록] -->
+        <activity
+            android:name=".ui.mypage.settings.NicknameChangeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.mypage.settings.PasswordChangeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.mypage.settings.UniversityVerificationActivity"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -20,12 +20,12 @@
             android:paddingHorizontal="16dp">
 
             <ImageButton
-                android:id="@+id/btnBack"
+                android:id="@+id/ivBack"
+                android:src="@drawable/ic_back"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@android:color/transparent"
-                android:contentDescription="뒤로가기"
-                android:src="@drawable/arrow_back" />
+                android:contentDescription="뒤로가기" />
 
             <TextView
                 android:layout_width="0dp"

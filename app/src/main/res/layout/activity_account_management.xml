@@ -20,15 +20,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- 터치 영역을 48dp로 키우고 클릭 효과를 넣었습니다 -->
         <ImageView
-            android:id="@+id/backButton"
+            android:id="@+id/ivBack"
             android:src="@drawable/ic_back"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:padding="4dp" />
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true" />
 
         <TextView
-            style="@style/TitleText"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -38,20 +41,142 @@
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginStart="0dp" />
+
         <View
-            android:layout_width="24dp"
-            android:layout_height="24dp" />
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+    </LinearLayout>
+
+    <!-- 🧭 하단 네비게이션바 (스크롤 뷰 밑에 깔리지 않도록 위로 올림) -->
+    <LinearLayout
+        android:id="@+id/bottomNavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 아이콘 줄 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <ImageView
+                android:id="@+id/homeTap"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/home_icon"
+                android:scaleType="centerInside"
+                android:padding="6dp" />
+
+            <ImageView
+                android:id="@+id/searchTap"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/search_icon"
+                android:scaleType="centerInside"
+                android:padding="6dp" />
+
+            <ImageView
+                android:id="@+id/mapTap"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/map_icon"
+                android:scaleType="centerInside"
+                android:padding="6dp" />
+
+            <ImageView
+                android:id="@+id/communityTap"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/community_icon"
+                android:scaleType="centerInside"
+                android:padding="6dp" />
+
+            <ImageView
+                android:id="@+id/mypageTap"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/my_page_icon"
+                android:scaleType="centerInside"
+                android:padding="6dp" />
+        </LinearLayout>
+
+        <!-- 텍스트 줄 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:text="홈"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+
+            <TextView
+                android:text="검색"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+
+            <TextView
+                android:text="지도"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+
+            <TextView
+                android:text="커뮤니티"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+
+            <TextView
+                android:text="마이페이지"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#1A2FA0"
+                android:textStyle="bold"
+                android:textSize="12sp" />
+        </LinearLayout>
     </LinearLayout>
 
     <!-- 전체 스크롤 -->
     <ScrollView
-        app:layout_constraintTop_toBottomOf="@id/header"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="48dp">
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -168,6 +293,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+                    <!-- 버튼 기본 색상(보라색 등)을 없애고 투명하게 변경 -->
                     <Button
                         android:id="@+id/btnNickname"
                         android:layout_width="match_parent"
@@ -176,7 +302,8 @@
                         android:gravity="start|center_vertical"
                         android:paddingStart="12dp"
                         android:textColor="#000000"
-                        android:background="@drawable/outline_button_bg" />
+                        android:background="@android:color/transparent"
+                        app:backgroundTint="@null" />
 
                     <Button
                         android:id="@+id/btnPassword"
@@ -187,7 +314,8 @@
                         android:paddingStart="12dp"
                         android:layout_marginTop="8dp"
                         android:textColor="#000000"
-                        android:background="@drawable/outline_button_bg" />
+                        android:background="@android:color/transparent"
+                        app:backgroundTint="@null" />
 
                     <Button
                         android:id="@+id/btnVerify"
@@ -198,34 +326,9 @@
                         android:paddingStart="12dp"
                         android:layout_marginTop="8dp"
                         android:textColor="#000000"
-                        android:background="@drawable/outline_button_bg" />
+                        android:background="@android:color/transparent"
+                        app:backgroundTint="@null" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- 🎯 퀘스트 카드 -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp">
-                <!-- ... 카드 내부 레이아웃 ... -->
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- 📈 통계 카드 -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp">
-                <!-- ... 카드 내부 레이아웃 ... -->
             </com.google.android.material.card.MaterialCardView>
 
             <!-- 🔴 Danger Zone -->
@@ -242,6 +345,7 @@
                 app:strokeWidth="1dp"
                 android:backgroundTint="#FFFFFFFF">
 
+                <!-- 회원 탈퇴 버튼도 깔끔하게 수정 -->
                 <Button
                     android:id="@+id/btnDelete"
                     android:layout_width="match_parent"
@@ -250,7 +354,8 @@
                     android:textColor="#EC5655"
                     android:gravity="start|center_vertical"
                     android:paddingStart="12dp"
-                    android:background="@android:color/transparent" />
+                    android:background="@android:color/transparent"
+                    app:backgroundTint="@null" />
             </com.google.android.material.card.MaterialCardView>
 
             <!-- Info -->
@@ -258,7 +363,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:paddingBottom="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -280,126 +386,5 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    <!-- 🧭 하단 네비게이션바 -->
-    <LinearLayout
-        android:id="@+id/bottomNavigationBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="bottom"
-        android:background="#FFFFFF"
-        android:elevation="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <!-- 아이콘 줄 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:weightSum="5">
-
-            <ImageView
-                android:id="@+id/homeTap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/home_icon"
-                android:scaleType="centerInside"
-                android:padding="6dp" />
-
-            <ImageView
-                android:id="@+id/searchTap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/search_icon"
-                android:scaleType="centerInside"
-                android:padding="6dp" />
-
-            <ImageView
-                android:id="@+id/mapTap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/map_icon"
-                android:scaleType="centerInside"
-                android:padding="6dp" />
-
-            <ImageView
-                android:id="@+id/communityTap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/community_icon"
-                android:scaleType="centerInside"
-                android:padding="6dp" />
-
-            <ImageView
-                android:id="@+id/mypageTap"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/my_page_icon"
-                android:scaleType="centerInside"
-                android:padding="6dp" />
-        </LinearLayout>
-
-        <!-- 텍스트 줄 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:weightSum="5">
-
-            <TextView
-                android:text="홈"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-
-            <TextView
-                android:text="검색"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-
-            <TextView
-                android:text="지도"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="#1A2FA0"
-                android:textStyle="bold"
-                android:textSize="12sp" />
-
-            <TextView
-                android:text="커뮤니티"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-
-            <TextView
-                android:text="마이페이지"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="#000000"
-                android:textSize="12sp" />
-        </LinearLayout>
-    </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
