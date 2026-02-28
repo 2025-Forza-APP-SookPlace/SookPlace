@@ -41,7 +41,7 @@ interface UserApi {
 
     // ==========================================
     // 2. [계정 관리] 프로필, 비밀번호, 인증 변경 API
-    // ==========================================
+    // =========================================
 
     @PATCH("api/me/profile")
     suspend fun updateNickname(@Body request: NicknameChangeRequest): NicknameChangeResponse
