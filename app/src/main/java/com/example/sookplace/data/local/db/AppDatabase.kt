@@ -23,7 +23,7 @@ import com.example.sookplace.data.local.entity.UserProfileEntity
         FeaturedRestaurantEntity::class,
         PlaceEntity::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

@@ -24,7 +24,7 @@ interface UserApi {
     @GET("api/me/stats")
     suspend fun getUserStats(): UserStatsResponse
 
-    @GET("api/me/places")
+    @GET("api/me/favorites")
     suspend fun getMyPlaces(
         @Query("page") page: Int,
         @Query("size") size: Int,

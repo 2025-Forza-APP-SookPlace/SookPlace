@@ -19,42 +19,37 @@ import kotlinx.coroutines.launch
 class MyPostActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMyPostBinding
-
-    // 뷰모델 연결
     private val viewModel: MyPageViewModel by viewModels()
     private lateinit var adapter: MyPostPreviewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // 회원님의 기존 방식인 DataBindingUtil을 그대로 사용합니다!
+        // XML의 <layout> 태그를 사용하므로 DataBindingUtil로 세팅
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_post)
 
-        setupListeners()
-        setupRecyclerView()
+        setupUI()
         observeViewModel()
 
-        // 데이터 로드
+        // 데이터 불러오기
         viewModel.loadMyPage()
     }
 
-    private fun setupListeners() {
-        // [핵심] 뒤로가기 버튼 처리
-        // 🚨 주의: 아래 'ivBack' 부분에 빨간 줄이 뜬다면,
-        // activity_my_post.xml 파일을 열어서 뒤로가기 이미지의 진짜 ID를 확인하고 그 이름으로 바꿔주세요! (예: backButton, backBtn 등)
+    private fun setupUI() {
+        // 뒤로가기 버튼 기능 (XML의 ivBack ID 참조)
         binding.ivBack.setOnClickListener {
-            finish() // 이 함수가 마이페이지로 확실하게 돌아가게 해줍니다.
+            finish()
         }
-    }
 
-    private fun setupRecyclerView() {
+        // 어댑터 생성 (클릭 리스너 포함)
         adapter = MyPostPreviewAdapter { post ->
             Toast.makeText(this, "${post.title} 클릭됨", Toast.LENGTH_SHORT).show()
         }
 
-        // 회원님의 기존 리사이클러뷰 ID인 'mypostRV'를 사용합니다!
-        binding.mypostRV.layoutManager = LinearLayoutManager(this)
-        binding.mypostRV.adapter = adapter
+        // 리사이클러뷰 세팅 (XML의 rvMyPost ID 참조)
+        binding.rvMyPost.apply {
+            layoutManager = LinearLayoutManager(this@MyPostActivity)
+            adapter = this@MyPostActivity.adapter
+        }
     }
 
     private fun observeViewModel() {
