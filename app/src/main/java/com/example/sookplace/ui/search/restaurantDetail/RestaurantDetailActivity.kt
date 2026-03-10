@@ -3,6 +3,7 @@ package com.example.sookplace.ui.search.restaurantDetail
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -66,6 +67,7 @@ class RestaurantDetailActivity : AppCompatActivity() {
         }
 
         binding.btnSave.setOnClickListener { //핀 버튼
+            Log.d("RestaurantDetail", "Save 버튼 눌림!")
             if (!viewModel.checkUserLoggedIn()) {
                 Toast.makeText(this, "로그인 후 이용 가능합니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -119,13 +121,13 @@ class RestaurantDetailActivity : AppCompatActivity() {
             textAddress.text = data.address
             textPhone.text = data.phone
 
-            setupImageSlider(data.images)
+            setupImageSlider(data.images.orEmpty())
 
-            val hoursText = data.openingHours.joinToString("\n") { "${it.day}: ${it.hours}" }
+            val hoursText = data.openingHours?.joinToString("\n") { "${it.day}: ${it.hours}" } ?: "영업시간 정보가 없습니다."
             textHours.text = hoursText
 
-            setupMenuRecyclerView(data.menus)
-            setupReviewSection(data.latestReviews)
+            setupMenuRecyclerView(data.menus.orEmpty())
+            setupReviewSection(data.latestReviews.orEmpty())
 
             btnNaverMap.setOnClickListener {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(data.naverMapUrl))
@@ -135,13 +137,20 @@ class RestaurantDetailActivity : AppCompatActivity() {
     }
 
     private fun setupImageSlider(images: List<String>) { //헤더 이미지
+
         val sliderAdapter = ImageSliderAdapter(images)
         binding.imageMain.adapter = sliderAdapter
         binding.imageMain.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         //페이지 수
         val totalImages = images.size
-        binding.tvImageIndex.text = "1 / $totalImages"
+        if (images.isEmpty()) {
+            binding.tvImageIndex.isVisible = false // 이미지가 없으면 "1 / 0" 텍스트 숨기기
+            return // 더 이상 슬라이더 설정을 할 필요가 없으므로 함수 종료
+        } else {
+            binding.tvImageIndex.isVisible = true
+            binding.tvImageIndex.text = "1 / $totalImages"
+        }
 
         binding.imageMain.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {

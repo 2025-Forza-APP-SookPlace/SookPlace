@@ -1,6 +1,6 @@
 package com.example.sookplace.data.remote.response
 
-data class RestaurantDetailResponse( //TODO isLiked 추가
+data class RestaurantDetailResponse(
     val id: Int,
     val name: String,
     val category: String,

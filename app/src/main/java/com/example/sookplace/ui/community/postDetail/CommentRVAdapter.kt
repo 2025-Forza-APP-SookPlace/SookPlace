@@ -30,11 +30,9 @@ class CommentRVAdapter (
                 placeholder(R.drawable.my_page_icon)
             }
 
-            if (comment.author.nickname == currentUserId) {
-                binding.btnDelete.visibility = View.VISIBLE
-            } else {
-                binding.btnDelete.visibility = View.GONE
-            }
+            val isMyComment = (comment.author.userId == currentUserId)
+
+            binding.btnDelete.isVisible = isMyComment
 
             binding.btnDelete.setOnClickListener {
                 onDeleteClick(comment.commentId)

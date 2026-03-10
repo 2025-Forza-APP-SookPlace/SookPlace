@@ -118,7 +118,7 @@ class PostDetailActivity : AppCompatActivity() {
     }
 
     private fun hideSoftKeyboard() { //키보드 숨기기 코드
-        val imm = getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
         imm.hideSoftInputFromWindow(binding.etComment.windowToken, 0)
     }
 
@@ -146,17 +146,17 @@ class PostDetailActivity : AppCompatActivity() {
                             commentAdapter?.submitList(post.comments.toList())
                             binding.commentCount.text = post.commentCount.toString()
 
-                            viewModel.currentUserId.collect { myNickname ->
-                                if (myNickname != null) {
-                                    Log.d("NicknameCheck", "게시글 작성자: ${post.author.nickname}")
-                                    Log.d("NicknameCheck", "내 닉네임: $myNickname")
+                            val myUserId = viewModel.currentUserId.value
 
-                                    val isMine = (post.author.nickname == myNickname)
-                                    Log.d("NicknameCheck", "일치 여부: $isMine")
+                            if (myUserId != null) {
+                                Log.d("AuthCheck", "게시글 작성자 ID: ${post.author.userId}")
+                                Log.d("AuthCheck", "내 ID: $myUserId")
 
-                                    // 일치하면 수정/삭제 메뉴 보이기
-                                    binding.layoutPostMenu.isVisible = isMine
-                                }
+                                val isMine = (post.author.userId == myUserId)
+                                Log.d("AuthCheck", "일치 여부(내 글인가?): $isMine")
+
+                                // 일치하면 게시글 수정/삭제 메뉴 보이기
+                                binding.layoutPostMenu.isVisible = isMine
                             }
                         }
                         is PostDetailViewModel.DetailUiState.Loading -> { /* 로딩 처리 */ }

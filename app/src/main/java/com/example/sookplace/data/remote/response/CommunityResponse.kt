@@ -23,7 +23,7 @@ data class PostContent(
     val imageUrl: String?,
     val likeCount: Int,
     val commentCount: Int,
-    val isBookmarked: Boolean?,
+//    val isBookmarked: Boolean?, TODO 게시글 북마크 기능 삭제
     val createdAt: String,
     val displayTime: String,
     val likedByMe: Boolean
@@ -53,7 +53,7 @@ data class PostDetailResponse(
     @SerializedName("images") val images: List<String>, // 이미지 여러 장
     @SerializedName("likeCount") val likeCount: Int,
     @SerializedName("commentCount") val commentCount: Int,
-    @SerializedName("isBookmarked") val isBookmarked: Boolean,
+//    @SerializedName("isBookmarked") val isBookmarked: Boolean, TODO 북마크 삭제 + isLiked 추가
     @SerializedName("createdAt") val createdAt: String,
     @SerializedName("displayTime") val displayTime: String,
     @SerializedName("comments") val comments: List<CommentResponse>, // 댓글 리스트

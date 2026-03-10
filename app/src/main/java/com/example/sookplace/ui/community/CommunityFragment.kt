@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -103,13 +104,13 @@ class CommunityFragment : Fragment() {
                 viewModel.uiState.collect { state ->
                     when (state) {
                         is CommunityViewModel.CommunityUiState.Loading -> {
-                            // 로딩바 보여주기 (XML에 ProgressBar가 있다면)
+                            // 로딩바 보여주기
                         }
                         is CommunityViewModel.CommunityUiState.Success -> {
                             communityAdapter.submitList(state.posts)
                         }
                         is CommunityViewModel.CommunityUiState.Error -> {
-                            // 에러 메시지 처리 (Toast 등)
+                            Toast.makeText(requireContext(), state.message, Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -127,16 +128,12 @@ class CommunityFragment : Fragment() {
         onItemClick = { post ->
             val intent = Intent(requireContext(), PostDetailActivity::class.java).apply {
                 putExtra("POST_ID",post.postId)
-                putExtra("IS_LIKED", post.likedByMe)
+                putExtra("IS_LIKED", post.likedByMe) //TODO 좋아요 상태 전달 -> 백엔드에서
             }
             startActivity(intent)
         },
         onLikeClick = { post ->
             viewModel.toggleLike(post.postId)
-        },
-        onBookmarkClick = { post ->
-            viewModel.toggleBookmark(post)
         }
-
     )
 }

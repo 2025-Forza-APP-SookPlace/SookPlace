@@ -2,7 +2,6 @@ package com.example.sookplace.ui.community
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sookplace.data.local.entity.PostEntity
 import com.example.sookplace.data.remote.response.PostContent
 import com.example.sookplace.data.repository.CommunityRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -123,41 +122,6 @@ class CommunityViewModel @Inject constructor(
         allPosts.clear()
         allPosts.addAll(previousList)
         _uiState.value = CommunityUiState.Success(allPosts.toList())
-    }
-
-    // 북마크 토글 로직
-    fun toggleBookmark(post: PostContent) {
-        viewModelScope.launch {
-            val newBookmarked = !(post.isBookmarked ?: false)
-
-            val index = allPosts.indexOfFirst { it.postId == post.postId }
-            if (index != -1) {
-                allPosts[index] = allPosts[index].copy(isBookmarked = newBookmarked)
-                _uiState.value = CommunityUiState.Success(allPosts.toList())
-            }
-
-            if (newBookmarked) { //북마크된 게시물 저장(마이포스트용)
-                val entity = PostEntity(
-                    postId = post.postId,
-                    userId = post.author.userId,
-                    nickname = post.author.nickname,
-                    profileImageUrl = post.author.profileImageUrl,
-                    title = post.title,
-                    excerpt = post.excerpt,
-                    category = post.category,
-                    placeId = post.place.placeId,
-                    placeName = post.place.name,
-                    rating = post.rating,
-                    imageUrl = post.imageUrl,
-                    likeCount = post.likeCount,
-                    commentCount = post.commentCount,
-                    displayTime = post.displayTime
-                )
-                communityRepository.saveBookmark(entity)
-            } else {
-                communityRepository.removeBookmark(post.postId)
-            }
-        }
     }
 
 

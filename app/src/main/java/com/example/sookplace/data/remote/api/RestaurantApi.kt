@@ -29,6 +29,6 @@ interface RestaurantApi {
     //식당 핀
     @POST("restaurants/{id}/favorite")
     suspend fun postPin(
-        @Path("restaurantId") restaurantId: Int
+        @Path("id") restaurantId: Int
     ) : FavoriteToggleResponse
 }

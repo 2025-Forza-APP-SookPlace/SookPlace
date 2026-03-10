@@ -1,5 +1,6 @@
 package com.example.sookplace.ui.search.restaurantDetail
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sookplace.data.local.TokenManager
@@ -62,8 +63,10 @@ class RestaurantDetailViewModel @Inject constructor(
 
             try {
                 val response = restaurantRepository.togglePin(restaurantId)
+                Log.d("RestaurantDetail", "Save API 성공! 서버 응답값: ${response.favorited}")
                 _isSaved.value = response.favorited
             } catch (e: Exception) {
+                Log.e("RestaurantDetail", "Save API 에러 발생", e)
                 _isSaved.value = originalIsSaved
             }
         }

@@ -16,8 +16,7 @@ import com.example.sookplace.databinding.CommunityRvItemBinding
 class CommunityRVAdapter(
     private val onPlaceClick: (String) -> Unit, // 장소보기 클릭 리스너
     private val onItemClick: (PostContent) -> Unit,   // 게시글 상세 클릭 리스너
-    private val onLikeClick: (PostContent) -> Unit,    // 좋아요 클릭 리스너
-    private val onBookmarkClick: (PostContent) -> Unit  //북마크 클릭 리스너
+    private val onLikeClick: (PostContent) -> Unit    // 좋아요 클릭 리스너
 ) : ListAdapter<PostContent, CommunityRVAdapter.ViewHolder>(diffUtil) {
 
     inner class ViewHolder(private val binding: CommunityRvItemBinding) :
@@ -40,7 +39,7 @@ class CommunityRVAdapter(
 
             //메인 이미지 (있을 때만 노출)
             if (!post.imageUrl.isNullOrEmpty()) {
-                binding.postImg.isVisible = true // XML 이미지 뷰 ID: postImg 추가 필요
+                binding.postImg.isVisible = true
                 binding.postImg.load(post.imageUrl) {
                     crossfade(true)
 //                    placeholder(R.drawable.loading_image) //이미지를 다운로드하는 동안 보여줄 이미지
@@ -58,19 +57,13 @@ class CommunityRVAdapter(
             binding.heartCount.text = post.likeCount.toString()
             binding.commentCount.text = post.commentCount.toString()
 
-            //좋아요 && 북마크 아이콘
+            //좋아요 아이콘
             binding.heart.setImageResource(
                 if (post.likedByMe) R.drawable.favorite_fill else R.drawable.favorite
-            )
-            binding.bookmark.setImageResource(
-                if (post.isBookmarked == true) R.drawable.bookmark_fill else R.drawable.bookmark
             )
 
             binding.heart.setOnClickListener {
                 onLikeClick(post) // 어댑터 생성 시 넘겨받은 고차함수 호출
-            }
-            binding.bookmark.setOnClickListener {
-                onBookmarkClick(post)
             }
 
             //평점

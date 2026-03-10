@@ -40,7 +40,7 @@ interface CommunityApi {
     @POST("posts/{postId}/likes")
     suspend fun updatePostLike(
         @Path("postId") postId: String
-    ): retrofit2.Response<LikeResponse>
+    ): Response<LikeResponse>
 
     //댓글 작성API
     @POST("posts/{postId}/comments")
@@ -53,7 +53,7 @@ interface CommunityApi {
     @DELETE("comments/{commentId}")
     suspend fun deleteComment(
         @Path("commentId") commentId: String
-    ): retrofit2.Response<Unit>
+    ): Response<Unit>
 
     //게시물 작성 API
     @Multipart

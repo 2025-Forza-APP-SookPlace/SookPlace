@@ -47,14 +47,14 @@ class PostDetailViewModel @Inject constructor(
         }
     }
 
-    //사용자 아이디(본인) //TODO: 댓글 닉네임으로 본인 비교
+    //사용자 아이디(본인)
     private val _currentUserId = MutableStateFlow<String?>(null)
     val currentUserId: StateFlow<String?> = _currentUserId
 
     fun fetchCurrentUserId() {
         viewModelScope.launch {
             val profile = userProfileRepository.getUserProfileOnce()
-            _currentUserId.value = profile?.nickname
+            _currentUserId.value = profile?.userId
         }
     }
 

@@ -131,10 +131,6 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun providePostDao(database: AppDatabase): PostDao = database.postDao()
-
-    @Provides
-    @Singleton
     fun provideFeaturedRestaurantDao(database: AppDatabase): FeaturedRestaurantDao = database.featuredRestaurantDao()
 
     @Provides

@@ -1,7 +1,5 @@
 package com.example.sookplace.data.repository
 
-import com.example.sookplace.data.local.dao.PostDao
-import com.example.sookplace.data.local.entity.PostEntity
 import com.example.sookplace.data.remote.api.CommunityApi
 import com.example.sookplace.data.remote.response.Author
 import com.example.sookplace.data.remote.response.CommentResponse
@@ -21,10 +19,24 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class CommunityRepository @Inject constructor(
-    private val communityApi: CommunityApi,
-    private val postDao: PostDao
+    private val communityApi: CommunityApi
 ) {
-    private val USE_DUMMY = true
+    private val USE_DUMMY = false
+
+    private val adminAuthor = Author(
+        userId = "admin",
+        nickname = "숙플관리자",
+        profileImageUrl = "https://picsum.photos/id/1/200/200"
+    )
+    private val normalAuthor = Author(
+        userId = "user_123",
+        nickname = "눈송이",
+        profileImageUrl = "https://picsum.photos/id/2/200/200"
+    )
+    private val dummyPlace = PlaceInfo(
+        placeId = "place_1",
+        name = "숙대 맛집 마라탕"
+    )
 
     /**피드 조회*/
     suspend fun getCommunityFeed(
@@ -33,90 +45,98 @@ class CommunityRepository @Inject constructor(
         page: Int,
         size: Int
     ): CommunityResponse{
-        if (USE_DUMMY){
+        if (USE_DUMMY) {
             delay(500)
-            return getDummyFeed(page, size)
+
+            val dummyPosts = listOf(
+                PostContent(
+                    postId = "post_admin",
+                    author = adminAuthor,
+                    category = "공지사항",
+                    title = "[필독] 숙플 커뮤니티 이용 가이드",
+                    excerpt = "커뮤니티 이용 가이드입니다. 클린한 게시판을 만들어주세요.", // content -> excerpt
+                    place = dummyPlace, // 추가됨
+                    rating = 5.0,       // 추가됨
+                    imageUrl = "https://picsum.photos/id/3/300/300", // thumbnailUrl -> imageUrl
+                    likeCount = 99,
+                    commentCount = 2,
+                    createdAt = "2026-02-24T10:00:00Z",
+                    displayTime = "1시간 전",
+                    likedByMe = false   // 추가됨
+                ),
+                PostContent(
+                    postId = "post_normal",
+                    author = normalAuthor,
+                    category = "맛집추천",
+                    title = "여기 마라탕 진짜 맛있어요 ㅠㅠ",
+                    excerpt = "점심에 먹고 왔는데 눈물나는 맛입니다. 꼭 가보세요!",
+                    place = dummyPlace,
+                    rating = 4.5,
+                    imageUrl = null,
+                    likeCount = 15,
+                    commentCount = 1,
+                    createdAt = "2026-02-24T10:30:00Z",
+                    displayTime = "30분 전",
+                    likedByMe = true
+                )
+            )
+
+            // 수정됨: totalElements, totalPages 추가
+            return CommunityResponse(
+                content = dummyPosts,
+                page = page,
+                size = size,
+                totalElements = 2,
+                totalPages = 1,
+                hasNext = false
+            )
         }
         return communityApi.getCommunityFeed(category, sort, page, size)
     }
-
-    private fun getDummyFeed(page: Int, size: Int): CommunityResponse {
-        val dummyPosts = List(size) { i ->
-            val globalIndex = (page * size) + i + 1 // 전체 리스트에서의 인덱스
-
-            PostContent(
-                postId = "p_$globalIndex",
-                author = Author("u_$globalIndex", "눈송이 $globalIndex", "https://picsum.photos/id/$globalIndex/100/100"),
-                category = if (i % 2 == 0) "cafe" else "korean",
-                title = "[$page 페이지] 숙대 맛집 탐방 $globalIndex",
-                excerpt = "$globalIndex 번째 게시글 내용입니다. 무한 스크롤 테스트 중입니다. 맛집 정보가 가득해요!",
-                place = PlaceInfo("pl_$globalIndex", "스머프 식당 $globalIndex"),
-                rating = 4.0 + (i % 10) * 0.1,
-                imageUrl = if (i % 3 == 0) "https://picsum.photos/id/${globalIndex + 100}/600/400" else null,
-                likeCount = 10 + i,
-                commentCount = i,
-                isBookmarked = false,
-                createdAt = "2025-12-20T10:00:00Z",
-                displayTime = "${page + 1}일 전",
-                likedByMe = i % 2 == 0
-            )
-        }
-
-        return CommunityResponse(
-            content = dummyPosts,
-            page = page,
-            size = size,
-            totalElements = 50,
-            totalPages = 5,
-            hasNext = page < 4
-        )
-    }
-
-    //북마크된 게시물 저장(마이 포스트)
-    suspend fun saveBookmark(post: PostEntity) = postDao.insertPost(post)
-    suspend fun removeBookmark(postId: String) = postDao.deletePost(postId)
-    fun getBookmarks(): Flow<List<PostEntity>> = postDao.getAllBookmarkedPosts()
 
 
     /**단건 게시물 조회*/
     suspend fun getPostDetail(postId: String): PostDetailResponse {
         if (USE_DUMMY) {
             delay(500)
-            val index = postId.replace("p_", "").toIntOrNull() ?: 1
-            return getDummyPostDetail(postId, index)
+
+            val isAdminPost = postId == "post_admin"
+            val currentAuthor = if (isAdminPost) adminAuthor else normalAuthor
+
+            return PostDetailResponse(
+                postId = postId,
+                author = currentAuthor,
+                category = if (isAdminPost) "공지사항" else "맛집추천",
+                title = if (isAdminPost) "[필독] 숙플 커뮤니티 이용 가이드" else "여기 마라탕 진짜 맛있어요 ㅠㅠ",
+                content = "이것은 ${currentAuthor.nickname}님이 작성한 게시글의 상세 본문입니다.\n\n테스트를 위한 더미 데이터입니다.",
+                place = dummyPlace,
+                partnership = isAdminPost,
+                rating = if (isAdminPost) 5.0 else 4.5,
+                images = listOf("https://picsum.photos/id/10/500/500", "https://picsum.photos/id/11/500/500"),
+                likeCount = if (isAdminPost) 99 else 15,
+                commentCount = 2,
+                createdAt = "2026-02-24T10:00:00Z",
+                displayTime = if (isAdminPost) "1시간 전" else "30분 전",
+                likedByMe = !isAdminPost,
+                comments = listOf(
+                    CommentResponse(
+                        commentId = "comment_1",
+                        author = normalAuthor, // 일반 유저의 댓글
+                        content = "우와 좋은 정보 감사합니다!",
+                        createdAt = "2026-02-24T10:10:00Z",
+                        displayTime = "50분 전"
+                    ),
+                    CommentResponse(
+                        commentId = "comment_2",
+                        author = adminAuthor, // 관리자의 댓글
+                        content = "참고로 주말에는 휴무라고 하네요.",
+                        createdAt = "2026-02-24T10:15:00Z",
+                        displayTime = "45분 전"
+                    )
+                )
+            )
         }
         return communityApi.getPostDetail(postId)
-    }
-
-    private fun getDummyPostDetail(postId: String, index: Int): PostDetailResponse {
-        // 피드 리스트의 로직과 일치하도록 속성값 설정
-        return PostDetailResponse(
-            postId = postId,
-            author = Author("u_$index", "눈송이 $index", "https://picsum.photos/id/$index/100/100"),
-            category = if (index % 2 != 0) "cafe" else "korean",
-            title = "숙대 맛집 탐방 $index",
-            content = "이 게시글은 $index 번째로 작성된 맛집 탐방기입니다.\n" +
-                    "실제로 상세 조회를 하면 본문 전체 내용을 볼 수 있습니다.\n" +
-                    "오늘 갔던 곳은 정말 최고였어요! 분위기부터 맛까지 모든 게 완벽했습니다.",
-            place = PlaceInfo("pl_$index", "스머프 식당 $index"),
-            partnership = index % 5 == 0, // 5의 배수 게시글은 제휴 업체로 설정
-            rating = 4.0 + (index % 10) * 0.1,
-            // 리스트에서 썼던 이미지와 상세 페이지의 첫 이미지를 일치시킴
-            images = listOf(
-                "https://picsum.photos/id/${index + 100}/600/400",
-                "https://picsum.photos/id/${index + 101}/600/400",
-                "https://picsum.photos/id/${index + 102}/600/400"
-            ),
-            likeCount = 10 + index,
-            commentCount = 2,
-            isBookmarked = false,
-            createdAt = "2025-12-20T10:00:00Z",
-            displayTime = "1시간 전",
-            comments = listOf(
-                CommentResponse("c_01", Author("u_100", "프로맛집러", null), "오 여기 $index 번째 글인데도 퀄리티 좋네요!", "2025-12-20T11:00:00Z", "10분 전"),
-                CommentResponse("c_02", Author("u_101", "배고픈송이", null), "사진 보니까 저도 가고 싶어져요ㅠㅠ", "2025-12-20T11:05:00Z", "5분 전")
-            )
-        )
     }
 
     /**댓글 작성*/
